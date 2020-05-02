@@ -1,0 +1,27 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>welcome post on Statistics for Experiments</title>
+    <link>/tags/welcome-post/</link>
+    <description>Recent content in welcome post on Statistics for Experiments</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 02 May 2020 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="/tags/welcome-post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>First Post</title>
+      <link>/post/welcome/</link>
+      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/welcome/</guid>
+      <description>&lt;p&gt;Welcome to my blog!&lt;/p&gt;
+&lt;p&gt;I think blogging is a nice way to learn, share and improve. While I do not have a precise list of topics I
+will discuss, I&amp;rsquo;ll guide you through some of the most recurrent statistical issues and fundamental doubts I have faced during my PhD training and 
+beyond.&lt;/p&gt;
+&lt;p&gt;Hope you enjoy it!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

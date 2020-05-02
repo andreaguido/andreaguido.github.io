@@ -1,0 +1,58 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cooperation on Statistics for Experiments</title>
+    <link>/tags/cooperation/</link>
+    <description>Recent content in Cooperation on Statistics for Experiments</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 02 May 2020 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="/tags/cooperation/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A Note on Cooperation in Repeated Games: Kreps et al.&#39;s model</title>
+      <link>/post/anoteonkrep/</link>
+      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/anoteonkrep/</guid>
+      <description>
+
+
+&lt;p&gt;While reading Kreps et al.’s 1982 (JET) paper, I started to wonder what the model predictions look like when pluggin in some values into equations.&lt;/p&gt;
+&lt;p&gt;The model shows how coopearation can be rational in repeated PD games, assuming the presence of particular informational asymmetries, for example, concerning the type of a player (rational vs. TFTer).&lt;/p&gt;
+&lt;p&gt;Let’s set up the model parameters (see the paper for their interpretation). I setup two possible scenarios by assigning different values to parameters. We will see later the purpose of this.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Payoffs - Scenario 1
+a = 2
+b = -1
+# Probability q and number of rounds
+q = seq(0, to = 1, by = .1)
+N = 30&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s now compute the threshold round before which ROW plays TFT with certainty.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;n_star = 1+(2*a - 4*b +2*q)/q&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Let’s plot it!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(q, n_star, type = &amp;quot;l&amp;quot;, col=&amp;quot;red&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/anoteonkrep_files/figure-html/plot%201-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Let’s consider an alternative scenario, by considering an unit increase (decrease) in a (b).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Payoffs - Scenario 2
+a2 = 3
+b2 = -2
+n_star_2 = 1+(2*a2 - 4*b2 +2*q)/q&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and plot the results:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(q, n_star, type = &amp;quot;l&amp;quot;, col=&amp;quot;red&amp;quot;)
+lines(q, n_star_2, col= &amp;quot;blue&amp;quot;)
+abline(h=N)
+legend(x=.4,y=80, legend = c(&amp;quot;2;-1&amp;quot;, &amp;quot;3;-2&amp;quot;), fill = c(&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;),  horiz = T)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/anoteonkrep_files/figure-html/line-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Let’s now see what it looks like in terms of number of rounds in which both players cooperate&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;Round_coop= N- n_star
+Round_coop2=N-n_star_2
+plot(q, Round_coop, type = &amp;quot;l&amp;quot;, col=&amp;quot;red&amp;quot;)
+lines(q, Round_coop2, col= &amp;quot;blue&amp;quot;)
+legend(x=.4,y=-30, legend = c(&amp;quot;2;-1&amp;quot;, &amp;quot;3;-2&amp;quot;), fill = c(&amp;quot;red&amp;quot;, &amp;quot;blue&amp;quot;),  horiz = T)
+abline(h=0)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/anoteonkrep_files/figure-html/number%20coop-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

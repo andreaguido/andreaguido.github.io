@@ -1,0 +1,61 @@
+---
+title: "A Note on Cooperation in Repeated Games: Kreps et al.'s model"
+author: "Andrea Guido"
+date: 2020-05-02
+categories: ["R"]
+tags: ["Cooperation", "Game Theory"]
+---
+
+While reading Kreps et al.'s 1982 (JET) paper, I started to wonder what the model predictions look like when pluggin in some values into equations.
+
+The model shows how coopearation can be rational in repeated PD games, assuming the presence of particular informational asymmetries, for example, concerning the type of a player (rational vs. TFTer).
+
+Let's set up the model parameters (see the paper for their interpretation). I setup two possible scenarios by assigning different values to parameters. We will see later the purpose of this.
+
+```{r setup}
+# Payoffs - Scenario 1
+a = 2
+b = -1
+# Probability q and number of rounds
+q = seq(0, to = 1, by = .1)
+N = 30
+```
+
+Let's now compute the threshold round before which ROW plays TFT with certainty.
+
+```{r threshold}
+n_star = 1+(2*a - 4*b +2*q)/q
+```
+
+Let's plot it!
+```{r plot 1}
+plot(q, n_star, type = "l", col="red")
+```
+
+
+Let's consider an alternative scenario, by considering an unit increase (decrease) in a (b).
+
+```{r setup2}
+# Payoffs - Scenario 2
+a2 = 3
+b2 = -2
+n_star_2 = 1+(2*a2 - 4*b2 +2*q)/q
+```
+
+and plot the results:
+```{r line}
+plot(q, n_star, type = "l", col="red")
+lines(q, n_star_2, col= "blue")
+abline(h=N)
+legend(x=.4,y=80, legend = c("2;-1", "3;-2"), fill = c("red", "blue"),  horiz = T)
+```
+
+Let's now see what it looks like in terms of number of rounds in which both players cooperate
+```{r number coop}
+Round_coop= N- n_star
+Round_coop2=N-n_star_2
+plot(q, Round_coop, type = "l", col="red")
+lines(q, Round_coop2, col= "blue")
+legend(x=.4,y=-30, legend = c("2;-1", "3;-2"), fill = c("red", "blue"),  horiz = T)
+abline(h=0)
+```
