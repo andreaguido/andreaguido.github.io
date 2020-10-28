@@ -1,0 +1,19 @@
+---
+title: 'When your constant term may fail you'
+author: andrea.guido
+date: '2020-10-28'
+slug: constant-in-your-model-not-a-constant-interpretation
+categories:
+  - Statistical Issues
+tags:
+  - R
+  - regression
+description: ''
+thumbnail: ''
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+When does th

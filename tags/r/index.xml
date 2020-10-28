@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Andrea Guido</title>
+    <link>/tags/r/</link>
+    <description>Recent content in R on Andrea Guido</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Oct 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>When your constant term may fail you</title>
+      <link>/post/constant-in-your-model-not-a-constant-interpretation/</link>
+      <pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/constant-in-your-model-not-a-constant-interpretation/</guid>
+      <description>When does th</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,12 @@
+---
+title: Welcome Post
+author: andrea.guido
+date: '2020-10-28'
+slug: welcome-post
+categories:
+  - Welcome
+tags:
+  - myfirstPost!
+description: ''
+thumbnail: ''
+---
