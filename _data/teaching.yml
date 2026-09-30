@@ -1,4 +1,10 @@
 courses:
+  - title: "Python for Data Science (Master in Finance, PGE 5)"
+    description: "Four sessions built around one question: could the bank have seen default coming? Students take 30,000 credit card records from raw file to defensible answer: import, clean, test, and check how much their own choices drive the results."
+    links:
+      - {label: "Slides & notebooks", url: "https://github.com/andreaguido/python-pge5", icon: "fa-brands fa-github"}
+      - {label: "Setup guide", url: "https://github.com/andreaguido/python-pge5/blob/main/setup_guide.html", icon: "fa-solid fa-screwdriver-wrench"}
+
   - title: "Data Science with Python"
     description: "An in-depth introduction to data science: handling complex data structures and using data to test theory."
     book: "VanderPlas, Python Data Science Handbook"
