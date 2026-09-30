@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: single
 title: "CV"
 permalink: /cv/
 author_profile: true
@@ -7,58 +7,26 @@ redirect_from:
   - /resume
 ---
 
-{% include base_path %}
+[Download full CV (PDF)](/files/CV_Andrea_Guido.pdf)
 
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+## Appointments
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+- **Associate Professor**, Paris School of Business, 2024–present
+- **Associate Professor**, Burgundy School of Business, 2021–2024
+- **Lab Manager**, LESSAC, Dijon, 2021–present
+- **Postdoctoral Fellow**, Institute for Futures Studies, Stockholm, 2019–2021
+- **Associate Researcher**, ISTC–National Research Council, Rome, 2019–2021
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+## Education
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+- **Ph.D. in Economics**, University of Lille (LEM-CNRS), 2019<br>
+  Thesis: *Essays on the Determinants of Human Cooperation*. Supervisors: Nicolas Vaillant, Giuseppe Attanasi
+- Visiting researcher, LINEEX, University of Valencia, 2017
+- **M.Sc. in Economics**, University of Salento, 2016, *summa cum laude*
+- **B.Sc. in Economics and Finance**, University of Salento, 2014, *summa cum laude*
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+## Service
+
+- Executive Board, Society for the Advancement of Behavioral Economics (SABE), 2019–present
+- Ethics Board, Burgundy School of Business, 2022–2024
+- Referee for *Management Science*, *Organization Science*, *Journal of Economic Behavior & Organization*, *Journal of Behavioral and Experimental Economics*, *Economic Theory*, and others
