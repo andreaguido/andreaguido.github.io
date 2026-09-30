@@ -1,0 +1,325 @@
+# Research output shown on the home page.
+#
+# Each entry:
+#   key       BibTeX key (unique)
+#   title     paper title
+#   authors   full ordered author list (used for BibTeX; "Andrea Guido" is hidden in the "with" line)
+#   with      optional override of the displayed coauthor line
+#   journal / year / volume / number / pages / doi   bibliographic data
+#   pdf       path under /files/ or external URL
+#   url       optional landing page when there is no DOI
+#   podcast   optional audio link
+#   note      optional short badge (e.g. "Under review")
+#   topics    any of: env, norms, nudges, markets, beliefs  (drive the filter buttons)
+#   abstract  plain text
+
+working_papers:
+  - key: grimalda_guido_trust
+    title: "Accounting for Italy's North–South divide in trusting behaviour: Experimental evidence from Southern migrants"
+    authors: [Gianluca Grimalda, Andrea Guido]
+    year: 2026
+    note: "Under review"
+    pdf: /files/papers/grimalda-guido-trust-migrants.pdf
+    topics: [norms, beliefs]
+    abstract: >-
+      Regional economic divides often persist despite free mobility, a puzzle attributed to gaps in trust
+      and cooperation preferences. We study Italy's North–South trust divide to test whether such differences
+      dissolve after migration to a higher-trust region. Using trust-game data from a Northern Italian province,
+      we compare natives, Southern migrants, and other-region migrants: Southern migrants trust 29% less than
+      natives, while other migrants are indistinguishable from them. The gap reflects both more pessimistic
+      beliefs about others' cooperation and lower trustworthiness, with beliefs playing the larger role. Trust
+      does not converge toward natives' levels with time since migration, suggesting persistent cultural traits.
+
+  - key: guido_soft_commitments
+    title: "Tell me and I forget, make me commit and I remember: Soft commitments and digital behavior"
+    authors: [Andrea Guido, Rustam Romaniuc, Kene Boun My, Eugen Dimant, Dimitri Dubois, Michela Chessa, Danièle Fares, X. Gassman, Andrea Martinangeli, Eli Spiegelman, Angela Sutan]
+    year: 2026
+    podcast: /files/podcast-soft-commitments.mp3
+    topics: [nudges]
+
+chapters:
+  - key: guido_fares_2026
+    title: "Using experiments to study mental models"
+    authors: [Andrea Guido, Danièle Fares]
+    year: 2026
+    pdf: /files/papers/guido-fares-2026-mental-models.pdf
+    topics: [beliefs]
+    abstract: >-
+      Decision-makers in organizations rely on causal representations of how their actions translate into
+      outcomes — mental models — to navigate complex policy environments. Understanding these models is central
+      to organizational cognition, yet observational methods can document what models people hold without
+      establishing how they form, which model is selected when several are consistent with the same evidence,
+      or what shifts them. Experiments fill this gap: by controlling the information environment and varying
+      causal structures, they allow researchers to identify which models are activated, why some are adopted
+      over others, and how they respond to persuasion. This chapter reviews the experimental evidence along
+      these three dimensions. Together, the findings suggest that organizational interventions targeting
+      behavior directly may fail if they leave the underlying causal representation unchanged.
+
+publications:
+  - key: guido2025nudging
+    title: "Nudging or nagging: The perils of persuasion"
+    authors: [Andrea Guido, Denis Tverskoi, Sergey Gavrilets, Ángel Sánchez, Giulia Andrighetto]
+    journal: Journal of Economic Behavior & Organization
+    year: 2025
+    volume: 240
+    pages: "107293"
+    doi: 10.1016/j.jebo.2025.107293
+    pdf: /files/papers/guido-2025-nudging-or-nagging.pdf
+    topics: [nudges, env]
+    abstract: >-
+      Over the past few years, policy-makers have enthusiastically resorted to mass persuasion to promote
+      behavioral change. However, the one-size-fit-all approach adopted by most policy-makers has often been
+      criticized for leading to more heterogeneous and undesired behavior. A central unanswered question is
+      whether the effect of persuasion depends on individuals' predisposition to follow externally-imposed rules.
+      We provide experimental evidence on the heterogeneous effect of persuasion in a collective action problem.
+      By studying the effect of appeals in an online experiment, we find that rule followers comply with the
+      content of the appeal, while rule breakers react against it. Reactance to appeals among rule breakers
+      emerges after some time and is robust even after controlling for social preferences, personal and social
+      norms. Persuasive appeals have no overall effect on welfare, yet they introduce distributional disparities.
+      Our findings raise awareness about the importance of individual heterogeneity when designing and
+      evaluating behavioral interventions.
+
+  - key: guido2025comparison
+    title: "A comparison of endogenous and exogenous group formation to increase cooperation"
+    authors: [Andrea Guido, Louis Putterman, Rustam Romaniuc]
+    journal: Journal of Behavioral and Experimental Economics
+    year: 2025
+    volume: 119
+    pages: "102451"
+    doi: 10.1016/j.socec.2025.102451
+    pdf: /files/papers/guido-2025-group-formation.pdf
+    topics: [norms]
+    abstract: >-
+      Grouping cooperatively disposed subjects with one another has been shown to slow the decline of
+      contributions in public goods games. So far, similar findings have been obtained both when groups are
+      exogenously formed by the experimenter and when they are endogenously formed by algorithms taking subjects'
+      preferences for partners into account. We designed an experiment in which internally homogeneous groups –
+      composed of like-minded subjects – can form either exogenously or endogenously, testing the conjecture that
+      endogenously formed groups of cooperators will outperform similar exogenously formed groups due to
+      subjects' decision rights in the endogenous procedure. We find that the conjecture is not supported,
+      discussing potential explanations.
+
+  - key: guido2025reference
+    title: "Reference dependence and the role of information frictions"
+    authors: [Andrea Guido, Alejandro Martínez-Marquina, Ryan Rholes]
+    journal: Journal of Economic Behavior & Organization
+    year: 2025
+    volume: 237
+    pages: "107169"
+    doi: 10.1016/j.jebo.2025.107169
+    pdf: /files/papers/guido-2025-reference-dependence.pdf
+    topics: [markets, beliefs]
+    abstract: >-
+      We introduce positive and negative endowment shocks and information frictions into an experimental labor
+      market and study how firms share these with workers. Workers evaluate wages consistently with a reference
+      wage, demanding higher (lower) wages but exerting the same effort when a positive (negative) shock is
+      common knowledge. Their wage expectations adjust instantaneously to new information but sluggishly and
+      asymmetrically when unaware of the shock. Firms form accurate beliefs about how shocks and information
+      reshape effort responses and act on their beliefs, almost optimally in all scenarios. Our results suggest a
+      limited role for other-regarding preferences and can be rationalized by a selfish firm best responding to
+      a worker evaluating wages according to a reference wage.
+
+  - key: romaniuc2025limits
+    title: "The limits of behavioral nudges to increase youth turnout: Experimental evidence from two French elections"
+    authors: [Rustam Romaniuc, Andrea Guido, Pierre Baudry, Cécile Bazart, Loïc Berger, Noémi Berlin, Aurélie Bonein, Imen Bouhlel, Kene Boun My, Michela Chessa, Paolo Crosetto, Etienne Dagorn, Quentin David, Étienne Farvaque, Agnès Festré, Abel François, Lisette Ibanez, Herrade Igersheim, Nicolas Jacquemet, Isabelle Lebon, Mathieu Lefebvre, Olivier L'Haridon, Danlin Li, Youenn Lohéac, Stéphane Luchini, Laurent Muller, Matthieu Pourieux, Elven Priour, Sébastien Roussel, Petros G. Sekeris, Maïté Stéphan, Eli Spiegelman, Angela Sutan, Uyanga Turmunkh, Laurence Vardaxoglou, Marc Willinger, Dimitri Dubois]
+    with: "Rustam Romaniuc, Dimitri Dubois, and 34 coauthors"
+    journal: Journal of Economic Behavior & Organization
+    year: 2025
+    volume: 236
+    pages: "107098"
+    doi: 10.1016/j.jebo.2025.107098
+    pdf: /files/papers/romaniuc-2025-youth-turnout.pdf
+    topics: [nudges]
+    abstract: >-
+      There is a significant gap in turnout between young people and older voters. The failure to instill a
+      voting habit at an early age may have long term consequences in terms of future political participation
+      as well as on other civic behaviors. Using a pre-registered online experiment with 3790 subjects, we
+      implemented behavioral interventions aiming to stimulate youth turnout in the 2022 French presidential
+      election. We rely on an innovative incentive scheme to measure their consequences on (self-reported)
+      actual voting behavior. We also provide evidence on the effect of one behavioral intervention on youth
+      turnout in a less salient election, the French legislative election that took place two months after the
+      Presidential one. The results from the two experiments show the absence of any differences in turnout
+      between the baseline and the treatment conditions. We investigate several mechanisms that can explain our
+      results.
+
+  - key: attanasi2025raising
+    title: "Raising environmental awareness with augmented reality"
+    authors: [Giuseppe Attanasi, Barbara Buljat Raymond, Agnès Festré, Andrea Guido]
+    journal: Ecological Economics
+    year: 2025
+    volume: 233
+    pages: "108563"
+    doi: 10.1016/j.ecolecon.2025.108563
+    pdf: /files/papers/attanasi-2025-augmented-reality.pdf
+    topics: [env, nudges]
+    abstract: >-
+      Individuals are often poorly informed about the environmental consequences of their actions.
+      Informational campaigns are a widely used policy tool to address imperfect information. However, previous
+      research suggests that simply providing information may be ineffective and fail to engage individuals. We
+      investigate whether augmented reality (AR) can reduce psychological distance and promote pro-environmental
+      behavior. In two incentivized experiments (laboratory and contextualized), we evaluate the effect of AR
+      visualizations of marine plastic-pollution consequences on participants' psychological distance and
+      donations to pro-environmental organizations. Our results show no significant impact of AR visualizations
+      on psychological distance or donation levels in either setting. Interestingly, we document a general
+      optimism regarding the effectiveness of immersive technologies as policy tools, highlighting a potential
+      misalignment between public expectations and the actual effectiveness of these technologies.
+
+  - key: guido2025marche
+    title: "Le marché universitaire des maîtres de conférences en économie et en gestion en France"
+    authors: [Andrea Guido, Antoine Malézieux]
+    journal: Revue de l'OFCE
+    year: 2025
+    number: 188
+    pages: "43--67"
+    doi: 10.3917/reof.188.0043
+    topics: [markets]
+
+  - key: andrighetto2024changes
+    title: "Changes in social norms during the early stages of the COVID-19 pandemic across 43 countries"
+    authors: [Giulia Andrighetto, Aron Szekely, Andrea Guido, Michele Gelfand, others]
+    with: "Giulia Andrighetto, Aron Szekely, Michele Gelfand, and 78 coauthors"
+    journal: Nature Communications
+    year: 2024
+    volume: 15
+    pages: "1436"
+    doi: 10.1038/s41467-024-44999-5
+    pdf: https://www.nature.com/articles/s41467-024-44999-5.pdf
+    topics: [norms]
+    abstract: >-
+      The emergence of COVID-19 dramatically changed social behavior across societies and contexts. Here we
+      study whether social norms also changed. Specifically, we study this question for cultural tightness (the
+      degree to which societies generally have strong norms), specific social norms (e.g. stealing, hand
+      washing), and norms about enforcement, using survey data from 30,431 respondents in 43 countries recorded
+      before and in the early stages following the emergence of COVID-19. Using variation in disease intensity,
+      we shed light on the mechanisms predicting changes in social norm measures. We find evidence that, after
+      the emergence of the COVID-19 pandemic, hand washing norms increased while tightness and punishing
+      frequency slightly decreased but observe no evidence for a robust change in most other norms. Thus, at
+      least in the short term, our findings suggest that cultures are largely stable to pandemic threats except
+      in those norms, hand washing in this case, that are perceived to be directly relevant to dealing with the
+      collective threat.
+
+  - key: pasin2024evidence
+    title: "Evidence from 43 countries that disease leaves cultures unchanged in the short-term"
+    authors: [Gian Luca Pasin, Aron Szekely, Kimmo Eriksson, Andrea Guido, Eugenia Polizzi di Sorrentino, Giulia Andrighetto]
+    journal: Scientific Reports
+    year: 2024
+    volume: 14
+    pages: "6502"
+    doi: 10.1038/s41598-023-33155-6
+    pdf: https://www.nature.com/articles/s41598-023-33155-6.pdf
+    topics: [norms]
+    abstract: >-
+      Did cultures change shortly after, and in response to, the COVID-19 outbreak? If so, then in what way? We
+      study these questions for a set of macro-cultural dimensions: collectivism/individualism, duty/joy,
+      traditionalism/autonomy, and pro-fertility/individual-choice norms. We also study specific perceptions and
+      norms like perceived threats to society (e.g. immigration) and hygiene norms. Using survey data from 29,761
+      respondents, in 55 cities and 43 countries, collected before (April–December 2019) and recently after the
+      emergence of COVID-19 (April–June 2020), we exploit variation in disease intensity across regions to test
+      potential mechanisms behind any changes. The macro-cultural dimensions remained stable. In contrast,
+      specific perceptions and norms related to the pandemic changed: norms of hygiene substantially increased as
+      did perceived threats related to disease.
+
+  - key: guido2024network
+    title: "Network connectivity and repeated interactions in an information sharing dilemma"
+    authors: [Andrea Guido, Maxime Derex, Rustam Romaniuc]
+    journal: Annals of Economics and Statistics
+    year: 2024
+    number: 154
+    pages: "51"
+    doi: 10.2307/48777886
+    pdf: https://hal.science/hal-04845024v1/file/guido_49966.pdf
+    topics: [norms]
+
+  - key: tverskoi2023disentangling
+    title: "Disentangling material, social, and cognitive determinants of human behavior and beliefs"
+    authors: [Denis Tverskoi, Andrea Guido, Giulia Andrighetto, Ángel Sánchez, Sergey Gavrilets]
+    journal: Humanities and Social Sciences Communications
+    year: 2023
+    volume: 10
+    doi: 10.1057/s41599-023-01745-4
+    pdf: https://www.nature.com/articles/s41599-023-01745-4.pdf
+    topics: [norms, env, beliefs]
+    abstract: >-
+      In social interactions, human decision-making, attitudes, and beliefs about others coevolve. Their
+      dynamics are affected by cost-benefit considerations, cognitive processes, and social influences by peers
+      and by authorities. Here we attempt to disentangle some of this complexity by using an integrative
+      mathematical modeling and a 35-day online behavioral experiment. We utilize data from a Common Pool
+      Resources experiment with or without messaging promoting a group-beneficial level of resource extraction.
+      We directly estimate the weights of different factors in decision-making and beliefs dynamics. We show
+      that personal norms and conformity with expected peers' actions have the largest impact on decision-making
+      while material benefits and normative expectations have smaller effects. Individuals behaving prosocially
+      are characterized by higher weights of personal norms while antisocial types are more affected by
+      conformity. Messaging greatly decreases the weight of personal norms while simultaneously increases the
+      weight of conformity. Our results have implications for understanding and predicting social processes
+      triggered by shocks and for designing policy interventions aiming to change behavior.
+
+  - key: attanasi2021controlling
+    title: "Controlling monopoly power in a double-auction market experiment"
+    authors: [Giuseppe Attanasi, Kene Boun My, Andrea Guido, Mathieu Lefebvre]
+    journal: Journal of Public Economic Theory
+    year: 2021
+    volume: 23
+    number: 5
+    pages: "1074--1101"
+    doi: 10.1111/jpet.12504
+    topics: [markets]
+    abstract: >-
+      There is robust evidence in the experimental economics literature showing that monopoly power is affected
+      by trading institutions. In this paper, we study whether trading institutions themselves can shape agents'
+      market behavior through the formation of anchors. We recreate experimentally five different double-auction
+      market structures (perfect competition, perfect competition with quotas, cartel on price, cartel on price
+      with quotas, and monopoly) in a within-subject design, varying the order of markets implementation. We
+      investigate whether monopoly power endures the formation of price anchors emerged in previously implemented
+      market structures. Results from our classroom experiments suggest that double-auction trading institutions
+      succeed in preventing monopolists from exploiting their market power. Furthermore, the formation of price
+      anchors in previously implemented markets negatively impacts on monopolists' power in later market
+      structures.
+
+  - key: andrighetto2020cooperation
+    title: "Cooperation, response time, and social value orientation: A meta-analysis"
+    authors: [Giulia Andrighetto, Valerio Capraro, Andrea Guido, Aron Szekely]
+    journal: Proceedings of the Annual Meeting of the Cognitive Science Society
+    year: 2020
+    pdf: https://psyarxiv.com/cbakz/download
+    url: https://doi.org/10.31234/osf.io/cbakz
+    topics: [norms]
+    abstract: >-
+      Recent research at the cross between cognitive and social sciences is investigating the cognitive
+      mechanisms behind cooperative decisions. One debated question is whether cooperative decisions are made
+      faster than non-cooperative ones. Yet empirical evidence is still mixed. In this paper we explore the
+      implications of individual heterogeneity in social value orientation for the effect of response time on
+      cooperation. We conduct a meta-analysis of available experimental studies (n=8; treatments=16; 5,232
+      subjects). We report two main results: (i) the relation between response time and cooperation is moderated
+      by social value orientation, such that it is positive for individualist subjects and negative for
+      prosocial subjects; (ii) the relation between response time and cooperation is partly mediated by
+      extremity of choice. These results suggest that highly prosocial subjects are fast to cooperate, highly
+      individualist subjects are fast to defect, and subjects with weaker preferences make slower and less
+      extreme decisions.
+
+  - key: guido2019group
+    title: "Group formation and cooperation in social dilemmas: A survey and meta-analytic evidence"
+    authors: [Andrea Guido, Andrea Robbett, Rustam Romaniuc]
+    journal: Journal of Economic Behavior & Organization
+    year: 2019
+    volume: 159
+    pages: "192--209"
+    doi: 10.1016/j.jebo.2019.02.009
+    pdf: /files/papers/guido-2019-group-formation-survey.pdf
+    topics: [norms]
+    abstract: >-
+      We survey the growing literature on group formation in the context of three types of social dilemma games:
+      public goods games, common pool resources, and the prisoner's dilemma. The 62 surveyed papers study the
+      effect of different sorting mechanisms – endogenous, endogenous with the option to play the game, and
+      exogenous – on cooperation rates. Our survey shows that cooperators are highly sensitive to the presence of
+      free-riders, independently of the sorting mechanism. We complement the survey with a meta-analysis showing
+      no difference in terms of cooperation between studies implementing an endogenous and exogenous sorting.
+      What is more, we find that it is no more likely for a cooperator to be matched with like-minded partners in
+      endogenously formed groups than in exogenously formed groups. As we show in the survey, the success of a
+      sorting method in matching like-minded individuals and the levels of cooperation are closely interlinked.
+
+topics:
+  - {id: env, label: "Environment & Climate"}
+  - {id: norms, label: "Social Norms & Cooperation"}
+  - {id: nudges, label: "Nudges & Behavioral Policy"}
+  - {id: beliefs, label: "Beliefs & Mental Models"}
+  - {id: markets, label: "Labor & Markets"}

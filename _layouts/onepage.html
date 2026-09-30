@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.title }} · Economist</title>
+  <meta name="description" content="{{ site.description }}">
+  <meta property="og:title" content="{{ site.title }}">
+  <meta property="og:description" content="{{ site.description }}">
+  <meta property="og:image" content="{{ site.url }}/images/{{ site.author.avatar }}">
+  <link rel="icon" href="{{ '/images/favicon.ico' | relative_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="{{ '/assets/css/onepage.css' | relative_url }}">
+</head>
+<body>
+{% assign a = site.author %}
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#top">{{ a.name }}</a>
+    <nav>
+      <a href="#research">Research</a>
+      <a href="#grants">Grants</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#about">About</a>
+      <a href="{{ '/files/CV_Andrea_Guido.pdf' | relative_url }}" target="_blank" rel="noopener">CV</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <img class="avatar" src="{{ '/images/' | append: a.avatar | relative_url }}" alt="Portrait of {{ a.name }}">
+      <div>
+        <h1>{{ a.name }}</h1>
+        <p class="role">{{ a.bio }}<br><a href="https://www.psbedu.paris/">{{ a.employer }}</a>, {{ a.location }}</p>
+        <p class="tagline">{{ page.tagline }}</p>
+        <div class="links">
+          <a class="pill primary" href="{{ '/files/CV_Andrea_Guido.pdf' | relative_url }}" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i> CV</a>
+          {% if a.googlescholar %}<a class="pill" href="{{ a.googlescholar }}"><i class="fa-brands fa-google-scholar"></i> Scholar</a>{% endif %}
+          {% if a.email %}<a class="pill" href="mailto:{{ a.email }}"><i class="fa-regular fa-envelope"></i> Email</a>{% endif %}
+          {% if a.linkedin %}<a class="pill" href="https://www.linkedin.com/in/{{ a.linkedin }}"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>{% endif %}
+          {% if a.twitter %}<a class="pill" href="https://x.com/{{ a.twitter }}"><i class="fa-brands fa-x-twitter"></i> X</a>{% endif %}
+          {% if a.github %}<a class="pill" href="https://github.com/{{ a.github }}"><i class="fa-brands fa-github"></i> GitHub</a>{% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="research" class="section">
+    <div class="wrap">
+      <h2>Research</h2>
+      <div class="filters" role="group" aria-label="Filter by topic">
+        <button type="button" class="chip active" data-filter="all">All <span class="count"></span></button>
+        {% for t in site.data.papers.topics %}<button type="button" class="chip" data-filter="{{ t.id }}">{{ t.label }} <span class="count"></span></button>
+        {% endfor %}
+      </div>
+
+      <div class="group">
+        <h3>Working papers</h3>
+        {% for p in site.data.papers.working_papers %}{% include paper.html p=p type="unpublished" %}{% endfor %}
+      </div>
+
+      <div class="group">
+        <h3>Publications</h3>
+        {% for p in site.data.papers.publications %}{% include paper.html p=p type="article" %}{% endfor %}
+      </div>
+
+      <div class="group">
+        <h3>Book chapters</h3>
+        {% for p in site.data.papers.chapters %}{% include paper.html p=p type="incollection" %}{% endfor %}
+      </div>
+      <p class="empty" hidden>No papers in this category yet.</p>
+    </div>
+  </section>
+
+  <section id="grants" class="section alt">
+    <div class="wrap">
+      <h2>Grants</h2>
+      <ul class="grants">
+        {% for g in site.data.teaching.grants %}
+        <li><span class="g-years">{{ g.years }}</span><div><strong>{{ g.title }}</strong><br><span class="muted">{{ g.role }} · {{ g.funder }}</span></div></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section id="teaching" class="section">
+    <div class="wrap">
+      <h2>Teaching &amp; material</h2>
+      <div class="cards">
+        {% for c in site.data.teaching.courses %}
+        <div class="card">
+          <h4>{{ c.title }}</h4>
+          <p>{{ c.description }}</p>
+          {% if c.book %}<p class="muted"><i class="fa-solid fa-book"></i> {{ c.book }}</p>{% endif %}
+          <div class="paper-actions">{% for l in c.links %}<a class="btn" href="{{ l.url }}"><i class="{{ l.icon }}"></i> {{ l.label }}</a>{% endfor %}</div>
+        </div>
+        {% endfor %}
+      </div>
+      <h3>Slides &amp; resources</h3>
+      <ul class="materials">
+        {% for m in site.data.teaching.materials %}
+        <li><span class="kind">{{ m.kind }}</span><a href="{{ m.url | relative_url }}" target="_blank" rel="noopener">{{ m.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+
+  <section id="about" class="section alt">
+    <div class="wrap prose">
+      <h2>About</h2>
+      {{ content }}
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">© {{ site.time | date: "%Y" }} {{ a.name }} · {{ a.employer }} · <a href="mailto:{{ a.email }}">{{ a.email }}</a></div>
+</footer>
+
+<script src="{{ '/assets/js/onepage.js' | relative_url }}"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{% comment %} One research item. Params: p (entry from _data/papers.yml), type (article | unpublished | incollection) {% endcomment %}
+{% assign p = include.p %}
+{% assign coauthors = "" | split: "" %}
+{% for a in p.authors %}{% unless a == "Andrea Guido" or a == "others" %}{% assign coauthors = coauthors | push: a %}{% endunless %}{% endfor %}
+<article class="paper" data-topics="{{ p.topics | join: ' ' }}">
+  <div class="paper-venue">
+    {% if p.journal %}<span class="venue">{{ p.journal }}</span>{% elsif include.type == "incollection" %}<span class="venue">Book chapter</span>{% endif %}
+    {% if p.year %}<span class="year">{{ p.year }}</span>{% endif %}
+    {% if p.note %}<span class="badge">{{ p.note }}</span>{% endif %}
+  </div>
+  <h4 class="paper-title">
+    {% if p.doi %}<a href="https://doi.org/{{ p.doi }}">{{ p.title }}</a>{% elsif p.pdf %}<a href="{{ p.pdf }}">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}
+  </h4>
+  {% if p.with or coauthors.size > 0 %}
+  <p class="paper-authors">with {% if p.with %}{{ p.with }}{% else %}{% for a in coauthors %}{% if forloop.last and forloop.length > 1 %}{% if forloop.length > 2 %},{% endif %} and {% elsif forloop.index > 1 %}, {% endif %}{{ a }}{% endfor %}{% endif %}</p>
+  {% endif %}
+  <div class="paper-actions">
+    {% if p.abstract %}<button type="button" class="btn" data-toggle="abs-{{ p.key }}" aria-expanded="false"><i class="fa-solid fa-align-left"></i> Abstract</button>{% endif %}
+    {% if p.pdf %}<a class="btn" href="{{ p.pdf }}" target="_blank" rel="noopener"><i class="fa-regular fa-file-pdf"></i> PDF</a>{% endif %}
+    <button type="button" class="btn" data-toggle="bib-{{ p.key }}" aria-expanded="false"><i class="fa-solid fa-quote-right"></i> Cite</button>
+    {% if p.doi %}<a class="btn" href="https://doi.org/{{ p.doi }}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Journal</a>{% elsif p.url %}<a class="btn" href="{{ p.url }}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link</a>{% endif %}
+    {% if p.podcast %}<a class="btn" href="{{ p.podcast }}" target="_blank" rel="noopener"><i class="fa-solid fa-headphones"></i> Podcast</a>{% endif %}
+  </div>
+  {% if p.abstract %}<div class="panel abstract" id="abs-{{ p.key }}" hidden><p>{{ p.abstract }}</p></div>{% endif %}
+  <div class="panel bibtex" id="bib-{{ p.key }}" hidden>
+    <button type="button" class="copy" data-copy="bibtex-{{ p.key }}"><i class="fa-regular fa-copy"></i> Copy</button>
+<pre id="bibtex-{{ p.key }}">@{{ include.type }}{% raw %}{{% endraw %}{{ p.key }},
+  author = {% raw %}{{% endraw %}{{ p.authors | join: " and " }}{% raw %}}{% endraw %},
+  title = {% raw %}{{% endraw %}{{ p.title }}{% raw %}}{% endraw %},{% if p.journal %}
+  {% if include.type == "article" %}journal{% else %}booktitle{% endif %} = {% raw %}{{% endraw %}{{ p.journal | replace: "&", "\&" }}{% raw %}}{% endraw %},{% endif %}{% if include.type == "unpublished" %}
+  note = {% raw %}{{% endraw %}Working paper{% raw %}}{% endraw %},{% endif %}
+  year = {% raw %}{{% endraw %}{{ p.year }}{% raw %}}{% endraw %}{% if p.volume %},
+  volume = {% raw %}{{% endraw %}{{ p.volume }}{% raw %}}{% endraw %}{% endif %}{% if p.number %},
+  number = {% raw %}{{% endraw %}{{ p.number }}{% raw %}}{% endraw %}{% endif %}{% if p.pages %},
+  pages = {% raw %}{{% endraw %}{{ p.pages }}{% raw %}}{% endraw %}{% endif %}{% if p.doi %},
+  doi = {% raw %}{{% endraw %}{{ p.doi }}{% raw %}}{% endraw %}{% endif %}
+}</pre>
+  </div>
+</article>
