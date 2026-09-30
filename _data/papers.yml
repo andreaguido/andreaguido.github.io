@@ -38,8 +38,6 @@ working_papers:
     authors: [Andrea Guido, Rustam Romaniuc, Kene Boun My, Eugen Dimant, Dimitri Dubois, Michela Chessa, Danièle Fares, X. Gassman, Andrea Martinangeli, Eli Spiegelman, Angela Sutan]
     year: 2026
     podcast: /files/podcast-soft-commitments.mp3
-    materials:
-      - {label: "Experiment code (oTree)", url: "https://github.com/andreaguido/orange_pilot", type: code}
     topics: [nudges]
 
 chapters:
