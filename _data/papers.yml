@@ -68,6 +68,8 @@ publications:
     pages: "107293"
     doi: 10.1016/j.jebo.2025.107293
     pdf: /files/papers/guido-2025-nudging-or-nagging.pdf
+    materials:
+      - {label: "Experiment code (oTree)", url: "https://github.com/andreaguido/EVO_NORMS", type: code}
     topics: [nudges, env]
     abstract: >-
       Over the past few years, policy-makers have enthusiastically resorted to mass persuasion to promote
@@ -91,6 +93,8 @@ publications:
     pages: "102451"
     doi: 10.1016/j.socec.2025.102451
     pdf: /files/papers/guido-2025-group-formation.pdf
+    materials:
+      - {label: "Experiment code (oTree)", url: "https://github.com/andreaguido/Endogenous_Exogenous_Group_Formation", type: code}
     topics: [norms]
     abstract: >-
       Grouping cooperatively disposed subjects with one another has been shown to slow the decline of
@@ -111,6 +115,8 @@ publications:
     pages: "107169"
     doi: 10.1016/j.jebo.2025.107169
     pdf: /files/papers/guido-2025-reference-dependence.pdf
+    materials:
+      - {label: "Experiment code (oTree)", url: "https://github.com/andreaguido/LaborMarketExperiment", type: code}
     topics: [markets, beliefs]
     abstract: >-
       We introduce positive and negative endowment shocks and information frictions into an experimental labor
@@ -235,6 +241,9 @@ publications:
     pages: "51"
     doi: 10.2307/48777886
     pdf: https://hal.science/hal-04845024v1/file/guido_49966.pdf
+    materials:
+      - {label: "Experiment code (oTree)", url: "https://github.com/andreaguido/InnovationSharingGame", type: code}
+      - {label: "Data & analysis", url: "https://github.com/andreaguido/InnovationSharingCodes", type: data}
     topics: [norms]
 
   - key: tverskoi2023disentangling
@@ -245,6 +254,8 @@ publications:
     volume: 10
     doi: 10.1057/s41599-023-01745-4
     pdf: https://www.nature.com/articles/s41599-023-01745-4.pdf
+    materials:
+      - {label: "Experiment code (oTree)", url: "https://github.com/andreaguido/EVO_NORMS", type: code}
     topics: [norms, env, beliefs]
     abstract: >-
       In social interactions, human decision-making, attitudes, and beliefs about others coevolve. Their
@@ -289,6 +300,8 @@ publications:
     year: 2020
     pdf: https://psyarxiv.com/cbakz/download
     url: https://doi.org/10.31234/osf.io/cbakz
+    materials:
+      - {label: "Analysis code", url: "https://github.com/andreaguido/cogsci2020", type: code}
     topics: [norms]
     abstract: >-
       Recent research at the cross between cognitive and social sciences is investigating the cognitive
