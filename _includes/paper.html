@@ -27,7 +27,7 @@
 <pre id="bibtex-{{ p.key }}">@{{ include.type }}{% raw %}{{% endraw %}{{ p.key }},
   author = {% raw %}{{% endraw %}{{ p.authors | join: " and " }}{% raw %}}{% endraw %},
   title = {% raw %}{{% endraw %}{{ p.title }}{% raw %}}{% endraw %},{% if p.journal %}
-  {% if include.type == "article" %}journal{% else %}booktitle{% endif %} = {% raw %}{{% endraw %}{{ p.journal | replace: "&", "\&" }}{% raw %}}{% endraw %},{% endif %}{% if include.type == "unpublished" %}
+  {% if include.type == "article" %}journal{% else %}booktitle{% endif %} = {% raw %}{{% endraw %}{{ p.journal | replace: '&', '\&' }}{% raw %}}{% endraw %},{% endif %}{% if include.type == "unpublished" %}
   note = {% raw %}{{% endraw %}Working paper{% raw %}}{% endraw %},{% endif %}
   year = {% raw %}{{% endraw %}{{ p.year }}{% raw %}}{% endraw %}{% if p.volume %},
   volume = {% raw %}{{% endraw %}{{ p.volume }}{% raw %}}{% endraw %}{% endif %}{% if p.number %},
