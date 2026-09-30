@@ -9,6 +9,9 @@
 #   pdf       path under /files/ or external URL
 #   url       optional landing page when there is no DOI
 #   podcast   optional audio link
+#   materials optional list of extra buttons, each {label, url, type}
+#             type sets the icon: data, code, slides, appendix, prereg, instructions, media, video (anything else -> link icon)
+#             url can be external or a file under /files/materials/
 #   note      optional short badge (e.g. "Under review")
 #   topics    any of: env, norms, nudges, markets, beliefs  (drive the filter buttons)
 #   abstract  plain text
@@ -129,6 +132,8 @@ publications:
     pages: "107098"
     doi: 10.1016/j.jebo.2025.107098
     pdf: /files/papers/romaniuc-2025-youth-turnout.pdf
+    materials:
+      - {label: "Data & pre-registration", url: "https://researchbox.org/4116", type: data}
     topics: [nudges]
     abstract: >-
       There is a significant gap in turnout between young people and older voters. The failure to instill a
@@ -151,6 +156,8 @@ publications:
     pages: "108563"
     doi: 10.1016/j.ecolecon.2025.108563
     pdf: /files/papers/attanasi-2025-augmented-reality.pdf
+    materials:
+      - {label: "Data", url: "https://researchbox.org/3491", type: data}
     topics: [env, nudges]
     abstract: >-
       Individuals are often poorly informed about the environmental consequences of their actions.
@@ -316,6 +323,16 @@ publications:
       What is more, we find that it is no more likely for a cooperator to be matched with like-minded partners in
       endogenously formed groups than in exogenously formed groups. As we show in the survey, the success of a
       sorting method in matching like-minded individuals and the levels of cooperation are closely interlinked.
+
+material_icons:
+  data: "fa-solid fa-database"
+  code: "fa-solid fa-code"
+  slides: "fa-solid fa-person-chalkboard"
+  appendix: "fa-regular fa-file-lines"
+  prereg: "fa-solid fa-clipboard-check"
+  instructions: "fa-solid fa-list-check"
+  media: "fa-regular fa-newspaper"
+  video: "fa-solid fa-play"
 
 topics:
   - {id: env, label: "Environment & Climate"}

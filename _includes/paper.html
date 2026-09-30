@@ -20,6 +20,7 @@
     <button type="button" class="btn" data-toggle="bib-{{ p.key }}" aria-expanded="false"><i class="fa-solid fa-quote-right"></i> Cite</button>
     {% if p.doi %}<a class="btn" href="https://doi.org/{{ p.doi }}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Journal</a>{% elsif p.url %}<a class="btn" href="{{ p.url }}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> Link</a>{% endif %}
     {% if p.podcast %}<a class="btn" href="{{ p.podcast }}" target="_blank" rel="noopener"><i class="fa-solid fa-headphones"></i> Podcast</a>{% endif %}
+    {% for m in p.materials %}{% assign icon = site.data.papers.material_icons[m.type] | default: "fa-solid fa-link" %}<a class="btn" href="{{ m.url | relative_url }}" target="_blank" rel="noopener"><i class="{{ icon }}"></i> {{ m.label }}</a>{% endfor %}
   </div>
   {% if p.abstract %}<div class="panel abstract" id="abs-{{ p.key }}" hidden><p>{{ p.abstract }}</p></div>{% endif %}
   <div class="panel bibtex" id="bib-{{ p.key }}" hidden>
