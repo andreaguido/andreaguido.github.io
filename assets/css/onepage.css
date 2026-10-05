@@ -11,7 +11,7 @@
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #12161c;
     --bg-alt: #181d25;
     --text: #e6e9ee;
@@ -22,6 +22,19 @@
     --badge: #f0a54a;
   }
 }
+:root[data-theme="dark"] {
+  --bg: #12161c;
+  --bg-alt: #181d25;
+  --text: #e6e9ee;
+  --muted: #9aa5b4;
+  --line: #2a313c;
+  --accent: #7fb0ea;
+  --accent-soft: #1d2a3b;
+  --badge: #f0a54a;
+}
+:root { color-scheme: light dark; }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
@@ -35,9 +48,11 @@ a:hover { text-decoration: underline; }
 .topbar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .topbar-inner { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 16px; }
 .brand { font-family: var(--serif); font-weight: 600; font-size: 1.15rem; color: var(--text); }
-.topbar nav { display: flex; gap: 20px; overflow-x: auto; }
+.topbar nav { display: flex; gap: 20px; overflow-x: auto; margin-left: auto; }
 .topbar nav a { color: var(--muted); font-size: .92rem; font-weight: 500; white-space: nowrap; }
 .topbar nav a:hover { color: var(--accent); text-decoration: none; }
+.theme-toggle { flex-shrink: 0; width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; font-size: .95rem; }
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
 
 /* Hero */
 .hero { padding: 56px 0 40px; border-bottom: 1px solid var(--line); }

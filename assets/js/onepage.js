@@ -63,3 +63,21 @@
     });
   });
 })();
+
+// Light/dark toggle: overrides the OS preference and remembers the choice
+(function () {
+  var btn = document.querySelector(".theme-toggle");
+  if (!btn) return;
+  var root = document.documentElement;
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+  function isDark() { return root.dataset.theme ? root.dataset.theme === "dark" : mq.matches; }
+  function sync() { btn.querySelector("i").className = isDark() ? "fa-solid fa-sun" : "fa-solid fa-moon"; }
+  btn.addEventListener("click", function () {
+    var next = isDark() ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch (e) {}
+    sync();
+  });
+  mq.addEventListener("change", sync);
+  sync();
+})();
