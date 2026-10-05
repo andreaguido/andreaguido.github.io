@@ -106,6 +106,7 @@ publications:
     doi: 10.1016/j.jebo.2025.107293
     pdf: /files/papers/guido-2025-nudging-or-nagging.pdf
     materials:
+      - {label: "Data & scripts", url: "https://researchbox.org/4590", type: data}
       - {label: "Experiment code (oTree)", url: "https://github.com/andreaguido/EVO_NORMS", type: code}
     topics: [nudges, env]
     abstract: >-
@@ -132,6 +133,7 @@ publications:
     pdf: /files/papers/guido-2025-group-formation.pdf
     materials:
       - {label: "Experiment code (oTree)", url: "https://github.com/andreaguido/Endogenous_Exogenous_Group_Formation", type: code}
+      - {label: "Pre-registration", url: "https://aspredicted.org/zi95w.pdf", type: prereg}
     topics: [norms]
     abstract: >-
       Grouping cooperatively disposed subjects with one another has been shown to slow the decline of
@@ -176,7 +178,9 @@ publications:
     doi: 10.1016/j.jebo.2025.107098
     pdf: /files/papers/romaniuc-2025-youth-turnout.pdf
     materials:
-      - {label: "Data & pre-registration", url: "https://researchbox.org/4116", type: data}
+      - {label: "Data & replication package", url: "https://researchbox.org/4116", type: data}
+      - {label: "Pre-registration (presidential)", url: "https://aspredicted.org/BK7_VP4", type: prereg}
+      - {label: "Pre-registration (legislative)", url: "https://aspredicted.org/n7tw-4dwv.pdf", type: prereg}
     topics: [nudges]
     abstract: >-
       There is a significant gap in turnout between young people and older voters. The failure to instill a
