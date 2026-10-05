@@ -33,12 +33,47 @@ working_papers:
       beliefs about others' cooperation and lower trustworthiness, with beliefs playing the larger role. Trust
       does not converge toward natives' levels with time since migration, suggesting persistent cultural traits.
 
-  - key: guido_soft_commitments
-    title: "Tell me and I forget, make me commit and I remember: Soft commitments and digital behavior"
-    authors: [Andrea Guido, Rustam Romaniuc, Kene Boun My, Eugen Dimant, Dimitri Dubois, Michela Chessa, Danièle Fares, X. Gassman, Andrea Martinangeli, Eli Spiegelman, Angela Sutan]
+  - key: guido_making_information_stick
+    title: "Making information stick: Goal setting and attention"
+    authors: [Andrea Guido, Rustam Romaniuc, Kene Boun My, Eugen Dimant, Dimitri Dubois, Michela Chessa, Danièle Fares, Xavier Gassmann, Andrea Martinangeli, Eli Spiegelman, Angela Sutan, Arnaud Brun, Laurence Dhaleine]
     year: 2026
+    note: "Under review"
+    pdf: /files/papers/guido-making-information-stick.pdf
     podcast: /files/podcast-soft-commitments.mp3
-    topics: [nudges]
+    topics: [nudges, env]
+    abstract: >-
+      Organizations are increasingly held accountable for the emissions their customers generate in using their
+      products, yet the instrument they most often deploy — information provision — tends to raise awareness
+      without changing behavior. We argue that this behavioral issue reflects limited attention: individuals
+      attribute low instrumental value to the information and stop attending to it. Pursuing a goal, by contrast,
+      may increase the perceived value of that information, sustaining attention and improving recall. We test
+      this idea in a pre-registered field experiment (N=830), with a major European telecommunications operator,
+      on offloading — i.e., switching internet use from mobile to Wi-Fi networks — which lowers the emissions of
+      data use. While information provision alone does not produce any significant change in consumption
+      behavior, the addition of goal setting increases attention in the short run and recall in the long run.
+      These effects together increased the Wi-Fi share of total data consumption by about five percentage points
+      (0.18 s.d.), without altering total data use. This behavioral shift towards cleaner networks persists after
+      the intervention ends. Evidence from a follow-up survey indicates that this change is not due to
+      alternative mechanisms, such as automated data management technologies, thereby lending support to
+      theories of rational inattention. Self-set goals offer firms a low-cost, scalable design feature to reduce
+      use-phase emissions without curtailing the service customers value.
+
+  - key: andrighetto_guido_dg_norms
+    title: "What motivates giving in Dictator Games? Estimating the role of social norms and preferences"
+    authors: [Giulia Andrighetto, Andrea Guido, Eugenia Polizzi di Sorrentino, Aron Szekely]
+    year: 2026
+    topics: [norms]
+    abstract: >-
+      Altruistic cooperation is well documented in laboratory and field settings, yet the motivations that
+      sustain it remain debated. Two leading explanations emphasize outcome-based social preferences and social
+      norms, with the former focusing on distributional outcomes and the latter on compliance with socially
+      appropriate action. We systematically study the relative importance of these competing explanations by
+      conducting structural estimation on a dataset constructed by combining individual-level data from
+      Dictator Game experiments. Additionally, we study the role of social norm strength — the extent to which
+      social norms are clearly defined and widely shared — in translating what should be done into action. We
+      find that generosity in Dictator Games is jointly determined by outcome-based social preferences and
+      social norms, and that the influence of social norms on behaviour is strongly associated with their
+      strength.
 
 chapters:
   - key: guido_fares_2026
