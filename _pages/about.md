@@ -19,5 +19,3 @@ I received my Ph.D. in Economics from the University of Lille. Before joining PS
 
 - Executive board member, [Society for the Advancement of Behavioral Economics (SABE)](https://sabeconomics.org/)
 - Core member, BC2 Research Cluster, Paris School of Business
-- Affiliated researcher, LABSS, ISTC–National Research Council, Rome
-- Lab manager, LESSAC experimental lab, Dijon
