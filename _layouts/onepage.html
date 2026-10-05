@@ -35,7 +35,14 @@
 <main id="top">
   <section class="hero">
     <div class="wrap hero-inner">
-      <img class="avatar" src="{{ '/images/' | append: a.avatar | relative_url }}" alt="Portrait of {{ a.name }}">
+      <div class="hero-side">
+        <img class="avatar" src="{{ '/images/' | append: a.avatar | relative_url }}" alt="Portrait of {{ a.name }}">
+        <ul class="contact">
+          {% if a.email %}<li><i class="fa-regular fa-envelope"></i><a href="mailto:{{ a.email }}">{{ a.email }}</a></li>{% endif %}
+          {% if a.email2 %}<li><i class="fa-regular fa-envelope"></i><a href="mailto:{{ a.email2 }}">{{ a.email2 }}</a></li>{% endif %}
+          {% if a.office %}<li><i class="fa-solid fa-location-dot"></i><span>{{ a.office }}</span></li>{% endif %}
+        </ul>
+      </div>
       <div>
         <h1>{{ a.name }}</h1>
         <p class="role">{{ a.bio }}<br><a href="https://www.psbedu.paris/">{{ a.employer }}</a>, {{ a.location }}</p>
@@ -43,7 +50,6 @@
         <div class="links">
           <a class="pill primary" href="{{ '/files/CV_Andrea_Guido.pdf' | relative_url }}" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i> CV</a>
           {% if a.googlescholar %}<a class="pill" href="{{ a.googlescholar }}"><i class="fa-brands fa-google-scholar"></i> Scholar</a>{% endif %}
-          {% if a.email %}<a class="pill" href="mailto:{{ a.email }}"><i class="fa-regular fa-envelope"></i> Email</a>{% endif %}
           {% if a.linkedin %}<a class="pill" href="https://www.linkedin.com/in/{{ a.linkedin }}"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>{% endif %}
           {% if a.twitter %}<a class="pill" href="https://x.com/{{ a.twitter }}"><i class="fa-brands fa-x-twitter"></i> X</a>{% endif %}
           {% if a.github %}<a class="pill" href="https://github.com/{{ a.github }}"><i class="fa-brands fa-github"></i> GitHub</a>{% endif %}

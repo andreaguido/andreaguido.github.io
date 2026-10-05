@@ -30,7 +30,9 @@ author:
   location         : "Paris, France"
   employer         : "Paris School of Business"
   uri              : # URL
-  email            : "a.guido@psbedu.paris" 
+  email            : "a.guido@psbedu.paris"
+  email2           : "andrea.guido.research@gmail.com"
+  office           : "16 rue Claude Bernard, 75005 Paris"
 
   # Academic websites
   academia         : # URL
