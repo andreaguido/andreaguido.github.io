@@ -238,6 +238,8 @@ publications:
     pages: "1436"
     doi: 10.1038/s41467-024-44999-5
     pdf: https://www.nature.com/articles/s41467-024-44999-5.pdf
+    materials:
+      - {label: "Data & pre-registration", url: "https://osf.io/stkfr/", type: data}
     topics: [norms]
     abstract: >-
       The emergence of COVID-19 dramatically changed social behavior across societies and contexts. Here we
