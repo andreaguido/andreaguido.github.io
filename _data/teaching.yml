@@ -25,7 +25,8 @@ materials:
   - {label: "Tips for writing a Ph.D. thesis", url: "/files/phd-thesis-tips.pdf", kind: "Guide"}
 
 grants:
-  - {role: "Principal investigator", title: "Human-centered AI in customer service", funder: "Orange Innovation", years: "2026–2027"}
+  - {role: "Principal investigator", title: "Human-centered AI in customer service: Aligning employee experience and customer expectations", funder: "Orange Innovation", years: "2026–2027"}
+  - {role: "Principal investigator", title: "Nudges to reduce screen dependence", funder: "Orange Innovation", years: "2024–present"}
   - {role: "Principal investigator", title: "Nudges for a more accountable use of digital technologies", funder: "Orange Innovation", years: "2022–present"}
   - {role: "Member", title: "BeAware: Bringing environmental issues closer to the public with augmented reality", funder: "ANR", years: "2022–present"}
   - {role: "Member", title: "WINAR: Whistleblowing incentives and norms across cultures", funder: "ANR", years: "2021–present"}
