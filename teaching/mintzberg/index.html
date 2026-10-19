@@ -686,7 +686,7 @@ function levelIntro(){
   $s.innerHTML = `<div class="eyebrow">Niveau ${S.lvl+1} / ${LV.length} · ${L.sector}</div><h2>${L.name}</h2>
     <p class="ctx">${L.ctx}</p>
     <p class="note"><b>${HINT[L.hint]}</b></p>
-    ${S.debug?`<p class="note">Mode test : progression et score non enregistrés.</p>`:""}
+    ${S.debug?`<p class="note">Accès direct au niveau : vous entrerez votre nom à la fin du niveau pour enregistrer votre score.</p>`:""}
     <h3>Les personnages</h3>
     <div class="cast">${Object.keys(L.cast).map(k=>`<div>${av(k)}<span><b>${L.cast[k].n}</b><small>${L.cast[k].r}</small></span></div>`).join("")}</div>
     <div class="actions"><button class="btn" id="start">Commencer le niveau</button></div>`;
@@ -734,7 +734,13 @@ function levelEnd(){
   const base = `${g}/${n} bonnes décisions · ${pts} / ${n*PTS.g} points sur ce niveau · total : ${total()} / ${MAXS}.`;
   $s.innerHTML = `<div class="eyebrow">Bilan · niveau ${lvl+1} / ${LV.length} · ${L.name}</div>
     <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span class="big">${pts}</span><h2>${v}</h2></div>
-    <p class="note" id="saved">${base}${S.debug?" Mode test : score non enregistré.":S.saved[lvl]?"":" Enregistrement…"}</p>
+    <p class="note" id="saved">${base}${S.debug||S.saved[lvl]?"":" Enregistrement…"}</p>
+    ${S.debug&&!S.saved[lvl]?`<form class="field" id="endname" novalidate>
+      <label for="ename">Votre nom pour le classement</label>
+      <input id="ename" maxlength="30" autocomplete="name" placeholder="Prénom N." value="${esc(S.name)}">
+      <p class="err" id="eerr" hidden>Entrez un nom (2 caractères minimum).</p>
+      <div class="actions"><button class="btn" type="submit">Enregistrer mon score</button></div>
+    </form>`:""}
     <div class="tbl"><table><thead><tr><th>Étape</th><th>Votre choix</th><th>Configuration en jeu</th></tr></thead><tbody>
     ${L.ch.map((c,k)=>{const p=S.picks[lvl][k]; const best=c.opts.find(x=>x.q==="g"); return `<tr><td>${c.when}${c.diag?" · diagnostic":""}</td>
       <td><span class="pill ${p?p.q:""}">${!p?"–":p.q==="g"?"Bon":p.q==="m"?"Partiel":"Risqué"}</span></td><td>${best.tags.join(" · ")}</td></tr>`}).join("")}
@@ -744,11 +750,23 @@ function levelEnd(){
     <div class="actions"><button class="btn" id="next">${lastLvl?"Voir le bilan final":`Niveau ${lvl+2} : ${LV[lvl+1].name}`}</button></div>`;
   document.getElementById("next").onclick=()=>{ if(lastLvl) return finale(); S.lvl++; S.i=-1; S.picked=null; persist(); levelIntro(); };
   dossier(); toTop();
-  if(!S.debug && !S.saved[lvl]) saveScore().then(r=>{
+  const send = () => saveScore().then(r=>{
     if(r==="best"||r==="kept"){ S.saved[lvl]=true; persist(); }
     const el=document.getElementById("saved"); if(!el || S.screen!=="end") return;
     el.textContent = base + " " + ({best:"Nouveau record enregistré dans le classement.", kept:"Score enregistré ; votre meilleur score reste inchangé.", skip:"Classement indisponible : score non enregistré.", fail:"Le score n'a pas pu être enregistré."}[r]);
   });
+  if(S.saved[lvl]) return;
+  if(!S.debug) return send();
+  // direct level link: no name was asked at the start, so ask for it here
+  document.getElementById("endname").onsubmit=e=>{
+    e.preventDefault();
+    const v=document.getElementById("ename").value.trim().replace(/\s+/g," ");
+    if(v.length<2){ document.getElementById("eerr").hidden=false; return; }
+    S.name=v; try{ localStorage.setItem("nomade-name",v); }catch(e){}
+    document.getElementById("endname").remove();
+    document.getElementById("saved").textContent = base + " Enregistrement…";
+    send();
+  };
 }
 function finale(){
   S.screen="final"; const t=total(), g=totalGood();
