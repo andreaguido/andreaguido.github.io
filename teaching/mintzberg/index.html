@@ -126,6 +126,14 @@ th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mu
 .cast div{display:flex;gap:10px;align-items:center;font-size:.9rem}
 .cast small{display:block;color:var(--muted)}
 .disc{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.lvls{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.lvls li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px}
+.lvls li.lock{opacity:.55}
+.lvls .n{font:800 .95rem var(--display);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--navy-soft);color:var(--navy)}
+.lvls small{display:block;color:var(--muted);font-size:.8rem}
+.st{font-size:.78rem;font-weight:700;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.st.ok{color:var(--good)}
+.masked{border:1.5px dashed var(--line);border-radius:12px;padding:28px 16px;text-align:center;color:var(--muted);font-size:.9rem}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -135,7 +143,7 @@ th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mu
   <header>
     <div class="eyebrow">Séance 4 · Jeu de rôle</div>
     <h1>Mission Atelier Nomade</h1>
-    <p class="lede">Vous êtes consultant·e en organisation. Pendant dix ans, vous accompagnez Camille, fondatrice d'un fabricant de vélos, à chaque étape de la croissance de son entreprise. Vos conseils font évoluer sa configuration organisationnelle.</p>
+    <p class="lede">Vous êtes consultant·e en organisation. Quatre clients font appel à vous : un fabricant de vélos en pleine croissance, un CHU, une métropole et une ONG climat. Vos conseils font évoluer leur configuration organisationnelle. Comptez environ 35 minutes.</p>
   </header>
   <div class="grid">
     <main id="story" class="card" aria-live="polite"></main>
@@ -240,10 +248,307 @@ const CH = [
   org:{on:["sommet","ligne","centre","techno","support","ideo"], key:"ideo", conf:"Groupe divisionnalisé, culture missionnaire", mech:"Résultats + normes"}}
 ];
 
-const S = {i:-1, picks:[], trust:50, health:50, picked:null, points:0, name:""};
+const ALL5 = ["sommet","ligne","centre","techno","support"], ALL6 = [...ALL5,"ideo"];
+const LV = [
+{name:"Atelier Nomade", sector:"PME industrielle", trustLabel:"Confiance de Camille", hint:"full",
+ ctx:"Pendant dix ans, vous accompagnez Camille, fondatrice d'un fabricant de vélos lyonnais, à chaque étape de la croissance de son entreprise. À chaque chapitre, un membre de l'entreprise vous expose un problème de coordination ou de décision.",
+ cast:CAST, ch:CH,
+ org0:{on:["sommet","centre"], key:"sommet", conf:"Structure simple", mech:"Supervision directe"},
+ v:["Camille vous confie la réorganisation du groupe entier.","Mission réussie, avec quelques détours coûteux.","Camille cherche un autre cabinet…"],
+ disc:["Atelier Nomade est passée par plusieurs configurations. Lesquelles, et qu'est-ce qui a déclenché chaque passage ?","Une entreprise peut combiner plusieurs mécanismes. Lesquels coexistent dans le groupe à l'année 10 ?","Quelle configuration manque à l'histoire (l'organisation professionnelle) ? Imaginez une activité d'Atelier Nomade qui l'adopterait.","Comparez l'organigramme du groupe et sa configuration : qu'est-ce que l'organigramme ne montre pas ?"]},
+
+{name:"CHU de Valrive", sector:"Hôpital universitaire", trustLabel:"Confiance de Marc Delorme", hint:"after",
+ ctx:"Le CHU de Valrive (4 200 salariés, dont 900 médecins) affiche un déficit record et des parcours patients qui se dégradent. Son directeur général, Marc Delorme, vous engage pour deux ans.",
+ cast:{
+  delorme:{n:"Marc Delorme", r:"Directeur général", c:"#24346B"},
+  marchal:{n:"Dr Hélène Marchal", i:"H", r:"Chirurgienne cardiaque, présidente de la CME", c:"#0F6E74"},
+  benali:{n:"Aïcha Benali", r:"Directrice des soins", c:"#7A2E6B"},
+  roux:{n:"Julien Roux", r:"Contrôleur de gestion", c:"#5B4BA8"},
+  ferrand:{n:"Pr Lucas Ferrand", i:"L", r:"Cardiologue, responsable de la recherche", c:"#A3520F"}},
+ org0:{on:ALL5, key:"centre", conf:"Organisation professionnelle", mech:"Standardisation des qualifications"},
+ v:["Marc Delorme vous recommande à trois autres CHU.","Mission réussie, avec quelques frictions avec la CME.","La CME demande votre départ…"],
+ disc:["Pourquoi la direction d'un CHU a-t-elle plus de pouvoir sur 1 400 agents des fonctions supports que sur 900 médecins ? Quelles sources de pouvoir lui restent face aux médecins ?","Le contrôle externe (ARS, T2A) pousse l'hôpital vers quelle configuration ? Avec quels effets pervers ?","Glouberman et Mintzberg décrivent quatre mondes à l'hôpital : cure, care, control, community. Qui les relie, et comment ?","Une université est-elle organisée comme un CHU ? Où se situent les différences ?"],
+ ch:[
+ {when:"Semaine 1", who:"delorme", diag:true,
+  ctx:"Chaque service est dirigé par un chef de service médecin. Les médecins ont au moins dix ans de formation ; leurs protocoles viennent des sociétés savantes et des recommandations de la Haute Autorité de santé. La direction gère les budgets, les achats, la logistique et le personnel non médical, mais n'intervient pas dans les décisions cliniques. Les fonctions supports (blanchisserie, restauration, stérilisation, brancardage) emploient 1 400 personnes.",
+  line:"Avant de me conseiller quoi que ce soit, dites-moi ce que vous voyez. Comment caractériseriez-vous cette organisation ?",
+  opts:[
+   {t:"Une organisation professionnelle : coordination par la standardisation des qualifications, centre opérationnel comme partie clé, et une hiérarchie descendante pour les fonctions supports.", q:"g", r:"C'est exactement ce que je vis : je dirige 1 400 personnes en logistique, et j'influence à peine 900 médecins.",
+    a:"Le travail clinique est complexe mais stable : il est confié à des professionnels formés hors de l'organisation, qui appliquent des programmes standardisés avec une large autonomie. La partie clé est le centre opérationnel. Mintzberg souligne les hiérarchies parallèles : démocratique et ascendante pour les professionnels, mécaniste et descendante pour les fonctions supports.", tags:["Organisation professionnelle","Standardisation des qualifications","Centre opérationnel","Hiérarchies parallèles"]},
+   {t:"Une organisation mécaniste : les protocoles standardisent le travail, et la technostructure en est la partie clé.", q:"m", r:"Des protocoles, il y en a partout… mais ce n'est pas mon service qualité qui les écrit.",
+    a:"Les protocoles existent, mais ils sont conçus hors de l'organisation (sociétés savantes, formation) et appliqués avec le jugement du professionnel. Ce n'est pas une technostructure interne qui programme le travail : c'est la standardisation des qualifications, non des procédés.", tags:["Standardisation des procédés"]},
+   {t:"Une adhocratie : des experts très qualifiés qui s'ajustent en permanence les uns aux autres.", q:"b", r:"S'ajuster en permanence ? Mes chirurgiens travaillent côte à côte depuis vingt ans sans presque se parler.",
+    a:"Confusion classique. L'adhocratie réunit des experts en équipes pour produire des solutions nouvelles (pensée divergente). L'organisation professionnelle applique des programmes connus à des cas classés (pensée convergente) : chaque professionnel travaille largement seul dans sa case.", tags:["Adhocratie"]}
+  ],
+  org:{on:ALL5, key:"centre", conf:"Organisation professionnelle", mech:"Standardisation des qualifications"}},
+
+ {when:"Mois 2 · bloc opératoire", who:"delorme",
+  ctx:"Les 14 salles du bloc opératoire tournent à 62 % de leur capacité. Les retards s'enchaînent : patient pas prêt, matériel stérile manquant, chirurgien qui décale sa vacation. Le Dr Marchal, présidente de la commission médicale d'établissement (CME), défend l'autonomie des chirurgiens.",
+  line:"Je veux fixer des objectifs d'activité à chaque chirurgien et confier le planning du bloc au contrôle de gestion. Vous me suivez ?",
+  opts:[
+   {t:"Séparer les deux hiérarchies : standardiser vous-même la logistique (brancardage, stérilisation, planning des salles) et confier la régulation médicale à un chirurgien coordinateur désigné avec la CME, appuyé sur des données partagées.", q:"g", r:"Le Dr Marchal accepte de coprésider le conseil de bloc. Je n'aurais pas parié là-dessus.",
+    a:"Dans l'organisation professionnelle, les fonctions supports relèvent d'une logique mécaniste : la direction peut et doit les standardiser. Le travail médical, lui, ne se pilote pas d'en haut : l'influence passe par les pairs et les instances professionnelles. Le pouvoir de l'administrateur vient de sa gestion des frontières et des ressources.", tags:["Hiérarchies parallèles","Fonctions supports mécanistes","Pouvoir des pairs"]},
+   {t:"Oui : des objectifs individuels par chirurgien, suivis chaque mois, et un planning fixé par le contrôle de gestion.", q:"b", r:"Trois chirurgiens menacent de partir dans le privé. La CME vote une motion de défiance.",
+    a:"Le contrôle technocratique du travail professionnel échoue : l'activité d'un chirurgien ne se réduit pas à un volume, et des objectifs chiffrés poussent à sélectionner les cas faciles. Les professionnels résistent, ou contournent.", tags:["Contrôle technocratique","Effets pervers des indicateurs"]},
+   {t:"Non : l'autonomie clinique est la règle. Laissez les chirurgiens s'organiser comme ils l'entendent.", q:"m", r:"Le Dr Marchal est ravie. Moi, j'ai toujours un bloc vide un tiers du temps.",
+    a:"Respecter l'autonomie professionnelle est juste, mais Mintzberg identifie aussi les problèmes de discrétion : certains professionnels ignorent les besoins de l'organisation. Et une partie du problème vient de la logistique, qui ne relève pas de leur autonomie.", tags:["Problèmes de discrétion"]}
+  ],
+  org:{on:ALL5, key:"centre", conf:"Organisation professionnelle", mech:"Qualifications (médecins) / procédés (supports)"}},
+
+ {when:"Mois 5 · un patient entre les services", who:"benali", diag:true,
+  ctx:"M. Lefèvre, 82 ans, insuffisant cardiaque et rénal, est passé par les urgences, la cardiologie, la néphrologie puis la gériatrie : onze jours d'hospitalisation, trois ordonnances de sortie contradictoires. Il est réhospitalisé quinze jours plus tard. Chaque service a respecté ses protocoles.",
+  line:"Chaque équipe a bien fait son travail, et pourtant le résultat est mauvais. Avant de chercher une solution : quelle est la cause ?",
+  opts:[
+   {t:"Le cloisonnement : la standardisation des qualifications coordonne à l'intérieur de chaque spécialité, mais rien ne coordonne entre elles. Les cas qui ne rentrent dans aucune case tombent entre les cases.", q:"g", r:"« Entre les cases »… c'est exactement ça. Personne n'est responsable du patient dans son ensemble.",
+    a:"Mintzberg parle de cloisonnement (pigeonholing) : le professionnel classe le cas dans une catégorie, puis applique le programme correspondant. Cela fonctionne pour les cas typiques. Les patients polypathologiques, qui relèvent de plusieurs catégories, révèlent la limite de ce mécanisme.", tags:["Cloisonnement","Limites de la standardisation des qualifications"]},
+   {t:"Un déficit de compétences : il faut renforcer la formation continue des médecins sur les patients âgés.", q:"m", r:"Ils sont déjà bien formés. Le problème, c'est qu'ils ne se parlent pas.",
+    a:"La formation renforce la qualification dans chaque spécialité, mais ne crée pas de coordination entre spécialités. Elle agit sur le bon mécanisme, au mauvais endroit.", tags:["Standardisation des qualifications"]},
+   {t:"Un manque d'autorité : les chefs de service ne contrôlent pas assez ce que font leurs médecins.", q:"b", r:"Plus de contrôle ? Ils feraient la même chose, avec plus de formulaires.",
+    a:"Chaque médecin a respecté les règles de sa spécialité. Plus de supervision directe ne change rien à un problème qui se situe à l'interface entre services.", tags:["Supervision directe"]}
+  ],
+  org:{on:ALL5, key:"centre", conf:"Organisation professionnelle", mech:"Standardisation des qualifications"}},
+
+ {when:"Mois 6 · parcours patient", who:"benali",
+  ctx:"La direction veut éviter que le cas de M. Lefèvre se reproduise. 30 % des patients de plus de 75 ans passent par au moins trois services.",
+  line:"Alors, comment coordonner autour du patient sans casser ce qui marche dans chaque service ?",
+  opts:[
+   {t:"Créer des dispositifs de liaison aux interfaces : infirmières coordinatrices de parcours, équipe mobile de gériatrie, réunions de concertation pluridisciplinaires pour les cas complexes.", q:"g", r:"Mes infirmières attendaient ça depuis longtemps. Elles suivent le patient de bout en bout.",
+    a:"Vous ajoutez de l'ajustement mutuel là où la standardisation des qualifications ne suffit pas, grâce à des rôles de liaison et des comités, sans toucher au cœur du travail de chaque spécialité. Glouberman et Mintzberg (2001) décrivent l'hôpital comme quatre mondes mal reliés : la médecine (cure), le soin (care), la gestion (control) et la communauté (community). Les dispositifs de liaison les relient autour du patient.", tags:["Mécanismes de liaison","Ajustement mutuel","Rôles de liaison"]},
+   {t:"Écrire un chemin clinique standard pour tous les patients âgés, de l'admission à la sortie.", q:"m", r:"Utile pour les fractures du col du fémur. Pour M. Lefèvre et ses cinq maladies, beaucoup moins.",
+    a:"Standardiser le parcours fonctionne pour les cas fréquents et prévisibles. Les cas polypathologiques sont justement ceux qui échappent à la standardisation : il faut de l'ajustement mutuel.", tags:["Standardisation des procédés"]},
+   {t:"Centraliser à la direction toutes les décisions de sortie des patients de plus de 75 ans.", q:"b", r:"La direction qui décide d'une sortie médicale ? Le Dr Marchal en rit encore.",
+    a:"Le sommet n'a ni la compétence ni la légitimité pour coordonner un travail clinique. La centralisation ne fonctionne pas dans une organisation professionnelle.", tags:["Centralisation"]}
+  ],
+  org:{on:ALL5, key:"centre", conf:"Organisation professionnelle + dispositifs de liaison", mech:"Qualifications + ajustement mutuel aux interfaces"}},
+
+ {when:"Année 1 · plan de retour à l'équilibre", who:"roux",
+  ctx:"Le déficit atteint 18 M€. L'Agence régionale de santé (ARS) impose un contrat de retour à l'équilibre et des indicateurs mensuels. La tarification à l'activité (T2A) récompense le volume d'actes. Le conseil de surveillance réclame des résultats rapides.",
+  line:"Le plus simple serait un rabot uniforme : moins 5 % sur chaque service, avec un tableau de bord mensuel par médecin. Qu'en dites-vous ?",
+  opts:[
+   {t:"Que la direction absorbe la pression externe : négocier le plan avec l'ARS, cibler les économies là où les résultats se mesurent (achats, logistique, durée de séjour) et construire les indicateurs cliniques avec la CME.", q:"g", r:"Moins spectaculaire qu'un rabot, mais la CME signe le plan. C'est une première.",
+    a:"Le contrôle externe pousse toute organisation vers la centralisation et la formalisation, donc vers la forme mécaniste. Dans l'organisation professionnelle, un rôle clé de l'administrateur est de servir de tampon entre l'environnement et les professionnels. La standardisation des résultats n'est appropriée que là où les résultats sont mesurables.", tags:["Contrôle externe","Rôle de tampon","Standardisation des résultats ciblée"]},
+   {t:"Oui : rabot uniforme et tableau de bord individuel. C'est simple et équitable.", q:"b", r:"Certains services codent plus d'actes, la gériatrie en code moins. Le déficit baisse peu, les départs augmentent.",
+    a:"Traiter une organisation professionnelle comme une organisation mécaniste provoque une contamination : des indicateurs de volume appliqués à un travail complexe entraînent un déplacement des objectifs (on optimise le codage, pas le soin) et démotivent les professionnels.", tags:["Contamination mécaniste","Déplacement des objectifs"]},
+   {t:"Confier entièrement le plan à la CME, sans objectif chiffré imposé : les médecins savent où sont les gaspillages.", q:"m", r:"La CME propose un plan… d'économies dans les services des autres.",
+    a:"Associer les professionnels est indispensable, mais sans cadrage par la direction, chaque spécialité défend son territoire. La démocratie professionnelle arbitre mal entre services.", tags:["Démocratie professionnelle","Conflits entre services"]}
+  ],
+  org:{on:ALL5, key:"centre", conf:"Organisation professionnelle sous contrôle externe", mech:"Qualifications (+ résultats là où ils se mesurent)"}},
+
+ {when:"Année 2 · innovation", who:"ferrand",
+  ctx:"Le Pr Ferrand veut créer un programme de télésurveillance de l'insuffisance cardiaque fondé sur l'IA, avec des cardiologues, des infirmières, des ingénieurs, des data scientists et une start-up. Aujourd'hui, chaque projet passe par le service concerné, puis par un comité d'investissement qui statue en neuf mois.",
+  line:"Personne ici ne sait encore faire ça. Comment nous organiser ?",
+  opts:[
+   {t:"Créer une unité projet transversale, avec un budget propre et une équipe pluridisciplinaire qui s'ajuste en continu, reliée aux services par des rôles de liaison.", q:"g", r:"Premier prototype testé chez 40 patients en huit mois. Les cardiologues viennent d'eux-mêmes aux réunions.",
+    a:"L'organisation professionnelle innove mal : ses programmes standardisés et son cloisonnement favorisent la pensée convergente. Innover entre plusieurs disciplines exige une enclave adhocratique : des experts réunis en équipes projet, coordonnés par l'ajustement mutuel.", tags:["Enclave adhocratique","Ajustement mutuel","Pensée divergente"]},
+   {t:"Laisser chaque service développer sa partie (la cardiologie l'algorithme, l'informatique la plateforme), puis intégrer.", q:"m", r:"Deux ans plus tard, on a un algorithme et une plateforme… qui ne se parlent pas.",
+    a:"L'expertise de chaque spécialité est nécessaire, mais le cloisonnement empêche d'inventer à l'interface. On reproduit la structure professionnelle là où il faudrait de l'ajustement mutuel.", tags:["Cloisonnement"]},
+   {t:"Faire rédiger un cahier des charges par la direction informatique, puis lancer un appel d'offres pour une solution clé en main.", q:"b", r:"Le cahier des charges fait 200 pages. La solution livrée ne correspond plus à rien.",
+    a:"On ne peut pas spécifier à l'avance une innovation qui n'existe pas encore. La standardisation des procédés et des résultats convient au connu, pas à l'inconnu.", tags:["Standardisation prématurée"]}
+  ],
+  org:{on:ALL5, key:"centre", conf:"Organisation professionnelle + enclave adhocratique", mech:"Qualifications / ajustement mutuel (projet)"}}
+ ]},
+
+{name:"Métropole de Valrive", sector:"Administration publique", trustLabel:"Confiance de Nadia Haddad", hint:"none",
+ ctx:"La Métropole de Valrive (6 000 agents, 1,8 Md€ de budget) sort d'un rapport sévère de la chambre régionale des comptes. La directrice générale des services, Nadia Haddad, vous engage pour accompagner la réforme.",
+ cast:{
+  haddad:{n:"Nadia Haddad", r:"Directrice générale des services", c:"#24346B"},
+  leclerc:{n:"Bertrand Leclerc", r:"Vice-président chargé de l'urbanisme", c:"#A3520F"},
+  garnier:{n:"Paul Garnier", r:"Chef du service Autorisations d'urbanisme", c:"#5B4BA8"},
+  ould:{n:"Samir Ould", r:"Travailleur social, pôle Solidarités", c:"#7A2E6B"},
+  morin:{n:"Léa Morin", r:"Cheffe de projet numérique", c:"#0F6E74"}},
+ org0:{on:ALL5, key:"techno", conf:"Organisation mécaniste", mech:"Standardisation des procédés"},
+ v:["Nadia Haddad vous confie la réforme de deux autres directions.","Réforme engagée, avec quelques blocages en chemin.","La Métropole ne renouvelle pas votre contrat…"],
+ disc:["Pourquoi le contrôle externe (élus, juridictions financières, opinion publique) renforce-t-il la bureaucratie mécaniste dans le secteur public ?","Mintzberg (1996) distingue plusieurs modèles de gestion publique : machine, réseau, contrôle par la performance, contrôle normatif. Lesquels apparaissent dans la mission ?","Quels services publics se prêtent à la standardisation des résultats ? Lesquels non, et pourquoi ?","La politique dans une organisation est-elle toujours dysfonctionnelle ?"],
+ ch:[
+ {when:"Semaine 1", who:"haddad", diag:true,
+  ctx:"Chaque acte repose sur un texte : loi, décret, délibération, note de service. Les agents sont recrutés par concours et classés en grades. Toute décision suit une chaîne de visas jusqu'à la direction générale, puis jusqu'aux élus. Les directions juridique, financière et des ressources humaines encadrent tout. Le préfet contrôle la légalité des actes, et la chambre régionale des comptes contrôle les comptes.",
+  line:"Vous avez lu le rapport et visité les services. Quel est votre diagnostic de notre organisation ?",
+  opts:[
+   {t:"Une organisation mécaniste sous contrôle externe : standardisation des procédés, technostructure clé, centralisation et formalisation renforcées par l'obligation de rendre des comptes.", q:"g", r:"Dur, mais juste. Ici, chacun se couvre par une signature.",
+    a:"Le travail est encadré par des règles conçues par la technostructure (juristes, finances, RH). Mintzberg montre que le contrôle externe (élus, préfet, juridictions financières) accentue la centralisation et la formalisation : on décide en haut et on documente tout, pour pouvoir rendre des comptes. C'est le modèle de l'État-machine.", tags:["Organisation mécaniste","Contrôle externe","Standardisation des procédés","Technostructure"]},
+   {t:"Une organisation professionnelle : les agents sont recrutés sur concours, donc coordonnés par leurs qualifications.", q:"m", r:"Le concours garantit un niveau, pas une manière de travailler. Ce sont les procédures qui décident.",
+    a:"Le concours standardise les qualifications à l'entrée, et certains métiers (ingénieurs, travailleurs sociaux) relèvent en partie d'une logique professionnelle. Mais le travail de la plupart des agents est programmé par des règles écrites, non par le jugement autonome d'un professionnel.", tags:["Standardisation des qualifications"]},
+   {t:"Une structure divisionnalisée : chaque direction est une division qui gère son domaine.", q:"b", r:"Autonomes, nos directions ? Elles ne peuvent pas acheter un ordinateur sans trois visas.",
+    a:"Dans une structure divisionnalisée, les divisions sont autonomes et pilotées par leurs résultats. Ici, les directions sont des unités fonctionnelles sans autonomie budgétaire, coordonnées par des procédures communes : c'est une organisation mécaniste.", tags:["Structure divisionnalisée"]}
+  ],
+  org:{on:ALL5, key:"techno", conf:"Organisation mécaniste (État-machine)", mech:"Standardisation des procédés"}},
+
+ {when:"Mois 2 · permis de construire", who:"leclerc",
+  ctx:"Le délai moyen d'instruction d'un permis de construire est de 4,5 mois, contre deux à trois mois prévus par la loi selon les cas. Paul Garnier, chef du service, compte 14 visas par dossier, y compris pour une simple véranda.",
+  line:"Les promoteurs saturent mon agenda, et les élections sont dans dix-huit mois. Il me faut des résultats. Que proposez-vous ?",
+  opts:[
+   {t:"Repenser la procédure avec les instructeurs : trier les dossiers simples et complexes, supprimer les visas redondants, déléguer la signature des dossiers simples.", q:"g", r:"Paul Garnier est surpris qu'on lui demande son avis. Le délai passe sous trois mois pour 70 % des dossiers.",
+    a:"Pour un travail routinier, répétitif et à fort volume, la standardisation des procédés reste le bon mécanisme. Le problème n'est pas la bureaucratie en soi, mais son obsession du contrôle : des visas qui protègent les signataires sans améliorer les décisions. Décentraliser les décisions routinières allège le sommet.", tags:["Standardisation des procédés","Décentralisation des décisions routinières","Obsession du contrôle"]},
+   {t:"Fixer un objectif de deux mois par dossier, avec une prime individuelle pour les instructeurs qui le tiennent.", q:"b", r:"Le délai baisse sur le papier : les dossiers sont déclarés incomplets pour arrêter le chronomètre. Les recours explosent.",
+    a:"Plaquer une standardisation des résultats sur un travail dont la procédure reste inchangée produit des stratégies de contournement. L'indicateur s'améliore, le service non.", tags:["Effets pervers des indicateurs"]},
+   {t:"Recruter six instructeurs supplémentaires.", q:"m", r:"Le délai baisse un peu. Les 14 visas, eux, sont toujours là.",
+    a:"Ajouter de la capacité soulage, mais laisse intacte la procédure, qui est la vraie cause du délai. Coûteux pour un gain limité.", tags:["Capacité ou procédé"]}
+  ],
+  org:{on:ALL5, key:"techno", conf:"Organisation mécaniste (État-machine)", mech:"Standardisation des procédés"}},
+
+ {when:"Mois 6 · agences", who:"haddad",
+  ctx:"Le président de la Métropole s'inspire de la réforme britannique des agences (Next Steps) : il veut transformer l'eau, la collecte des déchets, les transports et l'aide sociale à l'enfance en agences autonomes, chacune liée à la Métropole par un contrat d'objectifs chiffrés.",
+  line:"Le président attend ma recommandation vendredi. Vous en pensez quoi ?",
+  opts:[
+   {t:"Créer des agences pour l'eau, les déchets et les transports, dont les résultats sont mesurables. Garder l'aide sociale à l'enfance en régie, avec un pilotage fondé sur la déontologie professionnelle plutôt que sur des quotas.", q:"g", r:"Le président voulait tout transformer, mais l'argument sur l'enfance l'a convaincu.",
+    a:"C'est le modèle du contrôle par la performance (Mintzberg, 1996) : une forme divisionnalisée appliquée à l'État, qui coordonne par la standardisation des résultats. Il ne fonctionne que si les résultats sont mesurables et séparables des choix politiques. Or beaucoup d'activités sont publiques précisément parce que leurs résultats se mesurent mal.", tags:["Contrôle par la performance","Structure divisionnalisée","Standardisation des résultats","Limites de la mesure"]},
+   {t:"Tout transformer en agences, y compris l'aide sociale à l'enfance, avec des indicateurs du type « dossiers traités par agent ».", q:"b", r:"Le premier rapport de l'agence Enfance est excellent : les dossiers sont clos deux fois plus vite.",
+    a:"Appliquer le contrôle par la performance à un service dont le résultat est ambigu (le bien-être d'un enfant) conduit à mesurer ce qui se compte, pas ce qui compte. Mintzberg ajoute que les divisions pilotées par les chiffres tendent elles-mêmes à devenir des organisations mécanistes.", tags:["Contrôle par la performance mal appliqué","Déplacement des objectifs"]},
+   {t:"Ne rien détacher : tout garder sous l'autorité directe de la direction générale, au nom de l'égalité devant le service public.", q:"m", r:"Le principe est noble. Mais la régie de l'eau attend toujours trois mois pour remplacer une pompe.",
+    a:"L'argument de l'égalité est légitime, mais il renonce à l'autonomie là où elle serait utile : pour les services techniques aux résultats mesurables, la standardisation des résultats libère de la centralisation mécaniste.", tags:["Centralisation"]}
+  ],
+  org:{on:ALL5, key:"ligne", conf:"Mécaniste au centre, agences divisionnalisées", mech:"Procédés (siège) / résultats (agences)"}},
+
+ {when:"Mois 12 · pôle Solidarités", who:"ould", diag:true,
+  ctx:"Le pôle Solidarités a reçu un tableau de bord hebdomadaire : dossiers ouverts, dossiers clos, délai moyen par agent. Six mois plus tard, le taux de dossiers clos a progressé de 40 %, mais les familles reviennent, et trois travailleurs sociaux expérimentés ont démissionné.",
+  line:"On ferme les dossiers vite pour faire du chiffre, même quand on sait que la famille reviendra. Les situations compliquées, plus personne n'en veut. Selon vous, d'où vient le problème ?",
+  opts:[
+   {t:"L'indicateur ne mesure pas le vrai résultat : la sortie durable des difficultés ne s'observe pas à court terme. On optimise donc ce qui se compte, au détriment de ce qui compte.", q:"g", r:"Merci. Je croyais que c'était nous qui étions devenus mauvais.",
+    a:"Quand le résultat est ambigu ou différé, la standardisation des résultats déplace les objectifs. Le travail social relève plutôt de la standardisation des qualifications et des normes : formation, déontologie, supervision par les pairs.", tags:["Déplacement des objectifs","Résultats non mesurables","Normes professionnelles"]},
+   {t:"Les agents manquent de formation pour traiter les situations complexes.", q:"m", r:"On est diplômés d'État. On sait faire : on n'a juste plus le temps de bien faire.",
+    a:"La qualification est un levier pertinent pour ce métier, mais elle ne traite pas la cause : un système de mesure qui pénalise les cas complexes.", tags:["Standardisation des qualifications"]},
+   {t:"Les agents résistent au changement : il faut un accompagnement à la conduite du changement.", q:"b", r:"Résister ? On applique le tableau de bord à la lettre. C'est bien ça le problème.",
+    a:"Le diagnostic de « résistance au changement » rend les personnes responsables d'un défaut de conception. Ici, les agents se conforment parfaitement à l'indicateur.", tags:["Erreur de diagnostic"]}
+  ],
+  org:{on:ALL5, key:"ligne", conf:"Mécaniste au centre, agences divisionnalisées", mech:"Résultats (inadaptés au travail social)"}},
+
+ {when:"Année 2 · Valrive en ligne", who:"morin",
+  ctx:"Le projet « Valrive en ligne » doit dématérialiser 120 démarches en dix-huit mois. Sept directions sont concernées. La DSI a rédigé, il y a deux ans, un cahier des charges de 300 pages. Le comité de direction mensuel doit valider chaque étape, et chaque achat passe par la commande publique.",
+  line:"À ce rythme, on livrera en 2031. Comment devrais-je organiser le projet ?",
+  opts:[
+   {t:"Une équipe produit pluridisciplinaire (agents des métiers, développeurs, designers, juriste), un mandat clair de la direction générale, des livraisons courtes testées avec les usagers, et un comité restreint qui arbitre vite.", q:"g", r:"Première démarche en ligne en dix semaines. La direction juridique vient aux ateliers au lieu de rendre des avis écrits.",
+    a:"Vous créez une adhocratie administrative : une équipe de spécialistes qui conçoit pour l'organisation elle-même, coordonnée par l'ajustement mutuel, à l'abri des procédures mécanistes. Les fonctions supports en sont la partie clé. Le défi est l'interface avec la machine, d'où le mandat explicite du sommet.", tags:["Adhocratie administrative","Ajustement mutuel","Fonctions supports"]},
+   {t:"Respecter le cahier des charges existant et la validation mensuelle : c'est la garantie de la régularité.", q:"b", r:"Au bout d'un an, on a validé les spécifications. Les deux tiers sont obsolètes.",
+    a:"Un projet d'innovation ne peut pas être entièrement spécifié à l'avance. Lui appliquer la standardisation des procédés garantit la régularité, pas la pertinence.", tags:["Standardisation des procédés"]},
+   {t:"Confier l'ensemble au forfait à un grand cabinet de conseil, sur la base du cahier des charges.", q:"m", r:"Le cabinet livre dans les délais… ce que dit le cahier des charges, qui ne correspond plus aux besoins.",
+    a:"Le prestataire peut fonctionner en adhocratie, mais le contrat au forfait fige dès le départ les résultats attendus, et la Métropole ne construit aucune compétence interne.", tags:["Externalisation","Adhocratie opérationnelle"]}
+  ],
+  org:{on:ALL5, key:"support", conf:"Mécaniste + adhocratie administrative (projet)", mech:"Ajustement mutuel (au sein du projet)"}},
+
+ {when:"Année 2 · blocages", who:"haddad",
+  ctx:"Les réformes ont réveillé les conflits. Les syndicats bloquent la réorganisation, deux vice-présidents se disputent le pilotage du numérique, la DSI refuse de céder la main sur les outils, et la direction juridique multiplie les avis défavorables. Plus rien n'avance.",
+  line:"Je passe mes journées à arbitrer des querelles de territoire. Comment en sortir ?",
+  opts:[
+   {t:"Rendre le conflit explicite et le canaliser : un mandat politique écrit et un seul élu pilote, une négociation avec les syndicats sur les conditions de travail, et un récit commun sur le sens du service public.", q:"g", r:"Le président tranche le pilotage. Les syndicats signent un accord de méthode. On respire.",
+    a:"Mintzberg décrit la politique comme une force qui tire l'organisation dans des directions opposées (jeux de territoire, conflits entre opérationnels et fonctionnels). Pour éviter que l'organisation ne devienne une arène politique, il faut clarifier l'autorité légitime et mobiliser l'idéologie, la force qui rassemble. Un conflit canalisé peut même faciliter le changement.", tags:["Configuration politique","Idéologie (force qui rassemble)","Jeux de pouvoir"]},
+   {t:"Passer en force : décision du président, calendrier imposé, sanctions en cas d'obstruction.", q:"m", r:"Les décisions sont prises. Les blocages, eux, deviennent discrets : arrêts maladie, dossiers qui traînent.",
+    a:"Le recours à l'autorité peut trancher à court terme, mais la politique passe alors dans la clandestinité. Sans adhésion, les jeux de pouvoir continuent sous une autre forme.", tags:["Supervision directe","Politique clandestine"]},
+   {t:"Laisser le conflit s'éteindre de lui-même et suspendre les réformes en attendant.", q:"b", r:"Six mois plus tard, le conflit ne s'est pas éteint : il s'est installé.",
+    a:"Un conflit non traité s'étend : l'organisation dérive vers l'arène politique, où le pouvoir se dispute plutôt qu'il ne s'exerce.", tags:["Arène politique"]}
+  ],
+  org:{on:ALL6, key:"ideo", conf:"Organisation mécaniste traversée par la politique", mech:"Procédés + normes partagées"}}
+ ]},
+
+{name:"Terre Vive", sector:"ONG climat", trustLabel:"Confiance du conseil d'administration", hint:"none",
+ ctx:"Terre Vive est une ONG de reforestation et d'agroforesterie fondée il y a douze ans par Malik Diallo, au Sénégal et en France. Elle grandit vite et attire de grands financeurs. Son conseil d'administration vous engage pour l'accompagner. À ce niveau, les options sont plus proches les unes des autres.",
+ cast:{
+  diallo:{n:"Malik Diallo", r:"Fondateur et président", c:"#1F6B45"},
+  nguyen:{n:"Clara Nguyen", r:"Directrice générale, arrivée en année 3", c:"#24346B"},
+  faye:{n:"Yasmine Faye", r:"Responsable des programmes, Sénégal", c:"#A3520F"},
+  lambert:{n:"Margot Lambert", r:"Responsable des partenariats", c:"#5B4BA8"},
+  besson:{n:"Hugo Besson", r:"Responsable du plaidoyer", c:"#7A2E6B"}},
+ org0:{on:["sommet","centre","ideo"], key:"ideo", conf:"Organisation missionnaire", mech:"Standardisation des normes"},
+ v:["Le conseil vous propose de rejoindre Terre Vive comme administrateur·rice.","Terre Vive a changé d'échelle, mais pas sans cicatrices.","Terre Vive se scinde en deux organisations rivales…"],
+ disc:["Pourquoi les organisations missionnaires restent-elles généralement petites ? Quelles stratégies permettent de grandir sans perdre l'idéologie ?","Mintzberg parle de contamination entre configurations. Où l'avez-vous observée dans les quatre missions ?","Une entreprise à mission peut-elle être une organisation missionnaire au sens de Mintzberg ? À quelles conditions ?","Quelle configuration hybride recommanderiez-vous à Terre Vive à long terme ?"],
+ ch:[
+ {when:"Année 12", who:"diallo", diag:true,
+  ctx:"40 salariés et 300 bénévoles. Les salaires sont 30 % sous le marché, mais les candidatures affluent. On recrute sur l'engagement plus que sur le diplôme. Il y a peu de procédures, et les décisions importantes se prennent en assemblée. Chaque année, un week-end de plantation réunit toute l'organisation. Malik raconte souvent l'histoire de la forêt de son village, disparue en dix ans.",
+  line:"Les financeurs disent que nous sommes « mal structurés ». Moi, je trouve qu'on fonctionne bien. Qu'est-ce que vous voyez ?",
+  opts:[
+   {t:"Une organisation missionnaire : coordination par la standardisation des normes, idéologie comme partie clé, contrôle par la sélection et la socialisation plutôt que par les règles.", q:"g", r:"« Missionnaire »… le mot me fait sourire, mais c'est bien ça.",
+    a:"Mintzberg décrit l'organisation missionnaire : une idéologie forte, souvent née d'un fondateur charismatique et de son histoire, puis entretenue par des rituels. Le contrôle passe par la sélection et la socialisation : chacun agit de façon autonome parce que tous partagent les mêmes valeurs. Peu de spécialisation, de technostructure et de hiérarchie.", tags:["Organisation missionnaire","Standardisation des normes","Idéologie"]},
+   {t:"Une structure simple : tout tourne autour du charisme du fondateur.", q:"m", r:"On m'écoute, c'est vrai. Mais les équipes au Sénégal prennent leurs décisions sans moi.",
+    a:"Le fondateur charismatique est souvent à l'origine de l'idéologie, mais c'est l'idéologie institutionnalisée (normes, rituels, récits) qui coordonne, et non la supervision directe de Malik.", tags:["Structure simple","Leadership charismatique"]},
+   {t:"Une adhocratie : peu de procédures, des décisions collectives, du travail en équipe.", q:"b", r:"On travaille ensemble, oui. Mais on ne réinvente pas tout à chaque projet.",
+    a:"L'absence de règles et la décision collective rapprochent superficiellement les deux formes. L'adhocratie coordonne des experts par l'ajustement mutuel pour innover ; ici, ce sont les valeurs partagées qui coordonnent.", tags:["Adhocratie"]}
+  ],
+  org:{on:["sommet","centre","ideo"], key:"ideo", conf:"Organisation missionnaire", mech:"Standardisation des normes"}},
+
+ {when:"Année 12 · un grand bailleur", who:"lambert",
+  ctx:"Un grand bailleur public propose 12 M€ sur cinq ans pour un programme d'agroforesterie dans quatre pays, soit trois fois le budget actuel. Ses conditions : un cadre logique de 60 indicateurs, ses procédures d'achat, des audits annuels et un reporting trimestriel.",
+  line:"C'est l'occasion de changer d'échelle. Mais les équipes disent que la paperasse va tuer l'esprit de Terre Vive. On fait quoi ?",
+  opts:[
+   {t:"Accepter, mais contenir la formalisation : une cellule de gestion des subventions qui absorbe le reporting, des recrutements qui partagent la mission, et des fonds propres non fléchés pour garder de l'autonomie.", q:"g", r:"La cellule tourne à quatre personnes. Le terrain voit à peine la différence.",
+    a:"Le contrôle externe pousse vers la formalisation et la centralisation, une menace directe pour l'organisation missionnaire. Une technostructure circonscrite sert de tampon : vous contenez la contamination au lieu de la laisser se diffuser. Préserver des ressources propres limite la dépendance.", tags:["Contrôle externe","Contenir la contamination","Technostructure tampon"]},
+   {t:"Refuser : l'indépendance vaut plus que 12 M€.", q:"m", r:"L'équipe applaudit. Le programme dans trois pays ne verra pas le jour.",
+    a:"La décision protège l'idéologie, mais renonce à l'impact. Mintzberg note que certaines organisations missionnaires se replient sur elles-mêmes pour préserver leur pureté (le cloître), au risque de la marginalisation.", tags:["Repli missionnaire (cloître)"]},
+   {t:"Accepter et étendre les procédures du bailleur à toute l'organisation, bénévoles compris, par souci de cohérence.", q:"b", r:"Les bénévoles reçoivent des fiches de temps à remplir. Une centaine ne revient pas.",
+    a:"Étendre les procédures du bailleur à toute l'organisation, c'est la contamination : la logique mécaniste se répand dans des activités qui fonctionnaient par les normes.", tags:["Contamination mécaniste"]}
+  ],
+  org:{on:["sommet","ligne","centre","techno","ideo"], key:"ideo", conf:"Missionnaire + technostructure tampon", mech:"Normes (+ résultats pour le bailleur)"}},
+
+ {when:"Année 13 · 60 villages", who:"faye",
+  ctx:"Le programme démarre dans 60 villages. Les sols, le régime foncier, les cultures et les organisations villageoises varient d'un site à l'autre. Chaque site demande un agronome, un animateur, un spécialiste du foncier et des représentants des communautés.",
+  line:"Le siège nous envoie un manuel de 80 pages et un modèle de projet unique. Mais chaque village est un cas à part. Comment travailler ?",
+  opts:[
+   {t:"Des équipes pluridisciplinaires par site, qui conçoivent les solutions avec les communautés. Le siège fixe des principes et quelques résultats communs, pas la méthode.", q:"g", r:"On a enfin le droit d'adapter. Et le siège reçoit des résultats comparables.",
+    a:"Concevoir des solutions sur mesure pour chaque client en combinant plusieurs expertises, c'est l'adhocratie opérationnelle, coordonnée par l'ajustement mutuel. Les normes partagées et quelques résultats communs assurent la cohérence d'ensemble.", tags:["Adhocratie opérationnelle","Ajustement mutuel","Normes + résultats"]},
+   {t:"Laisser chaque pays totalement libre de sa méthode et de ses indicateurs.", q:"m", r:"Chaque pays avance… mais personne ne sait comparer, ni apprendre des autres.",
+    a:"L'autonomie est nécessaire, mais sans principes ni résultats communs, l'organisation perd sa capacité d'apprendre et de rendre des comptes. Ce sont les normes et les résultats qui coordonnent, pas l'absence de coordination.", tags:["Autonomie sans coordination"]},
+   {t:"Garder le manuel, mais confier chaque projet à un expert du siège qui l'adapte sur place.", q:"b", r:"Les experts sont compétents, mais les villages participent peu. Les arbres plantés sans eux ne survivent pas.",
+    a:"On remplace l'ajustement mutuel avec les communautés par la supervision directe d'un expert. Le projet perd l'adhésion locale, dont dépend sa réussite.", tags:["Supervision directe"]}
+  ],
+  org:{on:ALL6, key:"centre", conf:"Missionnaire + adhocratie opérationnelle", mech:"Normes + ajustement mutuel"}},
+
+ {when:"Année 17 · le malaise", who:"nguyen", diag:true,
+  ctx:"Cinq ans plus tard : 350 salariés dans six pays, 25 M€ de budget. L'engagement mesuré par l'enquête interne passe de 89 % à 52 %. Les anciens partent ; les recrues venues du conseil et de la finance sont compétentes, mais disent « c'est un job ». Les réunions portent sur les indicateurs. Malik et Clara sont en conflit ouvert, et le réseau de bénévoles se divise.",
+  line:"Je suis arrivée pour professionnaliser l'organisation, et c'est ce que j'ai fait. Pourquoi est-ce que tout se délite ?",
+  opts:[
+   {t:"La croissance a dilué l'idéologie : recruter vite affaiblit la sélection et la socialisation, la logique mécaniste contamine la mission, et le conflit entre le fondateur et la directrice signale une politisation.", q:"g", r:"Donc ce n'est pas une question de personnes… c'est une question de structure.",
+    a:"Mintzberg note que les organisations missionnaires restent généralement petites : l'idéologie s'entretient par le contact personnel. La croissance et la formalisation l'érodent. Quand l'idéologie, la force qui rassemble, faiblit, la politique, la force qui divise, prend le relais : le conflit au sommet est un symptôme, pas la cause.", tags:["Érosion de l'idéologie","Contamination","Politisation"]},
+   {t:"Un problème de leadership : le fondateur doit se retirer pour laisser la direction professionnelle gérer.", q:"m", r:"Le conseil y pense. Mais la moitié des équipes partirait avec Malik.",
+    a:"Le conflit au sommet est réel, mais il est le symptôme d'une tension structurelle entre mission et professionnalisation. Changer les personnes sans traiter la structure déplace le problème.", tags:["Crise de succession"]},
+   {t:"Une communication interne insuffisante : il faut mieux expliquer la stratégie.", q:"b", r:"On a fait trois séminaires stratégiques cette année. Les salles étaient à moitié vides.",
+    a:"Ce n'est pas un problème d'information : les salariés comprennent la stratégie. Ce qui manque, c'est l'adhésion produite par la sélection, la socialisation et des rituels partagés.", tags:["Erreur de diagnostic"]}
+  ],
+  org:{on:ALL6, key:"techno", conf:"Missionnaire contaminée", mech:"Résultats (en hausse) / normes (en recul)"}},
+
+ {when:"Année 17 · quelle structure ?", who:"diallo",
+  ctx:"Le conseil d'administration doit décider de la structure de Terre Vive pour les cinq prochaines années. Les six bureaux pays ont des contextes très différents, et les financeurs exigent une gouvernance claire.",
+  line:"On ne reviendra pas à 40 personnes. Mais je refuse de devenir une multinationale de l'humanitaire. Quelle structure ?",
+  opts:[
+   {t:"Une fédération d'unités à taille humaine : des bureaux pays autonomes, qui intègrent les nouveaux par le parrainage et des rituels communs, et un siège léger qui garde la mission et quelques résultats partagés.", q:"g", r:"Chaque bureau aura son week-end de plantation. C'est un détail, mais c'est le nôtre.",
+    a:"Une organisation missionnaire grandit mieux en se reproduisant en unités de petite taille qu'en grossissant d'un seul bloc. Vous combinez une structure divisionnalisée (autonomie, résultats) et une forte socialisation (normes) : la culture fait contrepoids aux résultats.", tags:["Fédération missionnaire","Structure divisionnalisée","Socialisation"]},
+   {t:"Recentraliser temporairement autour du fondateur pour restaurer la cohésion, puis décentraliser.", q:"m", r:"Malik reprend la main. La crise s'apaise, mais il devient vite le goulot d'étranglement de 350 personnes.",
+    a:"Mintzberg observe qu'une crise justifie souvent une recentralisation temporaire autour d'un leader. Mais la supervision directe ne tient pas à 350 personnes dans six pays : elle doit rester transitoire.", tags:["Recentralisation de crise","Structure simple"]},
+   {t:"Centraliser au siège, sous la directrice générale, avec des procédures uniformes pour tous les pays.", q:"b", r:"Les bureaux pays deviennent des exécutants. Les meilleurs responsables de programme partent dans d'autres ONG.",
+    a:"Uniformiser les procédures pour des contextes aussi différents revient à imposer une organisation mécaniste. On sacrifie à la fois l'adaptation au terrain et l'idéologie.", tags:["Organisation mécaniste"]}
+  ],
+  org:{on:ALL6, key:"ideo", conf:"Fédération missionnaire divisionnalisée", mech:"Normes + résultats"}},
+
+ {when:"Année 18 · l'offre du pétrolier", who:"besson",
+  ctx:"Une compagnie pétrolière propose 3 M€ sur trois ans pour financer des plantations, en échange de crédits carbone qui « compensent » ses émissions. La moitié des salariés menace de démissionner ; l'autre moitié estime qu'on ne peut pas refuser 3 M€ pour planter des arbres. Le conseil est divisé, et la presse commence à s'y intéresser.",
+  line:"Peu importe ma position personnelle : si on gère mal ça, l'organisation explose. Comment décide-t-on ?",
+  opts:[
+   {t:"Faire trancher par l'instance légitime, le conseil, sur des critères explicites et publics tirés de la mission (une charte éthique des partenariats), après une consultation ouverte des équipes, puis assumer la décision.", q:"g", r:"Le conseil décide, la charte est publiée. Quelques départs, mais personne ne conteste la façon de décider.",
+    a:"Le conflit porte sur l'idéologie elle-même. En ancrant la décision dans la mission, avec un processus perçu comme légitime, vous mobilisez l'idéologie pour rassembler et canalisez le conflit dans une arène structurée, au lieu de le laisser contaminer toute l'organisation.", tags:["Idéologie comme arbitre","Canaliser le conflit","Configuration politique évitée"]},
+   {t:"Laisser chaque bureau pays décider s'il accepte des fonds de ce type.", q:"m", r:"Trois bureaux acceptent, trois refusent. Dans la presse, Terre Vive semble ne plus savoir ce qu'elle défend.",
+    a:"Décentraliser une question qui touche à l'identité commune fragmente l'organisation. L'idéologie ne peut pas varier d'un bureau à l'autre sans cesser d'être une force qui rassemble.", tags:["Balkanisation"]},
+   {t:"Accepter discrètement, sans communication interne, pour éviter la polémique.", q:"b", r:"L'information fuite deux mois plus tard. Le cynisme s'installe, et c'est pire que des départs.",
+    a:"Dans une organisation missionnaire, contourner les valeurs en secret détruit la confiance qui fonde la coordination par les normes. La politique clandestine remplace l'idéologie.", tags:["Politique clandestine","Érosion de l'idéologie"]}
+  ],
+  org:{on:ALL6, key:"ideo", conf:"Fédération missionnaire, conflit canalisé", mech:"Standardisation des normes"}}
+ ]}
+];
+
 const PTS = {g:100, m:40, b:0};
+const NCH = LV.reduce((s,l)=>s+l.ch.length,0), MAX = NCH*PTS.g, MAXS = MAX.toLocaleString("fr-FR");
+const HINT = {full:"Aide complète : schéma et configuration affichés en direct.", after:"Aide réduite : le schéma de l'organisation n'apparaît qu'après chaque décision.", none:"Sans aide : ni schéma ni étiquette pendant le niveau. Seule l'analyse vous guide."};
+const HSHORT = {full:"aide complète", after:"aide réduite", none:"sans aide"};
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fresh = () => ({lvl:0, i:-1, picks:LV.map(()=>[]), trust:50, health:50, picked:null, order:{}, done:0, saved:[]});
+const S = Object.assign({name:"", screen:"home", debug:false}, fresh());
+const PKEY = "nomade-progress";
 try{ S.name = localStorage.getItem("nomade-name") || ""; }catch(e){}
+try{ const p = JSON.parse(localStorage.getItem(PKEY)||"null"); if(p && Array.isArray(p.picks) && p.picks.length===LV.length) Object.assign(S, p); }catch(e){}
+const DBG = parseInt(new URLSearchParams(location.search).get("niveau"),10);
+if(DBG>=1 && DBG<=LV.length) Object.assign(S, fresh(), {debug:true, lvl:DBG-1, done:DBG-1});
+function persist(){ if(S.debug) return; try{ localStorage.setItem(PKEY, JSON.stringify({lvl:S.lvl,i:S.i,picks:S.picks,trust:S.trust,health:S.health,picked:S.picked,order:S.order,done:S.done,saved:S.saved})); }catch(e){} }
+const lv = () => LV[S.lvl];
+const ptsOf = L => S.picks[L].reduce((s,p)=>s+(p?PTS[p.q]:0),0);
+const goodOf = L => S.picks[L].filter(p=>p&&p.q==="g").length;
+const total = () => LV.reduce((s,_,L)=>s+ptsOf(L),0);
+const totalGood = () => LV.reduce((s,_,L)=>s+goodOf(L),0);
 
 /* ---- Classement partagé (Google Sheet via Apps Script) ---- */
 /* Collez ici l'URL de déploiement de l'application Web Apps Script (se termine par /exec) : */
@@ -264,7 +569,7 @@ async function loadBoard(){
   renderBoard();
 }
 loadBoard();
-setInterval(()=>{ if(document.visibilityState==="visible" && (S.i<0 || S.i>=CH.length)) loadBoard(); }, 15000);
+setInterval(()=>{ if(document.visibilityState==="visible" && S.screen!=="chapter") loadBoard(); }, 15000);
 
 function renderBoard(){
   const el=document.getElementById("boardBody"); if(!el) return;
@@ -273,34 +578,32 @@ function renderBoard(){
   if(LB.state==="err"){ el.innerHTML=`<p class="note">Classement momentanément indisponible. Nouvel essai dans quelques secondes.</p>`; return; }
   const top = LB.rows.slice(0,25);
   let html = top.length ? `<ol>${top.map((r,k)=>`<li class="${r.id===LB.me?"me":""}"><span class="rk">${k+1}</span>
-      <span class="nm">${esc(r.name)}${r.id===LB.me?" <small>(vous)</small>":""}<br><small>${r.plays||1} partie${(r.plays||1)>1?"s":""} · ${r.good??"?"}/6 bonnes décisions</small></span>
+      <span class="nm">${esc(r.name)}${r.id===LB.me?" <small>(vous)</small>":""}<br><small>${r.good??"?"} bonnes décisions</small></span>
       <span class="sc">${r.score}</span></li>`).join("")}</ol>`
-    : `<p class="note">Personne n'a encore terminé la mission. Le premier score apparaîtra ici.</p>`;
+    : `<p class="note">Personne n'a encore terminé de niveau. Le premier score apparaîtra ici.</p>`;
   const mine = LB.rows.findIndex(r=>r.id===LB.me);
   if(mine>=25) html += `<p class="note">Votre rang : ${mine+1} sur ${LB.rows.length}.</p>`;
-  html += `<p class="note">Score sur 600 : 100 points par bonne décision, 40 par décision partielle. Seul votre meilleur score compte. Mise à jour toutes les 15 secondes.</p>`;
+  html += `<p class="note">Score sur ${MAXS} : 100 points par bonne décision, 40 par décision partielle, ${NCH} décisions en ${LV.length} niveaux. Le score est enregistré à la fin de chaque niveau ; seul votre meilleur score compte. Mise à jour toutes les 15 secondes.</p>`;
   el.innerHTML = html;
 }
 
 async function saveScore(){
   if(!API_OK) return "skip";
-  const good=S.picks.filter(p=>p.q==="g").length;
   try{
     const r = await fetch(API_URL, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"},
-      body: JSON.stringify({game:GAME, id:LB.me, name:S.name, score:S.points, good})});
+      body: JSON.stringify({game:GAME, id:LB.me, name:S.name, score:total(), good:totalGood()})});
     const j = await r.json();
     if(!j.ok) return "fail";
     await loadBoard();
     return j.best ? "best" : "kept";
   }catch(e){ return "fail"; }
 }
-const org0 = {on:["sommet","centre"], key:"sommet", conf:"Structure simple", mech:"Supervision directe"};
 const $s = document.getElementById("story"), $d = document.getElementById("dossier");
 
 function orgNow(){
-  // shows state after last resolved chapter
-  let o = org0;
-  for(let k=0;k<CH.length;k++){ if(k<S.i || (k===S.i && S.picked!==null)) o = CH[k].org; }
+  // shows state after last resolved chapter of the current level
+  const L=lv(); let o = L.org0;
+  for(let k=0;k<L.ch.length;k++){ if(k<S.i || (k===S.i && S.picked!==null)) o = L.ch[k].org; }
   return o;
 }
 function diagram(o){
@@ -318,99 +621,157 @@ function diagram(o){
     ${T("ligne",200,155,"Ligne")}${T("centre",200,272,"Centre opérationnel")}${T("ideo",200,338,"Idéologie")}
   </svg>`;
 }
+function levelList(){
+  return `<ol class="lvls">${LV.map((l,L)=>{
+    const st = L<S.done ? `<span class="st ok">${ptsOf(L)} / ${l.ch.length*PTS.g}</span>`
+      : L===S.done ? `<span class="st">${S.lvl===L&&S.i>=0?"En cours":"À jouer"}</span>` : `<span class="st">Verrouillé</span>`;
+    return `<li class="${L>S.done?"lock":""}"><span class="n">${L+1}</span><span><b>${l.name}</b><small>${l.sector} · ${HSHORT[l.hint]}</small></span>${st}</li>`;
+  }).join("")}</ol>`;
+}
 function dossier(){
-  const o=orgNow();
-  const dots = CH.map((c,k)=>{ const p=S.picks[k]; return `<span class="${p?p.q:""} ${k===S.i?"now":""}" title="Chapitre ${k+1}"></span>`; }).join("");
-  $d.innerHTML = `<div><div class="eyebrow">Dossier client</div><div class="conf">${o.conf}</div>
-      <p class="meta">Mécanisme dominant : ${o.mech} · Partie clé (contour rose) : ${PN[o.key]}</p></div>
-    ${diagram(o)}
-    <div class="gauge"><div class="row"><span>Confiance de Camille</span><b>${S.trust}</b></div><div class="bar"><i style="width:${S.trust}%"></i></div></div>
+  if(S.screen==="home" || S.screen==="final"){
+    $d.innerHTML = `<div><div class="eyebrow">Votre parcours</div><div class="conf">${total()} / ${MAXS} points</div></div>${levelList()}`;
+    return;
+  }
+  const L=lv(), o=orgNow();
+  const show = L.hint==="full" || S.screen==="end" || (L.hint==="after" && S.picked!==null);
+  const dots = L.ch.map((c,k)=>{ const p=S.picks[S.lvl][k]; return `<span class="${p?p.q:""} ${k===S.i&&S.screen==="chapter"?"now":""}" title="${c.diag?"Diagnostic":"Chapitre"} ${k+1}"></span>`; }).join("");
+  $d.innerHTML = `<div><div class="eyebrow">Dossier client · niveau ${S.lvl+1}</div><div class="conf">${show?o.conf:L.name}</div>
+      <p class="meta">${show?`Mécanisme dominant : ${o.mech} · Partie clé (contour rose) : ${PN[o.key]}`:HINT[L.hint]}</p></div>
+    ${show?diagram(o):`<div class="masked">${L.hint==="after"?"Le schéma apparaîtra après votre décision.":"Pas de schéma à ce niveau : à vous de diagnostiquer."}</div>`}
+    <div class="gauge"><div class="row"><span>${L.trustLabel}</span><b>${S.trust}</b></div><div class="bar"><i style="width:${S.trust}%"></i></div></div>
     <div class="gauge"><div class="row"><span>Santé de l'organisation</span><b>${S.health}</b></div><div class="bar h"><i style="width:${S.health}%"></i></div></div>
     <div class="gauge"><div class="row"><span>Vos décisions</span></div><div class="dots">${dots}</div></div>`;
 }
-const av = k => `<span class="av" style="background:${CAST[k].c}" aria-hidden="true">${CAST[k].n[0]}</span>`;
+const av = k => { const c=lv().cast[k]; return `<span class="av" style="background:${c.c}" aria-hidden="true">${c.i||c.n[0]}</span>`; };
+const toTop = () => { if($s.getBoundingClientRect().top<0) $s.scrollIntoView({block:"start"}); };
 
-function intro(){
-  S.i=-1; S.picks=[]; S.trust=50; S.health=50; S.picked=null; S.points=0;
-  $s.innerHTML = `<div class="eyebrow">Votre mission</div><h2>Dix ans, six décisions</h2>
-    <p class="ctx">À chaque chapitre, un membre de l'entreprise vous expose un problème de coordination ou de décision. Choisissez votre recommandation : chaque choix a des conséquences, et une analyse Mintzberg suit chaque décision. Le schéma montre la configuration de l'entreprise.</p>
-    <h3>Les personnages</h3>
-    <div class="cast">${Object.keys(CAST).map(k=>`<div>${av(k)}<span><b>${CAST[k].n}</b><small>${CAST[k].r}</small></span></div>`).join("")}</div>
+function home(){
+  S.screen="home";
+  const started = S.done>0 || S.i>=0;
+  const label = S.done>=LV.length ? "Voir le bilan final" : started ? `Reprendre : niveau ${S.lvl+1}` : "Commencer la mission";
+  $s.innerHTML = `<div class="eyebrow">Votre mission</div><h2>Quatre clients, ${NCH} décisions</h2>
+    <p class="ctx">Quatre organisations font appel à vous, de la PME industrielle à l'ONG internationale. À chaque étape, un membre de l'organisation vous expose un problème : choisissez votre recommandation, puis lisez l'analyse Mintzberg. Certaines étapes sont des diagnostics : identifiez la configuration ou la cause avant d'agir. Les niveaux se débloquent dans l'ordre, et l'aide diminue de niveau en niveau. Votre progression est sauvegardée sur cet appareil.</p>
     <form class="field" id="nameform" novalidate>
       <label for="pname">Votre nom pour le classement</label>
       <input id="pname" maxlength="30" autocomplete="name" placeholder="Prénom N." value="${esc(S.name)}">
       <p class="err" id="nerr" hidden>Entrez un nom (2 caractères minimum) pour commencer.</p>
-      <div class="actions"><button class="btn" type="submit">Commencer la mission</button></div>
+      <div class="actions">${started?`<button class="btn ghost" type="button" id="reset">Tout recommencer</button>`:""}<button class="btn" type="submit">${label}</button></div>
+      <p class="confirm" id="rconf" hidden>Effacer votre progression sur cet appareil ? Votre meilleur score reste au classement.
+        <button class="link" type="button" id="ryes">Oui, effacer</button> <button class="link" type="button" id="rno" style="color:var(--navy)">Annuler</button></p>
     </form>`;
   document.getElementById("nameform").onsubmit=e=>{
     e.preventDefault();
     const v=document.getElementById("pname").value.trim().replace(/\s+/g," ");
     if(v.length<2){ document.getElementById("nerr").hidden=false; return; }
     S.name=v; try{ localStorage.setItem("nomade-name",v); }catch(e){}
-    S.i=0;S.picked=null;chapter();
+    resume();
   };
+  if(started){
+    document.getElementById("reset").onclick=()=>{ document.getElementById("rconf").hidden=false; };
+    document.getElementById("rno").onclick=()=>{ document.getElementById("rconf").hidden=true; };
+    document.getElementById("ryes").onclick=()=>{ Object.assign(S, fresh()); try{ localStorage.removeItem(PKEY); }catch(e){} home(); };
+  }
   dossier();
 }
+function resume(){
+  if(S.done>=LV.length) return finale();
+  if(S.i<0) return levelIntro();
+  if(S.picked!==null){ S.i++; S.picked=null; }
+  if(S.i>=lv().ch.length) return levelEnd();
+  chapter();
+}
+function levelIntro(){
+  S.screen="intro"; const L=lv();
+  $s.innerHTML = `<div class="eyebrow">Niveau ${S.lvl+1} / ${LV.length} · ${L.sector}</div><h2>${L.name}</h2>
+    <p class="ctx">${L.ctx}</p>
+    <p class="note"><b>${HINT[L.hint]}</b></p>
+    ${S.debug?`<p class="note">Mode test : progression et score non enregistrés.</p>`:""}
+    <h3>Les personnages</h3>
+    <div class="cast">${Object.keys(L.cast).map(k=>`<div>${av(k)}<span><b>${L.cast[k].n}</b><small>${L.cast[k].r}</small></span></div>`).join("")}</div>
+    <div class="actions"><button class="btn" id="start">Commencer le niveau</button></div>`;
+  document.getElementById("start").onclick=()=>{ Object.assign(S,{i:0, picked:null, trust:50, health:50}); S.picks[S.lvl]=[]; persist(); chapter(); };
+  dossier(); toTop();
+}
 function chapter(){
-  const c=CH[S.i], who=CAST[c.who];
-  const order = S.order && S.order[S.i] ? S.order[S.i] : (S.order=S.order||[], S.order[S.i]=shuffle([0,1,2]));
-  $s.innerHTML = `<div class="chap"><div class="eyebrow">Chapitre ${S.i+1} / ${CH.length}</div><span class="when">${c.when}</span></div>
+  S.screen="chapter";
+  const L=lv(), c=L.ch[S.i], who=L.cast[c.who], key=S.lvl+"-"+S.i;
+  if(!S.order[key]){ S.order[key]=shuffle([0,1,2]); persist(); }
+  const order=S.order[key];
+  $s.innerHTML = `<div class="chap"><div class="eyebrow">Niveau ${S.lvl+1} · ${c.diag?"Diagnostic":"Chapitre"} ${S.i+1} / ${L.ch.length}</div><span class="when">${c.when}</span></div>
     <p class="ctx">${c.ctx}</p>
     <div class="bubble">${av(c.who)}<div class="say"><b>${who.n} · ${who.r}</b><p>${c.line}</p></div></div>
     <div class="opts">${order.map((oi,n)=>`<button class="opt" data-o="${oi}"><span class="k">${"ABC"[n]}</span><span>${c.opts[oi].t}</span></button>`).join("")}</div>
     <div id="out"></div>`;
   $s.querySelectorAll(".opt").forEach(b=>b.onclick=()=>choose(+b.dataset.o));
-  dossier();
+  dossier(); toTop();
 }
 function choose(oi){
   if(S.picked!==null) return;
-  const c=CH[S.i], o=c.opts[oi]; S.picked=oi; S.picks[S.i]={oi,q:o.q}; S.points+=PTS[o.q];
+  const L=lv(), c=L.ch[S.i], o=c.opts[oi]; S.picked=oi; S.picks[S.lvl][S.i]={oi,q:o.q};
   const d={g:[12,12],m:[2,0],b:[-10,-12]}[o.q];
   S.trust=clamp(S.trust+d[0]); S.health=clamp(S.health+d[1]);
+  persist();
   $s.querySelectorAll(".opt").forEach(b=>{ b.disabled=true; const oo=+b.dataset.o;
     if(oo===oi) b.classList.add(o.q); else if(c.opts[oo].q==="g") b.classList.add("g"); else b.classList.add("dim"); });
   const best=c.opts.find(x=>x.q==="g");
-  const last=S.i===CH.length-1;
+  const last=S.i===L.ch.length-1;
   document.getElementById("out").innerHTML = `
-    <div class="bubble">${av(c.who)}<div class="say"><b>${CAST[c.who].n}</b><p>${o.r}</p></div></div>
-    <div class="analysis"><h3>Analyse Mintzberg · ${o.q==="g"?"Bonne recommandation":o.q==="m"?"Recommandation partielle":"Recommandation risquée"}</h3>
-      <p>${o.a}</p>${o.q!=="g"?`<p style="margin-top:8px"><b>Meilleure option :</b> ${best.a}</p>`:""}
+    <div class="bubble">${av(c.who)}<div class="say"><b>${L.cast[c.who].n}</b><p>${o.r}</p></div></div>
+    <div class="analysis"><h3>Analyse Mintzberg · ${o.q==="g"?(c.diag?"Bon diagnostic":"Bonne recommandation"):o.q==="m"?(c.diag?"Diagnostic partiel":"Recommandation partielle"):(c.diag?"Diagnostic erroné":"Recommandation risquée")}</h3>
+      <p>${o.a}</p>${o.q!=="g"?`<p style="margin-top:8px"><b>${c.diag?"Meilleur diagnostic":"Meilleure option"} :</b> ${best.a}</p>`:""}
       <div class="tags">${(o.q==="g"?o.tags:best.tags).map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>
-    <div class="actions"><button class="btn" id="next">${last?"Voir le bilan de mission":"Chapitre suivant"}</button></div>`;
+    <div class="actions"><button class="btn" id="next">${last?"Voir le bilan du niveau":"Chapitre suivant"}</button></div>`;
   const n=document.getElementById("next"); n.focus({preventScroll:true});
-  n.onclick=()=>{ S.i++; S.picked=null; last?debrief():chapter(); };
+  n.onclick=()=>{ S.i++; S.picked=null; persist(); last?levelEnd():chapter(); };
   dossier();
 }
-function debrief(){
-  const g=S.picks.filter(p=>p.q==="g").length;
-  const v = g>=5?"Camille vous confie la réorganisation du groupe entier.":g>=3?"Mission réussie, avec quelques détours coûteux.":"Camille cherche un autre cabinet…";
-  S.i=CH.length;
-  $s.innerHTML = `<div class="eyebrow">Bilan de mission</div>
-    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span class="big">${S.points}</span><h2>${v}</h2></div>
-    <p class="note" id="saved">${esc(S.name)} · ${g}/${CH.length} bonnes décisions · score sur 600. Enregistrement…</p>
+function levelEnd(){
+  S.screen="end"; const L=lv(), n=L.ch.length, lvl=S.lvl;
+  S.i=n; S.picked=null; if(S.done<lvl+1) S.done=lvl+1; persist();
+  const g=goodOf(lvl), pts=ptsOf(lvl), lastLvl=lvl===LV.length-1;
+  const v = g>=5?L.v[0]:g>=3?L.v[1]:L.v[2];
+  const base = `${g}/${n} bonnes décisions · ${pts} / ${n*PTS.g} points sur ce niveau · total : ${total()} / ${MAXS}.`;
+  $s.innerHTML = `<div class="eyebrow">Bilan · niveau ${lvl+1} / ${LV.length} · ${L.name}</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span class="big">${pts}</span><h2>${v}</h2></div>
+    <p class="note" id="saved">${base}${S.debug?" Mode test : score non enregistré.":S.saved[lvl]?"":" Enregistrement…"}</p>
     <div class="tbl"><table><thead><tr><th>Étape</th><th>Votre choix</th><th>Configuration en jeu</th></tr></thead><tbody>
-    ${CH.map((c,k)=>{const p=S.picks[k]; const best=c.opts.find(x=>x.q==="g"); return `<tr><td>${c.when}</td>
-      <td><span class="pill ${p.q}">${p.q==="g"?"Bon":p.q==="m"?"Partiel":"Risqué"}</span></td><td>${best.tags.join(" · ")}</td></tr>`}).join("")}
+    ${L.ch.map((c,k)=>{const p=S.picks[lvl][k]; const best=c.opts.find(x=>x.q==="g"); return `<tr><td>${c.when}${c.diag?" · diagnostic":""}</td>
+      <td><span class="pill ${p?p.q:""}">${!p?"–":p.q==="g"?"Bon":p.q==="m"?"Partiel":"Risqué"}</span></td><td>${best.tags.join(" · ")}</td></tr>`}).join("")}
     </tbody></table></div>
     <h3>Pour le débat en classe</h3>
-    <ol class="disc">
-      <li>Atelier Nomade est passée par plusieurs configurations. Lesquelles, et qu'est-ce qui a déclenché chaque passage ?</li>
-      <li>Une entreprise peut combiner plusieurs mécanismes. Lesquels coexistent dans le groupe à l'année 10 ?</li>
-      <li>Quelle configuration manque à l'histoire (l'organisation professionnelle) ? Imaginez une activité d'Atelier Nomade qui l'adopterait.</li>
-      <li>Comparez l'organigramme du groupe et sa configuration : qu'est-ce que l'organigramme ne montre pas ?</li>
-    </ol>
-    <div class="actions"><button class="btn" id="again">Rejouer la mission</button></div>`;
-  document.getElementById("again").onclick=()=>{S.order=null;intro();};
-  dossier();
-  const base=`${esc(S.name)} · ${g}/${CH.length} bonnes décisions · score sur 600.`;
-  saveScore().then(r=>{ const el=document.getElementById("saved"); if(!el) return;
-    el.textContent = base.replace(/&amp;/g,"&") + " " + ({best:"Nouveau record enregistré dans le classement.", kept:"Score enregistré ; votre meilleur score reste inchangé.", skip:"Classement indisponible : score non enregistré.", fail:"Le score n'a pas pu être enregistré."}[r]);
+    <ol class="disc">${L.disc.map(q=>`<li>${q}</li>`).join("")}</ol>
+    <div class="actions"><button class="btn" id="next">${lastLvl?"Voir le bilan final":`Niveau ${lvl+2} : ${LV[lvl+1].name}`}</button></div>`;
+  document.getElementById("next").onclick=()=>{ if(lastLvl) return finale(); S.lvl++; S.i=-1; S.picked=null; persist(); levelIntro(); };
+  dossier(); toTop();
+  if(!S.debug && !S.saved[lvl]) saveScore().then(r=>{
+    if(r==="best"||r==="kept"){ S.saved[lvl]=true; persist(); }
+    const el=document.getElementById("saved"); if(!el || S.screen!=="end") return;
+    el.textContent = base + " " + ({best:"Nouveau record enregistré dans le classement.", kept:"Score enregistré ; votre meilleur score reste inchangé.", skip:"Classement indisponible : score non enregistré.", fail:"Le score n'a pas pu être enregistré."}[r]);
   });
+}
+function finale(){
+  S.screen="final"; const t=total(), g=totalGood();
+  const v = g>=20?"Le cabinet vous nomme associé·e.":g>=14?"Quatre missions menées à bien, avec quelques détours coûteux.":"Quelques missions d'apprentissage supplémentaires s'imposent…";
+  $s.innerHTML = `<div class="eyebrow">Bilan final</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span class="big">${t}</span><h2>${v}</h2></div>
+    <p class="note">${esc(S.name)} · ${g}/${NCH} bonnes décisions · score sur ${MAXS}.</p>
+    <div class="tbl"><table><thead><tr><th>Niveau</th><th>Organisation</th><th>Bonnes décisions</th><th>Points</th></tr></thead><tbody>
+    ${LV.map((l,L)=>`<tr><td>${L+1}</td><td>${l.name}</td><td>${goodOf(L)} / ${l.ch.length}</td><td>${ptsOf(L)}</td></tr>`).join("")}
+    </tbody></table></div>
+    <h3>Pour conclure</h3>
+    <ol class="disc">
+      <li>Comparez les quatre organisations : quels facteurs de contingence (âge, taille, système technique, environnement, pouvoir) expliquent leur configuration ?</li>
+      <li>Aucune organisation n'est restée dans une configuration pure. Pourquoi les organisations réelles sont-elles le plus souvent des hybrides ?</li>
+      <li>Le contrôle externe a pesé dans trois missions sur quatre. Quel effet a-t-il, de manière récurrente, sur la structure ?</li>
+    </ol>
+    <div class="actions"><button class="btn" id="again">Rejouer toute la mission</button></div>`;
+  document.getElementById("again").onclick=()=>{ Object.assign(S, fresh()); if(!S.debug){ try{ localStorage.removeItem(PKEY); }catch(e){} } home(); };
+  dossier(); toTop();
 }
 const clamp=x=>Math.max(0,Math.min(100,x));
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
-intro();
+S.debug ? levelIntro() : home();
 </script>
-
 </body>
 </html>
