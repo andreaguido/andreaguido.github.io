@@ -1,0 +1,841 @@
+---
+layout: null
+sitemap: false
+permalink: /teaching/motivation/
+---
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Carnet de manager</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: same as the Séance 4 role play (Mintzberg) — the story on the left, a live "grille de lecture" (theory grid + gauges) on the right; stacks on phones. */
+:root{
+  --bg:#F5F6FB; --surface:#FFFFFF; --line:#D9DDEB; --fg:#1B2347; --muted:#5B6385;
+  --navy:#24346B; --magenta:#B5135F; --navy-soft:#E6EAF5; --magenta-soft:#F8E4EE;
+  --good:#1F7A4D; --good-soft:#E1F3E9; --mid:#9A6200; --mid-soft:#FBF0DB; --bad:#B3261E; --bad-soft:#FBE6E4;
+  --off:#EEF0F6; --off-stroke:#C9CEDF; --on:#C9D3EE; --on-stroke:#24346B; --halo:#F1E3EC;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1428; --surface:#172040; --line:#2B3762; --fg:#E8EBF6; --muted:#A3AACB;
+  --navy:#AFC0F2; --magenta:#EE6AA3; --navy-soft:#1E2A52; --magenta-soft:#3A1A30;
+  --good:#5FD39A; --good-soft:#123826; --mid:#F2BE5C; --mid-soft:#3A2C0E; --bad:#FF8A80; --bad-soft:#3E1714;
+  --off:#151D3A; --off-stroke:#2B3762; --on:#2C3B72; --on-stroke:#AFC0F2; --halo:#2A1C3A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1428; --surface:#172040; --line:#2B3762; --fg:#E8EBF6; --muted:#A3AACB;
+  --navy:#AFC0F2; --magenta:#EE6AA3; --navy-soft:#1E2A52; --magenta-soft:#3A1A30;
+  --good:#5FD39A; --good-soft:#123826; --mid:#F2BE5C; --mid-soft:#3A2C0E; --bad:#FF8A80; --bad-soft:#3E1714;
+  --off:#151D3A; --off-stroke:#2B3762; --on:#2C3B72; --on-stroke:#AFC0F2; --halo:#2A1C3A; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2rem,6vw,2.8rem);font-weight:800;color:var(--navy);letter-spacing:-.01em}
+h2{font-size:1.4rem;font-weight:700}
+h3{font-size:1rem;font-weight:700}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta);font-weight:700}
+.lede{color:var(--muted);max-width:64ch;margin:6px 0 0}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.chap{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.chap .when{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.ctx{margin:0;color:var(--muted)}
+.bubble{display:flex;gap:12px;align-items:flex-start}
+.av{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:800 1rem var(--display);color:#fff;background:var(--navy)}
+.say{background:var(--navy-soft);border-radius:4px 14px 14px 14px;padding:12px 14px;min-width:0}
+.say b{display:block;font-size:.82rem;color:var(--navy)}
+.say p{margin:2px 0 0}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{font:inherit;text-align:left;padding:13px 15px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;display:flex;gap:12px;align-items:flex-start}
+.opt:hover:not(:disabled){border-color:var(--magenta)}
+.opt:disabled{cursor:default}
+.opt .k{flex:none;font:800 .9rem var(--display);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--navy-soft);color:var(--navy)}
+.opt.g{border-color:var(--good);background:var(--good-soft)}
+.opt.m{border-color:var(--mid);background:var(--mid-soft)}
+.opt.b{border-color:var(--bad);background:var(--bad-soft)}
+.opt.dim{opacity:.5}
+button:focus-visible{outline:3px solid var(--magenta);outline-offset:2px}
+.analysis{border-left:4px solid var(--magenta);background:var(--navy-soft);border-radius:0 12px 12px 0;padding:12px 16px}
+.analysis h3{color:var(--magenta);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.analysis p{margin:0}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--navy)}
+.actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.btn{font:700 .95rem var(--body);padding:11px 18px;border-radius:10px;border:0;background:var(--magenta);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line)}
+
+.sidecol{display:flex;flex-direction:column;gap:20px;min-width:0}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:700;font-size:.9rem}
+.field input{font:inherit;padding:11px 13px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);max-width:360px}
+.field input:focus-visible{outline:3px solid var(--magenta);outline-offset:1px}
+.err{color:var(--bad);font-size:.85rem;margin:0}
+.board ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.board li{display:grid;grid-template-columns:2.2em minmax(0,1fr) auto;gap:8px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.board li .rk{font:800 1rem var(--display);color:var(--muted)}
+.board li:nth-child(1) .rk{color:var(--magenta)}
+.board li .nm{overflow-wrap:anywhere}
+.board li .nm small{color:var(--muted);font-size:.78rem}
+.board li .sc{font-weight:700;color:var(--navy)}
+.board li.me{background:var(--magenta-soft);border-radius:8px;padding-inline:8px}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+.link{background:none;border:0;padding:0;font:inherit;font-size:.82rem;color:var(--bad);cursor:pointer;text-decoration:underline}
+.confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.85rem}
+
+/* Grille de lecture: one renderer per theory. Neutral before the decision; "on" = already addressed, "key" (magenta) = what is at stake. */
+.side svg{width:100%;height:auto;max-width:320px;align-self:center}
+.tier .s{fill:var(--off);stroke:var(--off-stroke);stroke-width:1.5;stroke-dasharray:4 4;transition:fill .5s,stroke .5s}
+.tier.on .s{fill:var(--on);stroke:var(--on-stroke);stroke-dasharray:none;stroke-width:2}
+.tier.key .s{fill:var(--halo);stroke:var(--magenta);stroke-dasharray:none;stroke-width:3.5}
+.t{font:700 12px var(--body);fill:var(--muted);text-anchor:middle}
+.tier.on .t,.tier.key .t{fill:var(--fg)}
+.lgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lgrid.three{grid-template-columns:repeat(3,1fr)}
+.lt{border:1.5px dashed var(--off-stroke);background:var(--off);border-radius:10px;padding:8px 10px;font-size:.8rem;color:var(--muted);transition:background .5s,border-color .5s;min-width:0}
+.lt b{display:block;font-size:.85rem;color:var(--fg);overflow-wrap:anywhere}
+.lt.on{background:var(--on);border-style:solid;border-color:var(--on-stroke)}
+.lt.key{background:var(--halo);border:3px solid var(--magenta);color:var(--fg)}
+.axis{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);margin-top:4px}
+.hz{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hz h4{margin:0 0 6px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hz ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.hz li{font-size:.8rem;padding:5px 8px;border-radius:8px;border:1.5px dashed var(--off-stroke);background:var(--off);transition:background .5s,border-color .5s}
+.hz li.on{background:var(--on);border-style:solid;border-color:var(--on-stroke)}
+.hz li.key{background:var(--halo);border:2.5px solid var(--magenta)}
+.mc{display:flex;flex-direction:column;gap:10px}
+.mc .who{font-weight:700;font-size:.85rem}
+.mc .r{display:grid;grid-template-columns:9em minmax(0,1fr);gap:8px;align-items:center;font-size:.78rem;color:var(--muted)}
+.mc .r.key{color:var(--magenta);font-weight:700}
+.mc .bar i{background:var(--navy)}
+.mc .r.key .bar i{background:var(--magenta)}
+.eq{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center;text-align:center}
+.eq .lt{text-align:center}
+.eq .sym{font:800 2rem var(--display);color:var(--magenta);min-width:1.2em}
+.frac{display:inline-flex;flex-direction:column;font-size:.75rem;line-height:1.3}
+.frac span:first-child{border-bottom:1.5px solid currentColor}
+.rl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;counter-reset:r}
+.rl li{counter-increment:r;font-size:.8rem;padding:6px 9px;border-radius:8px;border:1.5px dashed var(--off-stroke);background:var(--off);display:grid;grid-template-columns:1.4em minmax(0,1fr);gap:6px}
+.rl li::before{content:counter(r);font:800 .85rem var(--display);color:var(--muted)}
+.rl li.on{background:var(--on);border-style:solid;border-color:var(--on-stroke)}
+.rl li.key{background:var(--halo);border:2.5px solid var(--magenta)}
+.conf{font-family:var(--display);font-weight:700;font-size:1.15rem;color:var(--navy)}
+.meta{font-size:.85rem;color:var(--muted);margin:0}
+.gauge{display:flex;flex-direction:column;gap:5px}
+.gauge .row{display:flex;justify-content:space-between;font-size:.82rem;font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:4px;background:var(--navy-soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--magenta);transition:width .5s}
+.bar.h i{background:var(--good)}
+.bar.w i{background:var(--navy)}
+.dots{display:flex;gap:6px}
+.dots span{width:10px;height:10px;border-radius:50%;background:var(--navy-soft)}
+.dots span.g{background:var(--good)} .dots span.m{background:var(--mid)} .dots span.b{background:var(--bad)} .dots span.now{outline:2px solid var(--magenta);outline-offset:1px}
+
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pill{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:999px}
+.pill.g{background:var(--good-soft);color:var(--good)} .pill.m{background:var(--mid-soft);color:var(--mid)} .pill.b{background:var(--bad-soft);color:var(--bad)}
+.big{font-family:var(--display);font-weight:800;font-size:3rem;color:var(--magenta);line-height:1;font-variant-numeric:tabular-nums}
+.cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.cast div{display:flex;gap:10px;align-items:center;font-size:.9rem}
+.cast small{display:block;color:var(--muted)}
+.disc{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.lvls{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.lvls li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px}
+.lvls li.lock{opacity:.55}
+.lvls .n{font:800 .95rem var(--display);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--navy-soft);color:var(--navy)}
+.lvls small{display:block;color:var(--muted);font-size:.8rem}
+.st{font-size:.78rem;font-weight:700;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.st.ok{color:var(--good)}
+.masked{border:1.5px dashed var(--line);border-radius:12px;padding:28px 16px;text-align:center;color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Séance 3 · Jeu de rôle</div>
+    <h1>Carnet de manager</h1>
+    <p class="lede">Vous êtes manager. Au fil de votre carrière, vous dirigez quatre équipes : une start-up, une agence commerciale, un entrepôt logistique et le service client d'un grand groupe. Vos décisions font évoluer la motivation et le bien-être de vos équipes. Comptez environ 35 minutes.</p>
+  </header>
+  <div class="grid">
+    <main id="story" class="card" aria-live="polite"></main>
+    <div class="sidecol">
+      <aside class="card side" id="dossier"></aside>
+      <section class="card board" id="board" aria-live="polite">
+        <div><div class="eyebrow">Classement de la classe</div><h2>Meilleurs managers</h2></div>
+        <div id="boardBody"><p class="note">Chargement du classement…</p></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Grilles de lecture (séance 3). lens.t choisit la grille ; lens.key = ce qui est en jeu (contour rose), lens.on = ce qui est déjà satisfait ou traité. */
+const LT = {fit:"Se sentir bien dans l'organisation", maslow:"Pyramide de Maslow", mccl:"Besoins de McClelland", herz:"Théorie bi-factorielle (Herzberg)",
+  rps:"Risques psychosociaux", role:"Le rôle du manager", equity:"Théorie de l'équité (Adams)", just:"Justice organisationnelle (Greenberg)"};
+
+/* q: g = bonne réponse, m = partielle, b = erronée. lens.mech = levier affiché après la décision. */
+const LV = [
+{name:"Lumea", sector:"Start-up", trustLabel:"Confiance de Nathalie", hint:"full",
+ ctx:"Vous êtes nommé·e manager de l'équipe produit de Lumea, une start-up nantaise de 25 personnes qui développe une application de covoiturage domicile-travail. C'est votre premier poste d'encadrement : huit personnes, une fondatrice pressée, et tout à construire.",
+ cast:{
+  nathalie:{n:"Nathalie Roche", r:"Cofondatrice et PDG", c:"#24346B"},
+  chloe:{n:"Chloé Vidal", r:"Responsable RH", c:"#7A2E6B"},
+  melissa:{n:"Mélissa Aubert", r:"Designer UX", c:"#0F6E74"},
+  yanis:{n:"Yanis Belkacem", r:"Alternant, support client", c:"#A3520F"},
+  bastien:{n:"Bastien Morel", r:"Développeur senior", c:"#5B4BA8"}},
+ v:["Nathalie vous confie la direction de toute l'équipe tech.","Une première année réussie, avec quelques maladresses.","Nathalie cherche un autre manager…"],
+ disc:["Recruter sur la personnalité ou sur les KSA : quels sont les risques de chaque approche ?","Mélissa avait trois adéquations sur quatre. Laquelle est la plus difficile à corriger par le management, et pourquoi ?","La pyramide de Maslow suppose un ordre strict des besoins. Trouvez un exemple où un besoin « supérieur » motive alors qu'un besoin « inférieur » n'est pas satisfait.","Le burnout de Bastien : à qui revenait la responsabilité de le prévenir ?"],
+ ch:[
+ {when:"Mois 1 · recrutement", who:"chloe",
+  ctx:"Premier dossier : recruter un·e développeur·se. Chloé a reçu 60 candidatures.",
+  line:"Nathalie voudrait qu'on fasse passer le MBTI à tout le monde et qu'on ne garde que les profils « extravertis et meneurs », comme elle. Ça vous va ?",
+  opts:[
+   {t:"Partir de la fiche de poste : définir les connaissances, compétences et attitudes (KSA) requises, puis les évaluer en entretien et par un test technique. Le MBTI peut éclairer l'entretien, pas trier les candidats.", q:"g", r:"C'est plus solide. Je reprends la fiche de poste avec vous demain.",
+    a:"Le person-job fit consiste à faire correspondre les exigences du poste (description et spécification) avec les caractéristiques de la personne. La spécification du poste s'exprime en KSA : connaissances, compétences techniques et non techniques, attitudes. Un test de personnalité décrit des traits ; il ne dit pas si la personne sait faire le travail.", tags:["Person-job fit","KSA","Fiche de poste"]},
+   {t:"Oui : un profil qui ressemble à Nathalie s'intégrera forcément bien.", q:"b", r:"Trois finalistes très à l'aise à l'oral… dont aucun ne réussit le test technique.",
+    a:"Recruter sur la ressemblance avec la dirigeante confond personnalité et capacité à tenir le poste. Le MBTI décrit des préférences, pas des compétences, et ce filtre écarte des candidats qualifiés.", tags:["Personnalité ≠ compétences"]},
+   {t:"Ne retenir que le meilleur score au test technique, sans regarder le reste.", q:"m", r:"Le meilleur au test… mais il refuse de documenter son code et de travailler en binôme.",
+    a:"Les compétences techniques comptent, mais les KSA incluent aussi les compétences non techniques (communication, gestion du temps) et les attitudes. Le person-job fit ne se réduit pas au savoir-faire technique.", tags:["Compétences techniques seules"]}
+  ],
+  lens:{t:"fit", key:"job", mech:"Person-job fit (KSA)"}},
+
+ {when:"Mois 3 · Mélissa", who:"melissa", diag:true,
+  ctx:"Mélissa, arrivée il y a trois mois, est excellente : ses maquettes ont fait progresser les inscriptions de 20 %. Elle s'entend bien avec l'équipe et apprécie votre façon de manager. Pourtant, elle parle de partir. Chez Lumea, on félicite ceux qui répondent aux messages à minuit, et la réunion du lundi commence par la liste des « héros du week-end ».",
+  line:"J'aime mon travail, j'aime l'équipe. Mais je ne me reconnais pas dans cette façon de fonctionner. Qu'est-ce qui ne va pas, selon vous ?",
+  opts:[
+   {t:"Un défaut d'adéquation entre la personne et l'organisation : ses compétences et ses relations vont bien, mais ses valeurs ne correspondent pas à la culture de l'entreprise.", q:"g", r:"Oui. Ce n'est ni le poste ni les gens : c'est ce que l'entreprise valorise.",
+    a:"Les quatre adéquations sont distinctes. Ici, le person-job, le person-group et le person-supervisor fit sont bons ; c'est le person-organization fit qui manque : se retrouver dans la culture de l'organisation. Les valeurs alimentent les normes, ces règles de bon et de mauvais comportement que l'entreprise rend visibles par ses rituels et ses « héros ».", tags:["Person-organization fit","Valeurs","Normes et culture"]},
+   {t:"Un défaut d'adéquation au poste : il faudrait revoir sa fiche de poste.", q:"m", r:"Ma fiche de poste me convient très bien. Ce sont les soirées et les week-ends qui me posent problème.",
+    a:"Le person-job fit est bon, ses résultats le montrent. Modifier le poste ne changerait pas ce qui la gêne : les valeurs et les normes de l'entreprise.", tags:["Person-job fit"]},
+   {t:"Un problème de personnalité : elle est trop introvertie pour une start-up.", q:"b", r:"Introvertie ? Je présente mes maquettes à toute l'entreprise chaque mois…",
+    a:"Attribuer le malaise à un trait de personnalité évite d'interroger la culture de l'organisation. Rien n'indique ici un problème de personnalité.", tags:["Erreur de diagnostic"]}
+  ],
+  lens:{t:"fit", key:"org", on:["job","group","sup"], mech:"Person-organization fit (valeurs, culture)"}},
+
+ {when:"Mois 4 · Yanis", who:"nathalie",
+  ctx:"Yanis, en alternance, gère le support client. Son contrat se termine dans quatre mois et personne ne lui a dit s'il serait embauché. Il paie un loyer élevé et cherche déjà ailleurs. Depuis quelques semaines, ses réponses aux clients sont plus lentes.",
+  line:"Je propose qu'on le nomme « talent du mois » devant toute l'équipe. Un peu de reconnaissance, et il sera remotivé. Bonne idée ?",
+  opts:[
+   {t:"D'abord lever l'incertitude : lui dire clairement, et vite, si une embauche en CDI est envisageable et à quelles conditions. La reconnaissance viendra ensuite.", q:"g", r:"On peut lui proposer un CDI sous conditions. Je lui en parle cette semaine.",
+    a:"Selon Maslow, les besoins sont hiérarchisés : physiologiques, sécurité, sociaux, estime, accomplissement. Tant que le besoin de sécurité (l'emploi, le revenu) n'est pas satisfait, un levier d'estime a peu de prise.", tags:["Maslow","Besoin de sécurité","Hiérarchie des besoins"]},
+   {t:"Oui : la reconnaissance publique compte, faisons-le.", q:"m", r:"Yanis a souri sur la photo. Le lendemain, il passait un entretien chez un concurrent.",
+    a:"La reconnaissance est un vrai levier, celui des besoins d'estime. Mais elle n'agit pas sur le besoin qui domine ici : la sécurité de l'emploi.", tags:["Besoin d'estime"]},
+   {t:"Lui confier un projet ambitieux pour qu'il puisse s'accomplir.", q:"b", r:"Un projet de plus, sans savoir s'il sera encore là pour le finir ?",
+    a:"Viser l'accomplissement, au sommet de la pyramide, alors que le besoin de sécurité n'est pas satisfait, revient à ajouter de la charge à une personne inquiète pour son avenir.", tags:["Besoin d'accomplissement"]}
+  ],
+  lens:{t:"maslow", key:"securite", on:["physio"], mech:"Besoin de sécurité non satisfait"}},
+
+ {when:"Année 1 · le plateau", who:"nathalie", diag:true,
+  ctx:"Un an plus tard. Les salaires sont au-dessus du marché, tous les contrats sont en CDI, les locaux sont neufs, déjeuners offerts et baby-foot compris. Pourtant, l'enquête interne montre une motivation en baisse. Plusieurs développeurs disent : « On exécute des tickets, on ne sait pas à quoi ils servent. »",
+  line:"Je ne comprends pas. On leur donne tout ! Qu'est-ce qui leur manque ?",
+  opts:[
+   {t:"Les besoins de base sont satisfaits, donc ils ne motivent plus. Ce qui compte désormais, ce sont l'estime et l'accomplissement : le sens du travail, la reconnaissance, l'épanouissement.", q:"g", r:"Donc ce n'est pas qu'ils en veulent plus… c'est qu'ils veulent autre chose.",
+    a:"« Un besoin satisfait n'est pas une motivation en soi. » Une fois le niveau de vie assuré, les salariés cherchent l'appartenance, l'estime, la considération et l'épanouissement. Le comportement au travail est d'autant plus coopératif et productif que la personne trouve dans l'organisation un lieu où se réaliser.", tags:["Maslow","Besoin satisfait ≠ motivation","Estime et accomplissement"]},
+   {t:"Un manque de convivialité : il faut plus d'événements d'équipe.", q:"m", r:"On a fait trois afterworks ce trimestre. Ils viennent, mais ça ne change rien au travail.",
+    a:"Les besoins sociaux comptent, mais l'équipe s'entend déjà bien. Ce qui manque, c'est le sens du travail et la reconnaissance : les besoins plus élevés.", tags:["Besoins sociaux"]},
+   {t:"Une rémunération encore insuffisante : il faut augmenter les salaires.", q:"b", r:"On est déjà 10 % au-dessus du marché…",
+    a:"Les besoins couverts par le salaire sont déjà satisfaits. Augmenter encore agit sur des besoins qui ne motivent plus.", tags:["Besoins physiologiques et de sécurité"]}
+  ],
+  lens:{t:"maslow", key:["estime","accomp"], on:["physio","securite","sociaux"], mech:"Besoins d'estime et d'accomplissement"}},
+
+ {when:"Année 1 · feuille de route", who:"nathalie",
+  ctx:"Il faut fixer la feuille de route du semestre. Les deux développeurs les plus expérimentés ont des idées précises sur ce que demandent les utilisateurs.",
+  line:"Le plus rapide, c'est que vous décidiez seul·e et que vous annonciez le plan lundi. Pas besoin d'en faire un débat, non ?",
+  opts:[
+   {t:"Associer les plus compétents et motivés à la décision, puis expliquer à toute l'équipe les objectifs et leurs raisons, avec des points de feedback réguliers.", q:"g", r:"Ça prendra une semaine de plus. Mais si ça les remobilise, je signe.",
+    a:"Le rôle du manager dans la motivation : définir clairement les raisons et les objectifs de l'action, faire participer les plus compétents et motivés aux décisions, donner du feedback. Drucker place aussi en tête des tâches du manager : fixer les objectifs et les communiquer à ceux dont la participation est essentielle.", tags:["Rôle du manager","Participation aux décisions","Objectifs et feedback"]},
+   {t:"Décider seul·e, mais présenter le plan en détaillant ses raisons.", q:"m", r:"Les explications sont claires. Bastien remarque juste que ses suggestions n'y figurent pas.",
+    a:"Expliquer les raisons de l'action est utile, mais l'équipe reste spectatrice. Faire participer les plus compétents renforce l'implication dans la vie du groupe.", tags:["Expliquer sans impliquer"]},
+   {t:"Laisser chacun choisir ses priorités : des développeurs autonomes sont des développeurs motivés.", q:"b", r:"Trois mois plus tard, huit projets avancent à moitié. Aucun n'est terminé.",
+    a:"La motivation a une direction, une intensité et une persistance. Sans objectif commun, l'effort n'a plus de direction et se disperse.", tags:["Direction de l'effort"]}
+  ],
+  lens:{t:"role", key:["participer","objectifs"], mech:"Fixer les objectifs et faire participer"}},
+
+ {when:"Année 2 · le lancement", who:"chloe",
+  ctx:"Nathalie a promis aux investisseurs une nouvelle version de l'application en six semaines au lieu des quatre mois prévus. Bastien travaille 60 heures par semaine depuis un mois. Il est irritable en réunion, se dit « vidé » et répond à tout avec cynisme.",
+  line:"Nathalie dit qu'il adore son travail et qu'il ne faut surtout pas le freiner. Moi, je suis inquiète. Vous faites quoi ?",
+  opts:[
+   {t:"Traiter les signaux d'alerte : réduire sa charge, renégocier avec Nathalie un objectif réaliste et revoir la répartition du travail.", q:"g", r:"Nathalie a accepté de décaler deux fonctionnalités. Bastien a pris sa première soirée libre depuis un mois.",
+    a:"Le burnout est l'épuisement des ressources physiques et mentales causé par un effort excessif pour atteindre un objectif professionnel irréaliste. Irritabilité, épuisement et cynisme en sont des signaux. Selon l'OMS, les longues semaines de travail (55 heures ou plus) sont liées à des centaines de milliers de décès par AVC et maladie cardiaque. Réduire le stress au travail est l'un des rôles du management.", tags:["Risques psychosociaux","Burnout","Objectif irréaliste"]},
+   {t:"Lui verser une prime exceptionnelle et lui offrir une semaine de congé après le lancement.", q:"m", r:"Il apprécie le geste. Mais le lancement est dans cinq semaines, et il dort quatre heures par nuit.",
+    a:"Reconnaître l'effort est légitime, mais la cause du problème, un objectif irréaliste, reste intacte. La récupération arrive trop tard.", tags:["Compenser sans prévenir"]},
+   {t:"Le laisser faire : il est passionné, c'est son choix.", q:"b", r:"Deux semaines plus tard, Bastien est en arrêt maladie. Le lancement est repoussé de deux mois.",
+    a:"La passion ne protège pas de l'épuisement : ce sont souvent les plus engagés qui s'épuisent. Laisser faire, c'est renoncer au rôle du manager.", tags:["Inaction"]}
+  ],
+  lens:{t:"rps", key:"burnout", mech:"Burnout : surcharge, objectif irréaliste"}}
+ ]},
+
+{name:"Clairvent Assurances", sector:"Agence commerciale", trustLabel:"Confiance d'Olivier", hint:"after",
+ ctx:"Deux ans plus tard, vous prenez la direction de l'agence lilloise d'Clairvent Assurances : douze conseillers qui vendent des contrats aux PME. L'agence est dans la moyenne, mais l'équipe est très hétérogène. Votre directeur régional attend une progression des ventes.",
+ cast:{
+  olivier:{n:"Olivier Mercier", r:"Directeur régional", c:"#24346B"},
+  sarah:{n:"Sarah Lemaire", r:"Conseillère, meilleure vendeuse", c:"#A3520F"},
+  lucas:{n:"Lucas Delattre", r:"Conseiller, 15 ans d'ancienneté", c:"#0F6E74"},
+  kevin:{n:"Kévin Dumas", r:"Conseiller", c:"#5B4BA8"},
+  amira:{n:"Amira Chaoui", r:"Conseillère", c:"#7A2E6B"}},
+ v:["Olivier vous propose de diriger la région Nord.","L'agence progresse, avec quelques départs évitables.","Olivier remet en question votre nomination…"],
+ disc:["Et vous : quel est votre besoin dominant selon McClelland ? Quel type de poste vous conviendrait ?","Le classement affiché a démotivé Lucas. Aurait-il motivé quelqu'un dans l'agence ?","Pourquoi un fort besoin de pouvoir personnel fait-il souvent un mauvais manager ? Connaissez-vous des contre-exemples ?","Sarah doute de mériter son succès (syndrome de l'imposteur). Que peut faire son manager ?"],
+ ch:[
+ {when:"Semaine 1 · Sarah", who:"olivier", diag:true,
+  ctx:"Sarah dépasse ses objectifs chaque trimestre. Elle refuse les petits comptes « faciles », réclame chaque lundi ses chiffres de la semaine, préfère prospecter seule et s'ennuie dans les réunions collectives. Elle se demande parfois si son succès est vraiment mérité.",
+  line:"Sarah, c'est ma priorité : si elle part, l'agence perd 20 % de son chiffre. Avant d'agir, comment la décririez-vous ?",
+  opts:[
+   {t:"Un besoin d'accomplissement dominant : elle cherche à exceller, fuit la réussite facile, a besoin de feedback régulier et préfère travailler seule.", q:"g", r:"C'est elle, trait pour trait. Même le doute : elle se demande souvent si elle n'a pas eu de la chance.",
+    a:"McClelland distingue trois besoins (accomplissement, affiliation, pouvoir), dont l'un domine chez chaque individu. Les profils nAch cherchent à exceller, évitent les situations à faible risque (la réussite facile n'est pas un accomplissement authentique), ont besoin d'un feedback régulier, préfèrent travailler seuls ou avec d'autres nAch, et sont sujets au syndrome de l'imposteur.", tags:["McClelland","Besoin d'accomplissement (nAch)","Feedback régulier"]},
+   {t:"Un besoin de pouvoir : elle aime gagner et être la meilleure.", q:"m", r:"Gagner, oui. Mais diriger les autres ne l'intéresse pas du tout.",
+    a:"Aimer la compétition rapproche du besoin de pouvoir, mais Sarah ne cherche ni à diriger ni le statut : elle cherche à se mesurer à des défis. Son moteur est l'accomplissement.", tags:["Besoin de pouvoir (nPow)"]},
+   {t:"Un besoin d'affiliation : elle a besoin d'être reconnue par le groupe.", q:"b", r:"Par le groupe ? Elle sèche la moitié des réunions d'équipe.",
+    a:"Les profils nAff recherchent des relations harmonieuses et l'acceptation du groupe. Sarah travaille seule et s'ennuie en collectif.", tags:["Besoin d'affiliation (nAff)"]}
+  ],
+  lens:{t:"mccl", key:"ach", ps:[{n:"Sarah",ach:85,aff:20,pow:40}], mech:"Besoin d'accomplissement (nAch)"}},
+
+ {when:"Mois 1 · le nouveau marché", who:"olivier",
+  ctx:"Le siège ouvre un nouveau segment, les cabinets médicaux, et Olivier veut le confier à Sarah.",
+  line:"Pour la motiver, je pense lui fixer un objectif trois fois supérieur à son record, avec une grosse prime à la clé. Plus le défi est grand, plus elle donnera, non ?",
+  opts:[
+   {t:"Un objectif difficile mais atteignable, avec un point hebdomadaire sur ses résultats.", q:"g", r:"Sarah a demandé si elle pouvait commencer dès lundi. Elle réclame déjà le tableau de suivi.",
+    a:"Les nAch doivent recevoir des projets difficiles avec des objectifs atteignables, et un feedback régulier, qui les motive davantage que les incitations monétaires. Un risque modéré est la zone où leur effort fait vraiment la différence.", tags:["nAch","Défi atteignable","Feedback plutôt qu'argent"]},
+   {t:"Oui, un objectif triplé : elle adore les défis.", q:"b", r:"Sarah a fait le calcul : c'est impossible. Elle traite le segment au minimum.",
+    a:"Dans les situations à haut risque, les nAch attribuent le résultat à la chance plutôt qu'à leurs efforts. Un objectif inatteignable les démotive au lieu de les stimuler.", tags:["Risque trop élevé"]},
+   {t:"Garder un objectif raisonnable, mais miser surtout sur une prime importante.", q:"m", r:"Elle prend la prime. Mais elle demande surtout comment elle saura si elle progresse.",
+    a:"La prime n'est pas inutile, mais pour un profil nAch, le feedback régulier pèse plus que l'argent.", tags:["Incitation monétaire"]}
+  ],
+  lens:{t:"mccl", key:"ach", ps:[{n:"Sarah",ach:85,aff:20,pow:40}], mech:"nAch : défi atteignable + feedback"}},
+
+ {when:"Mois 3 · le classement", who:"lucas",
+  ctx:"Olivier a instauré un classement hebdomadaire des ventes, affiché à l'entrée de l'agence. Lucas, quinze ans d'ancienneté, est le pilier de l'équipe : il forme les nouveaux, désamorce les tensions, organise le pot du vendredi. Depuis le classement, il est en bas du tableau et se renferme.",
+  line:"Avant, on s'entraidait sur les dossiers. Maintenant, chacun garde ses prospects pour lui. Je ne reconnais plus cette agence.",
+  opts:[
+   {t:"Lui confier un rôle coopératif (tutorat des nouveaux, objectifs en binôme) et compléter le classement par un objectif collectif d'agence.", q:"g", r:"J'ai pris deux nouveaux sous mon aile. On a signé notre premier gros contrat à trois.",
+    a:"Les profils nAff ont besoin de relations harmonieuses et de se sentir acceptés ; ils se conforment aux normes du groupe et sont plus performants dans des environnements coopératifs. Une compétition affichée détruit précisément ce qui les motive.", tags:["Besoin d'affiliation (nAff)","Environnement coopératif"]},
+   {t:"Garder le classement, mais le féliciter en privé pour son rôle dans l'équipe.", q:"m", r:"Merci, ça me touche. Mais lundi, le tableau sera toujours là.",
+    a:"La reconnaissance aide, mais l'environnement reste compétitif, ce qui va à l'encontre de ce qui motive un profil nAff.", tags:["Reconnaissance seule"]},
+   {t:"Renforcer la compétition : un challenge individuel avec un voyage pour le premier, ça va le piquer au vif.", q:"b", r:"Lucas a postulé pour un poste dans une autre agence.",
+    a:"Pour un profil nAff, la compétition individuelle est un repoussoir : elle menace l'harmonie du groupe, qui est son moteur.", tags:["Compétition"]}
+  ],
+  lens:{t:"mccl", key:"aff", ps:[{n:"Lucas",ach:35,aff:85,pow:20}], mech:"nAff : environnement coopératif"}},
+
+ {when:"Mois 6 · chef d'équipe", who:"olivier",
+  ctx:"L'agence s'agrandit et vous devez nommer un chef d'équipe. Deux candidats. Kévin aime la compétition, veut toujours avoir raison, apprécie le statut et parle souvent de « ses » troupes. Amira, moins visible, organise déjà spontanément la répartition des prospects pour que l'agence atteigne ses objectifs.",
+  line:"Kévin me harcèle pour ce poste. Il a l'air bien plus motivé pour diriger. Qui choisissez-vous ?",
+  opts:[
+   {t:"Amira : elle veut organiser les efforts des autres au service des objectifs de l'agence.", q:"g", r:"Pas le choix le plus évident… mais trois mois plus tard, l'équipe dépasse ses objectifs.",
+    a:"McClelland distingue le pouvoir personnel (vouloir diriger les autres) et le pouvoir institutionnel (organiser les efforts des autres pour atteindre les objectifs de l'organisation). Les managers à fort besoin de pouvoir institutionnel tendent à être plus efficaces.", tags:["Besoin de pouvoir (nPow)","Pouvoir institutionnel","Choisir un manager"]},
+   {t:"Kévin : c'est lui qui a le plus envie de diriger.", q:"b", r:"Kévin s'attribue les succès et reproche les échecs. Deux conseillers demandent à changer d'équipe.",
+    a:"Le besoin de pouvoir personnel, la volonté de diriger les autres, est généralement perçu comme indésirable et produit des managers moins efficaces.", tags:["Pouvoir personnel"]},
+   {t:"Ne pas trancher : une codirection Kévin–Amira.", q:"m", r:"Les réunions tournent au bras de fer. Amira finit par tout faire, sans le titre.",
+    a:"Éviter le choix revient à ignorer la différence entre pouvoir personnel et pouvoir institutionnel. Le conflit se déplace au lieu de se résoudre.", tags:["Éviter la décision"]}
+  ],
+  lens:{t:"mccl", key:"pow", ps:[{n:"Kévin (pouvoir personnel)",ach:50,aff:15,pow:85},{n:"Amira (pouvoir institutionnel)",ach:45,aff:40,pow:80}], mech:"nPow : personnel ou institutionnel ?"}},
+
+ {when:"Mois 7 · Kévin", who:"kevin",
+  ctx:"Kévin n'a pas digéré la nomination d'Amira. Il reste un excellent vendeur, mais il critique ouvertement ses décisions et ses chiffres baissent.",
+  line:"Franchement, je me demande ce que je fais encore ici. Diriger, c'est ce que je sais faire.",
+  opts:[
+   {t:"Lui confier une vraie responsabilité au service de l'agence : piloter, avec deux conseillers, le lancement d'une offre pour les start-up, sur des objectifs collectifs.", q:"g", r:"Un projet à moi, avec une équipe ? D'accord. Je vais vous montrer ce que je vaux.",
+    a:"Les responsables doivent donner à ceux qui cherchent le pouvoir l'occasion de diriger. En liant cette responsabilité aux objectifs de l'organisation, vous orientez un besoin de pouvoir personnel vers le pouvoir institutionnel.", tags:["nPow","Occasion de diriger","Vers le pouvoir institutionnel"]},
+   {t:"Lui expliquer en détail pourquoi Amira a été choisie.", q:"m", r:"Il comprend… mais ça ne lui dit pas quoi faire de son envie de diriger.",
+    a:"Expliquer la décision est utile (c'est la justice informationnelle, que vous retrouverez au niveau 4), mais cela ne répond pas à son besoin de pouvoir.", tags:["Expliquer seulement"]},
+   {t:"Lui donner le titre de « Senior Sales Leader », sans équipe ni responsabilité.", q:"b", r:"Kévin a vite compris que le titre était vide. Il le dit à tout le monde.",
+    a:"Un titre vide flatte le statut un moment, sans offrir de réelle occasion de diriger. Perçu comme une manœuvre, il nourrit le ressentiment.", tags:["Statut sans contenu"]}
+  ],
+  lens:{t:"mccl", key:"pow", ps:[{n:"Kévin",ach:50,aff:15,pow:85}], mech:"nPow : donner l'occasion de diriger"}},
+
+ {when:"Année 1 · politique de motivation", who:"olivier",
+  ctx:"Le siège demande à chaque agence de proposer sa politique de motivation pour l'an prochain.",
+  line:"Je propose une prime unique sur le chiffre d'affaires, la même pour tous. C'est simple et tout le monde comprend. Ça vous va ?",
+  opts:[
+   {t:"Différencier les leviers selon les besoins dominants (défis et feedback pour les nAch, objectifs collectifs pour les nAff, responsabilités pour les nPow), avec un feedback régulier et des récompenses lisibles pour tous.", q:"g", r:"Plus compliqué à gérer, mais je vois la logique. On teste un an.",
+    a:"Implications managériales de McClelland : un feedback régulier sur la performance, valoriser les réussites et en faire des modèles, proposer des défis de niveau modéré, et rendre lisibles promotions et récompenses pour que chacun voie de façon réaliste comment atteindre ses objectifs. Le manager prend en compte la multiplicité des besoins.", tags:["McClelland","Multiplicité des besoins","Implications managériales"]},
+   {t:"La prime commune, plus un trophée mensuel du meilleur vendeur.", q:"m", r:"Sarah gagne le trophée onze mois sur douze. Les autres ont cessé de regarder.",
+    a:"Valoriser les « héros » est une piste de McClelland, mais un trophée unique ne parle qu'aux profils compétitifs et récompense toujours la même personne.", tags:["Un levier pour un seul profil"]},
+   {t:"Oui, une prime unique : l'argent motive tout le monde de la même façon.", q:"b", r:"Les chiffres bougent à peine. Lucas et Amira ne se sentent pas concernés.",
+    a:"Une incitation unique ignore que chacun a un besoin dominant différent. Pour les nAch, le feedback compte plus que l'argent ; les nAff réagissent à la coopération, les nPow aux responsabilités.", tags:["Levier unique"]}
+  ],
+  lens:{t:"mccl", key:["ach","aff","pow"], ps:[{n:"Sarah",ach:85,aff:20,pow:40},{n:"Lucas",ach:35,aff:85,pow:20},{n:"Amira",ach:45,aff:40,pow:80}], mech:"Un levier par besoin dominant"}}
+ ]},
+
+{name:"Logivia", sector:"Entrepôt logistique", trustLabel:"Confiance de Franck", hint:"after",
+ ctx:"Vous devenez responsable d'exploitation d'un entrepôt de Logivia, prestataire logistique de sites de e-commerce : 140 préparateurs de commandes, dont 40 intérimaires, en deux équipes. L'absentéisme atteint 11 % et le turnover 45 % par an. Le directeur des opérations vous a recruté·e pour « remettre le site d'aplomb ».",
+ cast:{
+  franck:{n:"Franck Lemoine", r:"Directeur des opérations", c:"#24346B"},
+  julie:{n:"Julie Masson", r:"Responsable RH du site", c:"#7A2E6B"},
+  sandrine:{n:"Sandrine Petit", r:"Préparatrice, 12 ans d'ancienneté", c:"#A3520F"},
+  moussa:{n:"Moussa Traoré", r:"Chef d'équipe de nuit", c:"#5B4BA8"},
+  enzo:{n:"Enzo Ricci", r:"Intérimaire, 20 ans", c:"#0F6E74"}},
+ v:["Franck vous confie un deuxième site.","Le site va mieux, au prix de quelques crises évitables.","Franck cherche un autre responsable d'exploitation…"],
+ disc:["Classez les mesures prises sur le site : lesquelles relèvent de l'hygiène, lesquelles de la motivation ?","Herzberg et Maslow : où placeriez-vous les facteurs d'hygiène dans la pyramide ?","Le salaire n'est-il jamais qu'un facteur d'hygiène ? Dans quels cas pourrait-il motiver ?","Bore-out et burnout peuvent-ils coexister dans la même entreprise, voire chez la même personne ?"],
+ ch:[
+ {when:"Semaine 2 · l'enquête", who:"julie", diag:true,
+  ctx:"L'enquête interne liste les plaintes : chauffage en panne depuis l'hiver dernier, plannings modifiés la veille, chefs d'équipe qui crient, salaires au minimum de la convention collective. Franck a déjà sa solution : une prime de 100 € pour tous.",
+  line:"Les gens sont à bout. Avant de choisir quoi faire, comment lisez-vous ces résultats ?",
+  opts:[
+   {t:"Ce sont des facteurs d'hygiène : extrinsèques au travail, ils créent de l'insatisfaction quand ils sont mal gérés. Les corriger réduira l'insatisfaction, mais ne suffira pas à motiver.", q:"g", r:"Donc la prime ne fera pas de miracle. Mais on ne peut pas faire l'impasse sur le chauffage.",
+    a:"Herzberg distingue deux familles de facteurs. Les facteurs d'hygiène (politique de l'entreprise, supervision, relations, conditions de travail, rémunération) sont extrinsèques : mal gérés, ils produisent de l'insatisfaction. Les facteurs de motivation (accomplissement, reconnaissance, contenu du travail, responsabilités, développement) sont intrinsèques, et eux seuls motivent.", tags:["Herzberg","Facteurs d'hygiène","Insatisfaction"]},
+   {t:"Un problème de rémunération avant tout : la prime de Franck réglera l'essentiel.", q:"m", r:"Une prime, d'accord. Mais avec le chauffage en panne et des plannings changés la veille ?",
+    a:"La rémunération est bien en cause, mais ce n'est qu'un facteur d'hygiène parmi d'autres, et une prime ponctuelle n'agit ni sur les conditions de travail ni sur la supervision.", tags:["Rémunération (facteur d'hygiène)"]},
+   {t:"Des salariés peu qualifiés et peu motivés par nature : il faut surtout mieux sélectionner à l'embauche.", q:"b", r:"Sandrine est là depuis douze ans. Elle était motivée, avant.",
+    a:"Attribuer l'insatisfaction aux personnes ignore des causes clairement identifiées dans l'environnement de travail.", tags:["Erreur de diagnostic"]}
+  ],
+  lens:{t:"herz", key:["conditions","supervision","politique","remu"], mech:"Facteurs d'hygiène défaillants"}},
+
+ {when:"Mois 1 · le budget", who:"franck",
+  ctx:"Franck débloque 150 000 € pour l'année.",
+  line:"Vous avez carte blanche. Où mettez-vous l'argent ?",
+  opts:[
+   {t:"D'abord les facteurs d'hygiène : réparer le chauffage, fixer les plannings trois semaines à l'avance, former les chefs d'équipe à encadrer sans crier, revaloriser les plus bas salaires.", q:"g", r:"Le chauffage marche, les plannings tiennent. Les plaintes au CSE ont été divisées par trois.",
+    a:"L'amélioration des conditions de travail a pour rôle de réduire l'insatisfaction. Traiter les facteurs d'hygiène est un préalable : tant qu'ils restent défaillants, l'insatisfaction domine.", tags:["Facteurs d'hygiène","Réduire l'insatisfaction"]},
+   {t:"Tout mettre dans une prime annuelle de 1 000 € par salarié.", q:"m", r:"La prime fait plaisir en décembre. En janvier, il fait toujours 9 °C dans l'entrepôt.",
+    a:"La rémunération est un facteur d'hygiène, mais une prime ne répare ni le chauffage, ni les plannings, ni la supervision.", tags:["Rémunération seule"]},
+   {t:"Organiser un grand séminaire de motivation avec un conférencier et une soirée d'équipe.", q:"b", r:"Le conférencier parle de passion. Dans la salle, on pense au chauffage.",
+    a:"Chercher à motiver avant d'avoir réduit l'insatisfaction ne fonctionne pas : les facteurs d'hygiène défaillants occupent tout l'espace.", tags:["Motiver avant de réparer"]}
+  ],
+  lens:{t:"herz", key:["conditions","supervision","politique","remu"], mech:"Traiter l'hygiène d'abord"}},
+
+ {when:"Mois 6 · le plateau", who:"franck", diag:true,
+  ctx:"Six mois plus tard, les plaintes ont presque disparu. Mais la productivité stagne, l'absentéisme reste à 9 % et personne ne propose d'amélioration.",
+  line:"On a tout réparé, tout amélioré. Ils ne se plaignent plus, mais ils ne sont pas plus motivés ! Qu'est-ce que j'ai raté ?",
+  opts:[
+   {t:"Rien n'a raté : ne plus être insatisfait ne veut pas dire être motivé. Satisfaction et insatisfaction ne sont pas les deux extrémités d'un même continuum.", q:"g", r:"Donc on a fait la moitié du chemin. Et l'autre moitié ?",
+    a:"C'est l'idée centrale d'Herzberg : les conditions qui conduisent à la satisfaction ne sont pas celles qui conduisent à l'insatisfaction. L'absence d'insatisfaction est un point neutre ; la motivation vient des facteurs intrinsèques : contenu du travail, responsabilités, accomplissement.", tags:["Herzberg","Deux continuums distincts"]},
+   {t:"Les conditions ne sont pas encore assez bonnes : il faut aller plus loin (nouvelle salle de pause, tickets restaurant).", q:"m", r:"La nouvelle salle de pause est très appréciée. La productivité, elle, ne bouge pas.",
+    a:"Améliorer encore les facteurs d'hygiène réduit l'insatisfaction résiduelle, mais ne crée pas de motivation.", tags:["Facteurs d'hygiène"]},
+   {t:"Le problème vient des intérimaires, qui tirent la moyenne vers le bas.", q:"b", r:"Les salariés en CDI ont exactement les mêmes chiffres.",
+    a:"Rien ne montre que le statut explique le plateau. Ce diagnostic évite la question du contenu du travail.", tags:["Erreur de diagnostic"]}
+  ],
+  lens:{t:"herz", key:["accomp","reco","contenu","resp","dev"], on:["conditions","supervision","politique","remu","relations"], mech:"Hygiène traitée, motivation absente"}},
+
+ {when:"Mois 7 · le travail lui-même", who:"sandrine",
+  ctx:"Un préparateur scanne et dépose des colis sur un trajet fixé par le logiciel, sept heures par jour. Sandrine connaît l'entrepôt par cœur et sait d'où viennent les erreurs. Personne ne lui a jamais demandé son avis.",
+  line:"Je fais le même geste 2 000 fois par jour depuis douze ans. Qu'est-ce que vous comptez changer, concrètement ?",
+  opts:[
+   {t:"Enrichir le travail : équipes autonomes qui organisent leur zone, rotation entre réception, préparation et expédition, responsabilité de la qualité, formations certifiantes (cariste, chef d'équipe).", q:"g", r:"On a réorganisé la zone B à cinq. Les erreurs ont baissé de moitié, et je passe mon CACES le mois prochain.",
+    a:"Herzberg recommande d'élargir et d'enrichir le travail : autonomie, développement, responsabilités. On agit alors sur les facteurs de motivation, intrinsèques au travail : son contenu, l'accomplissement, la reconnaissance, les perspectives.", tags:["Enrichissement du travail","Facteurs de motivation","Autonomie et responsabilités"]},
+   {t:"Un panneau « préparateur du mois » à l'entrée de l'entrepôt.", q:"m", r:"J'ai eu ma photo en mars. En avril, je faisais toujours le même geste 2 000 fois par jour.",
+    a:"La reconnaissance est un facteur de motivation, mais isolée, elle ne change ni le contenu du travail ni les responsabilités.", tags:["Reconnaissance seule"]},
+   {t:"Une prime au rendement : 5 centimes par ligne préparée au-delà de la cadence.", q:"b", r:"Les cadences montent pendant un mois. Puis les troubles musculo-squelettiques et les erreurs aussi.",
+    a:"Une prime au rendement intensifie le même travail. Elle relève de la rémunération, un facteur d'hygiène, et ajoute de la pression physique.", tags:["Intensification du travail"]}
+  ],
+  lens:{t:"herz", key:["contenu","resp","dev","accomp"], on:["conditions","supervision","politique","remu","relations"], mech:"Enrichir le travail"}},
+
+ {when:"Mois 9 · Enzo", who:"moussa", diag:true,
+  ctx:"Enzo, intérimaire de 20 ans, est affecté au contrôle des colis en heures creuses : peu de flux, des tâches répétitives, de longs temps morts. Il est souvent sur son téléphone, arrive en retard et semble de plus en plus éteint.",
+  line:"Il ne fait rien de la journée. Je veux le signaler à l'agence d'intérim pour qu'on ne le reprenne pas. D'accord ?",
+  opts:[
+   {t:"Avant de sanctionner, penser au bore-out : un travail vide et sans enjeu épuise et démotive autant qu'une surcharge.", q:"g", r:"Je n'y avais pas pensé. Je l'ai mis en binôme à la réception : il ne regarde plus son téléphone.",
+    a:"Le bore-out est l'épuisement par l'ennui et la sous-charge : tâches vides de sens, inactivité, sentiment d'inutilité. C'est un risque psychosocial au même titre que le burnout, à l'autre bout du spectre de la charge de travail. La réponse rejoint Herzberg : donner du contenu et des responsabilités.", tags:["Risques psychosociaux","Bore-out","Contenu du travail"]},
+   {t:"Un manque de compétences : il faut le former au poste.", q:"m", r:"Le poste s'apprend en une heure. Enzo l'a appris en vingt minutes.",
+    a:"Ce n'est pas un problème de KSA : Enzo sait faire le travail. C'est le travail lui-même qui est vide.", tags:["KSA"]},
+   {t:"Un problème d'attitude : il faut le signaler et le remplacer.", q:"b", r:"Son remplaçant tient deux semaines, puis montre exactement les mêmes signes.",
+    a:"Sanctionner un symptôme laisse la cause en place : n'importe qui, à ce poste, finit par décrocher.", tags:["Erreur de diagnostic"]}
+  ],
+  lens:{t:"rps", key:"boreout", mech:"Bore-out : sous-charge, ennui"}},
+
+ {when:"Novembre · le pic", who:"julie",
+  ctx:"Le Black Friday approche : +60 % de volume pendant six semaines, et le siège refuse les renforts intérimaires demandés. Moussa, chef d'équipe de nuit, enchaîne 58 heures par semaine depuis un mois. Il ne dort plus, s'emporte contre son équipe et répète que « de toute façon, ça ne sert à rien ».",
+  line:"Franck veut qu'on tienne coûte que coûte. Moussa va craquer, et son équipe avec. Que faites-vous ?",
+  opts:[
+   {t:"Signaler à Franck que l'objectif est irréaliste sans renforts, obtenir des intérimaires ou étaler les livraisons, limiter les heures de Moussa et répartir sa charge.", q:"g", r:"Franck a fini par obtenir quinze intérimaires. Moussa est repassé à 42 heures.",
+    a:"Le burnout naît d'un effort excessif pour atteindre un objectif irréaliste ; épuisement, irritabilité et cynisme en sont les signaux. Au-delà de 55 heures par semaine, l'OMS associe un risque accru d'AVC et de maladie cardiaque. Réduire le stress au travail fait partie du rôle du management, et cela passe ici par l'objectif lui-même.", tags:["Burnout","Objectif irréaliste","55 heures et plus"]},
+   {t:"Tenir le pic, puis offrir à Moussa une prime et deux semaines de congé en janvier.", q:"m", r:"Moussa tient jusqu'au 20 décembre, puis s'effondre. Il est en arrêt six semaines.",
+    a:"Compenser après coup ne prévient pas l'épuisement : la charge et l'objectif irréaliste restent intacts pendant tout le pic.", tags:["Compenser sans prévenir"]},
+   {t:"C'est le pic, tout le monde souffre : on tient.", q:"b", r:"Deux chefs d'équipe démissionnent en décembre. Les erreurs d'expédition triplent.",
+    a:"Banaliser la surcharge revient à renoncer au rôle du manager. Le coût humain se double d'un coût économique.", tags:["Banalisation de la surcharge"]}
+  ],
+  lens:{t:"rps", key:"burnout", mech:"Burnout : surcharge, objectif irréaliste"}}
+ ]},
+
+{name:"Groupe Ardane", sector:"Grand groupe", trustLabel:"Confiance de l'équipe", hint:"none",
+ ctx:"Vous dirigez désormais le service relation client du Groupe Ardane, fournisseur d'énergie de 9 000 salariés : 45 conseillers répartis entre Lyon et Lille. Le groupe sort d'une fusion, et les écarts de salaire entre les anciennes entités font parler.",
+ cast:{
+  thomas:{n:"Thomas Girard", r:"Directeur clientèle (votre N+1)", c:"#24346B"},
+  isabelle:{n:"Isabelle Roy", r:"Directrice des ressources humaines", c:"#7A2E6B"},
+  karima:{n:"Karima Haddou", r:"Conseillère senior, 8 ans d'ancienneté", c:"#A3520F"},
+  romain:{n:"Romain Lebrun", r:"Conseiller, recruté il y a 3 mois", c:"#0F6E74"},
+  sylvie:{n:"Sylvie Perrin", r:"Déléguée syndicale", c:"#5B4BA8"}},
+ v:["La direction vous confie le pilotage de la réorganisation.","Le service a tenu, avec quelques blessures.","L'équipe a perdu confiance en vous…"],
+ disc:["Égalité ou équité : comment répartiriez-vous une prime collective dans votre propre groupe de projet ?","Des quatre dimensions de la justice, laquelle vous paraît la plus souvent négligée par les managers ?","La transparence des salaires réduit-elle ou accroît-elle le sentiment d'injustice ?","Reprenez la réorganisation : quelles théories des niveaux précédents (Maslow, Herzberg) éclairent aussi la réaction de l'équipe ?"],
+ ch:[
+ {when:"Mois 1 · Karima", who:"isabelle", diag:true,
+  ctx:"Karima, conseillère senior et tutrice des nouveaux, a appris que Romain, recruté il y a trois mois sur le même poste, gagne 15 % de plus qu'elle. Depuis, elle a arrêté le tutorat, ne prend plus les appels difficiles et part à l'heure pile.",
+  line:"Elle ne fait plus que le strict minimum. Comment expliquez-vous ce changement ?",
+  opts:[
+   {t:"Une iniquité perçue : Karima compare le rapport entre ses efforts et ses rétributions à celui d'un collègue au même poste, se sent sous-payée, et réduit ses efforts pour rétablir l'équilibre.", q:"g", r:"C'est exactement ce qu'elle m'a dit : « Pourquoi en ferais-je plus que lui, pour moins ? »",
+    a:"Selon Adams, la motivation dépend de l'équité perçue entre efforts et récompenses, et entre son salaire et celui des personnes qui font un travail similaire. Une personne qui se perçoit sous-payée réduit ses contributions pour rétablir l'équilibre. C'est une question de justice distributive.", tags:["Théorie de l'équité (Adams)","Sous-rétribution perçue","Justice distributive"]},
+   {t:"Un problème de rémunération, facteur d'hygiène : son salaire est trop bas.", q:"m", r:"Son salaire lui convenait très bien… jusqu'à la semaine dernière.",
+    a:"Herzberg aide à voir que la rémunération peut créer de l'insatisfaction. Mais le salaire de Karima n'a pas changé : c'est la comparaison avec Romain qui a tout déclenché. C'est le mécanisme décrit par Adams.", tags:["Herzberg","Rémunération"]},
+   {t:"De la jalousie : un trait de personnalité qu'elle doit apprendre à gérer.", q:"b", r:"Jalouse ? Elle a formé Romain elle-même, et elle l'apprécie.",
+    a:"Ramener sa réaction à sa personnalité ignore que la perception d'injustice provoque des réponses cognitives et comportementales prévisibles.", tags:["Erreur de diagnostic"]}
+  ],
+  lens:{t:"equity", key:"sous", me:"Karima", ref:"Romain", mech:"Sous-rétribution perçue"}},
+
+ {when:"Mois 1 · que faire ?", who:"thomas",
+  ctx:"La DRH confirme l'écart : Romain a été recruté sur la grille d'une des entités fusionnées, plus généreuse. Le budget des augmentations est déjà bouclé pour l'année.",
+  line:"On ne peut rien faire avant janvier. Le plus simple, c'est de rappeler à tout le monde que les salaires sont confidentiels. Non ?",
+  opts:[
+   {t:"Reconnaître l'écart auprès de Karima, lui présenter un rattrapage daté et fondé sur des critères clairs, et lancer l'harmonisation des grilles issues de la fusion.", q:"g", r:"Elle m'a dit : « Au moins, on ne me prend pas pour une idiote. » Elle a repris le tutorat.",
+    a:"Rétablir l'équité passe par les rétributions (justice distributive), mais aussi par la manière : un processus clair (justice procédurale) et des explications honnêtes (justice informationnelle). Même sans augmentation immédiate, la perception d'équité peut se reconstruire.", tags:["Équité","Justice distributive et procédurale","Transparence"]},
+   {t:"Lui verser discrètement une prime exceptionnelle, sans autre explication.", q:"m", r:"Elle accepte la prime. Puis elle demande : « Et l'année prochaine ? Et les autres ? »",
+    a:"La prime réduit l'écart cette année, mais sans règle ni explication, rien ne garantit que l'iniquité ne reviendra pas, ni qu'elle ne touche pas d'autres salariés.", tags:["Corriger sans règle"]},
+   {t:"Oui : rappeler la confidentialité des salaires et passer à autre chose.", q:"b", r:"Le message circule. Dans la journée, trois autres conseillers comparent leurs fiches de paie.",
+    a:"Étouffer la comparaison ne supprime pas le sentiment d'injustice : il se transforme en défiance envers la direction.", tags:["Opacité"]}
+  ],
+  lens:{t:"equity", key:"sous", me:"Karima", ref:"Romain", mech:"Rétablir l'équité, et l'expliquer"}},
+
+ {when:"Mois 2 · Romain", who:"romain", diag:true,
+  ctx:"Romain a appris lui aussi l'écart de salaire. Depuis, il prend tous les dossiers difficiles, reste tard le soir et s'excuse presque d'être là.",
+  line:"Je gagne plus que des collègues qui m'ont tout appris. Je suis mal à l'aise. Je me dis qu'il faut que je le mérite.",
+  opts:[
+   {t:"Une sur-rétribution perçue : Romain se sent trop payé par rapport à ses collègues, et augmente ses efforts pour rétablir l'équité.", q:"g", r:"Oui, c'est ça. Ce n'est pas de l'ambition, c'est de la culpabilité.",
+    a:"Adams montre que l'iniquité agit dans les deux sens : la sous-rétribution, mais aussi la sur-rétribution, affectent le comportement. Se sentir trop payé crée un inconfort que la personne réduit en augmentant ses contributions, ce qui n'est pas tenable longtemps.", tags:["Théorie de l'équité (Adams)","Sur-rétribution perçue"]},
+   {t:"Un fort besoin d'accomplissement : il cherche à exceller.", q:"m", r:"Exceller ? Je veux juste ne plus avoir l'impression de voler ma place.",
+    a:"Le comportement ressemble à celui d'un profil nAch, mais le moteur n'est pas le défi : c'est l'inconfort de l'iniquité.", tags:["McClelland (nAch)"]},
+   {t:"De l'opportunisme : il veut se faire bien voir pour obtenir une promotion.", q:"b", r:"Il a refusé de postuler au poste de superviseur le mois dernier.",
+    a:"Lui prêter une stratégie de carrière ignore la cause que le contexte indique : la comparaison avec ses collègues.", tags:["Erreur de diagnostic"]}
+  ],
+  lens:{t:"equity", key:"sur", me:"Romain", ref:"Karima", mech:"Sur-rétribution perçue"}},
+
+ {when:"Mois 10 · les primes", who:"thomas",
+  ctx:"Une enveloppe de primes de 60 000 € doit être répartie entre les 45 conseillers. L'an dernier, elle avait été répartie sans critères connus, et plusieurs conseillers avaient contesté.",
+  line:"Je compte répartir moi-même, à l'instinct : je sais qui travaille bien. On annonce les montants individuellement. Ça vous va ?",
+  opts:[
+   {t:"Fixer avec l'équipe des critères connus à l'avance (qualité, taux de résolution, tutorat), les appliquer à tous de la même façon, sur des données, avec une possibilité de recours.", q:"g", r:"Les montants vont du simple au triple, et personne ne conteste. C'est une première.",
+    a:"La justice procédurale porte sur les processus utilisés pour distribuer les récompenses. Des critères connus, cohérents et contestables rendent la répartition acceptable, même inégale. Elle rétablit aussi le lien entre performance et rétribution, au cœur du rôle du manager.", tags:["Justice procédurale","Critères transparents","Lien performance-rétribution"]},
+   {t:"Répartir à parts égales, 1 333 € chacun : personne ne pourra se plaindre.", q:"m", r:"Personne ne se plaint… sauf ceux qui ont tenu le service pendant les absences.",
+    a:"L'égalité stricte évite les conflits, mais rompt le lien entre performance et rétribution. Selon Adams, ceux qui ont fourni plus d'efforts se sentiront sous-rétribués.", tags:["Égalité ≠ équité"]},
+   {t:"Oui, à l'instinct : c'est au manager de juger.", q:"b", r:"Les montants fuitent. Ceux qui déjeunent avec Thomas ont les plus grosses primes.",
+    a:"Une décision opaque, même bien intentionnée, est perçue comme arbitraire. La justice procédurale est violée, et la défiance s'installe.", tags:["Arbitraire"]}
+  ],
+  lens:{t:"just", key:"procedurale", on:["distributive"], mech:"Justice procédurale"}},
+
+ {when:"Mois 11 · la réunion", who:"sylvie",
+  ctx:"En réunion de service, Thomas a reproché à une conseillère, devant tous ses collègues, une erreur de facturation, en ironisant sur ses « capacités ». L'erreur était réelle. L'équipe est sortie choquée.",
+  line:"Sur le fond, il avait peut-être raison. Mais on ne traite pas les gens comme ça. Vous comptez faire quelque chose ?",
+  opts:[
+   {t:"En parler à Thomas en tête-à-tête : on recadre une erreur en privé, avec respect et sur les faits. Puis revoir la conseillère pour traiter à la fois l'erreur et l'incident.", q:"g", r:"Thomas a reconnu qu'il était allé trop loin. Il est allé s'excuser auprès d'elle.",
+    a:"La justice interpersonnelle tient au fait d'être traité avec respect par les représentants de l'autorité. Un reproche fondé, exprimé de façon humiliante, est perçu comme injuste : la forme compte autant que le fond. Le feedback reste possible, mais en privé et sur des faits.", tags:["Justice interpersonnelle","Respect","Feedback en privé"]},
+   {t:"Envoyer à toute l'équipe un mail rappelant les valeurs de respect du groupe.", q:"m", r:"Le mail est bien écrit. Tout le monde a compris de qui il parlait, sauf Thomas.",
+    a:"Rappeler une norme générale évite la conversation nécessaire. La justice interpersonnelle se joue dans les relations concrètes, pas dans les chartes.", tags:["Réponse générique"]},
+   {t:"Ne rien faire : l'erreur était réelle, et Thomas est votre supérieur.", q:"b", r:"La conseillère est en arrêt maladie. Deux collègues demandent à changer de service.",
+    a:"Laisser passer une humiliation publique valide le comportement aux yeux de l'équipe. Le coût en confiance et en santé dépasse largement l'erreur initiale.", tags:["Inaction"]}
+  ],
+  lens:{t:"just", key:"interpersonnelle", on:["distributive","procedurale"], mech:"Justice interpersonnelle"}},
+
+ {when:"Année 2 · la réorganisation", who:"thomas",
+  ctx:"Vendredi à 18 h, un mail de la direction générale annonce le regroupement du service sur le site de Lille d'ici neuf mois. Les douze conseillers lyonnais apprennent la nouvelle en même temps que tout le monde. Les rumeurs circulent tout le week-end.",
+  line:"Lundi, vous aurez votre équipe devant vous. Je n'ai pas toutes les réponses non plus. Que faites-vous ?",
+  opts:[
+   {t:"Réunir l'équipe dès lundi : expliquer les raisons de la décision, ce qui est décidé et ce qui ne l'est pas encore, le calendrier et les critères des choix à venir, puis recevoir chacun individuellement.", q:"g", r:"Personne n'est content de la décision. Mais chacun sait à quoi s'attendre, et personne n'a démissionné.",
+    a:"La justice informationnelle porte sur le fait que les autorités prennent le temps d'expliquer leurs décisions de manière approfondie et raisonnable. Associée à des critères clairs (justice procédurale) et à un traitement respectueux (justice interpersonnelle), elle rend une mauvaise nouvelle acceptable. Elle répond aussi au besoin de sécurité que l'annonce menace.", tags:["Justice informationnelle","Expliquer les décisions","Quatre dimensions de la justice"]},
+   {t:"Transférer le mail officiel et dire que votre porte est ouverte.", q:"m", r:"Trois personnes passent vous voir. Les neuf autres consultent les offres d'emploi.",
+    a:"La porte ouverte est un geste, mais le mail laisse les questions essentielles sans réponse : pourquoi, quand, selon quels critères.", tags:["Information minimale"]},
+   {t:"Ne rien dire tant que tout n'est pas décidé, pour éviter la panique.", q:"b", r:"Le silence nourrit les rumeurs. Les meilleurs conseillers lyonnais partent les premiers.",
+    a:"Retenir l'information pour éviter l'inquiétude produit l'effet inverse : en l'absence d'explication, chacun imagine le pire.", tags:["Silence"]}
+  ],
+  lens:{t:"just", key:"informationnelle", on:["distributive","procedurale","interpersonnelle"], mech:"Justice informationnelle"}}
+ ]}
+];
+
+/* typographie française : espace insécable avant ? ! : ; » et après « */
+const nb = x => typeof x==="string" ? x.replace(/ ([?!:;»])/g," $1").replace(/« /g,"« ")
+  : Array.isArray(x) ? x.map(nb) : x && typeof x==="object" ? Object.fromEntries(Object.entries(x).map(([k,v])=>[k,nb(v)])) : x;
+LV.splice(0, LV.length, ...nb(LV));
+
+const PTS = {g:100, m:40, b:0};
+const NCH = LV.reduce((s,l)=>s+l.ch.length,0), MAX = NCH*PTS.g, MAXS = MAX.toLocaleString("fr-FR");
+const HINT = {full:"Aide complète : la grille de lecture est affichée en direct, et ce qui est en jeu apparaît après chaque décision.", after:"Aide réduite : la grille de lecture n'apparaît qu'après chaque décision.", none:"Sans aide : pas de grille de lecture pendant le niveau. Seule l'analyse vous guide."};
+const HSHORT = {full:"aide complète", after:"aide réduite", none:"sans aide"};
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fresh = () => ({lvl:0, i:-1, picks:LV.map(()=>[]), trust:50, motiv:50, well:50, picked:null, order:{}, done:0, saved:[]});
+const S = Object.assign({name:"", screen:"home", debug:false}, fresh());
+const PKEY = "carnet-progress";
+try{ S.name = localStorage.getItem("carnet-name") || localStorage.getItem("nomade-name") || ""; }catch(e){}
+try{ const p = JSON.parse(localStorage.getItem(PKEY)||"null"); if(p && Array.isArray(p.picks) && p.picks.length===LV.length) Object.assign(S, p); }catch(e){}
+const DBG = parseInt(new URLSearchParams(location.search).get("niveau"),10);
+if(DBG>=1 && DBG<=LV.length) Object.assign(S, fresh(), {debug:true, lvl:DBG-1, done:DBG-1});
+function persist(){ if(S.debug) return; try{ localStorage.setItem(PKEY, JSON.stringify({lvl:S.lvl,i:S.i,picks:S.picks,trust:S.trust,motiv:S.motiv,well:S.well,picked:S.picked,order:S.order,done:S.done,saved:S.saved})); }catch(e){} }
+const lv = () => LV[S.lvl];
+const ptsOf = L => S.picks[L].reduce((s,p)=>s+(p?PTS[p.q]:0),0);
+const goodOf = L => S.picks[L].filter(p=>p&&p.q==="g").length;
+const total = () => LV.reduce((s,_,L)=>s+ptsOf(L),0);
+const totalGood = () => LV.reduce((s,_,L)=>s+goodOf(L),0);
+
+/* ---- Classement partagé (même Google Sheet / Apps Script que la séance 4, jeu distinct) ---- */
+const API_URL = "https://script.google.com/macros/s/AKfycbzKs1oVRlEOOXA8GthkLrVvrR94dL4aPfUMU-eeXzVFQKj60weXfgg7OTStB6xl07BEug/exec";
+const GAME = "motivation";
+const LB = {rows:[], state:"loading", me:null};
+try{ LB.me = localStorage.getItem("carnet-id"); if(!LB.me){ LB.me = "p"+Math.random().toString(36).slice(2,12)+Date.now().toString(36); localStorage.setItem("carnet-id", LB.me); } }catch(e){ LB.me = "p"+Math.random().toString(36).slice(2,12); }
+const API_OK = /^https:\/\/script\.google\.com\//.test(API_URL);
+
+async function loadBoard(){
+  if(!API_OK){ LB.state="off"; renderBoard(); return; }
+  try{
+    const r = await fetch(API_URL+"?game="+GAME+"&t="+Date.now());
+    const j = await r.json();
+    LB.rows = (j.rows||[]).filter(x=>typeof x.score==="number");
+    LB.state="on";
+  }catch(e){ if(LB.state!=="on") LB.state="err"; }
+  renderBoard();
+}
+loadBoard();
+setInterval(()=>{ if(document.visibilityState==="visible" && S.screen!=="chapter") loadBoard(); }, 15000);
+
+function renderBoard(){
+  const el=document.getElementById("boardBody"); if(!el) return;
+  if(LB.state==="loading"){ el.innerHTML=`<p class="note">Chargement du classement…</p>`; return; }
+  if(LB.state==="off"){ el.innerHTML=`<p class="note">Classement non configuré. Le jeu fonctionne quand même.</p>`; return; }
+  if(LB.state==="err"){ el.innerHTML=`<p class="note">Classement momentanément indisponible. Nouvel essai dans quelques secondes.</p>`; return; }
+  const top = LB.rows.slice(0,25);
+  let html = top.length ? `<ol>${top.map((r,k)=>`<li class="${r.id===LB.me?"me":""}"><span class="rk">${k+1}</span>
+      <span class="nm">${esc(r.name)}${r.id===LB.me?" <small>(vous)</small>":""}<br><small>${r.good??"?"} bonnes décisions</small></span>
+      <span class="sc">${r.score}</span></li>`).join("")}</ol>`
+    : `<p class="note">Personne n'a encore terminé de niveau. Le premier score apparaîtra ici.</p>`;
+  const mine = LB.rows.findIndex(r=>r.id===LB.me);
+  if(mine>=25) html += `<p class="note">Votre rang : ${mine+1} sur ${LB.rows.length}.</p>`;
+  html += `<p class="note">Score sur ${MAXS} : 100 points par bonne décision, 40 par décision partielle, ${NCH} décisions en ${LV.length} niveaux. Le score est enregistré à la fin de chaque niveau ; seul votre meilleur score compte. Mise à jour toutes les 15 secondes.</p>`;
+  el.innerHTML = html;
+}
+
+async function saveScore(){
+  if(!API_OK) return "skip";
+  try{
+    const r = await fetch(API_URL, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify({game:GAME, id:LB.me, name:S.name, score:total(), good:totalGood()})});
+    const j = await r.json();
+    if(!j.ok) return "fail";
+    await loadBoard();
+    return j.best ? "best" : "kept";
+  }catch(e){ return "fail"; }
+}
+const $s = document.getElementById("story"), $d = document.getElementById("dossier");
+
+/* ---- Grilles de lecture ---- */
+const MASLOW = [["accomp","Accomplissement"],["estime","Estime"],["sociaux","Sociaux"],["securite","Sécurité"],["physio","Physiologiques"]];
+const FIT = [["job","Person-job","Le poste (KSA)"],["org","Person-organization","La culture, les valeurs"],["group","Person-group","L'équipe"],["sup","Person-supervisor","Le N+1"]];
+const NEEDS = [["ach","Accomplissement"],["aff","Affiliation"],["pow","Pouvoir"]];
+const HYG = [["politique","Politique de l'entreprise"],["supervision","Supervision"],["relations","Relations entre collègues"],["conditions","Conditions de travail"],["remu","Rémunération"]];
+const MOT = [["accomp","Accomplissement"],["reco","Reconnaissance"],["contenu","Contenu du travail"],["resp","Responsabilités"],["dev","Promotion, développement"]];
+const RPS = [["boreout","Bore-out","Sous-charge, ennui"],["equilibre","Équilibre","Charge soutenable"],["burnout","Burn-out","Surcharge, objectif irréaliste"]];
+const ROLE = [["objectifs","Définir les raisons et les objectifs de l'action"],["besoins","Prendre en compte la multiplicité des besoins"],["feedback","Donner du feedback"],["participer","Faire participer aux décisions"],["equite","Lier performance et rétribution (équité)"]];
+const JUST = [["distributive","Distributive","Ce que l'on reçoit"],["procedurale","Procédurale","Comment on décide"],["interpersonnelle","Interpersonnelle","Comment on est traité"],["informationnelle","Informationnelle","Comment on explique"]];
+
+function lensView(l, reveal){
+  const K = reveal ? [].concat(l.key||[]) : [], ON = reveal ? (l.on||[]) : [];
+  const c = k => (ON.includes(k)?" on":"")+(K.includes(k)?" key":"");
+  if(l.t==="maslow"){
+    const W=[124,168,212,256,300];
+    return `<svg viewBox="0 0 320 236" role="img" aria-label="Pyramide de Maslow${reveal?" : besoin en jeu "+MASLOW.filter(m=>K.includes(m[0])).map(m=>m[1]).join(", "):""}">
+      ${MASLOW.map(([k,txt],i)=>{ const y=10+i*44, x=(320-W[i])/2; return `<g class="tier${c(k)}"><rect class="s" x="${x}" y="${y}" width="${W[i]}" height="40" rx="6"/><text class="t" x="160" y="${y+25}">${txt}</text></g>`; }).join("")}
+    </svg>`;
+  }
+  if(l.t==="fit") return `<div class="lgrid">${FIT.map(([k,n,d])=>`<div class="lt${c(k)}"><b>${n}</b>${d}</div>`).join("")}</div>`;
+  if(l.t==="mccl") return `<div class="mc">${l.ps.map(p=>`<div><div class="who">${p.n}</div>${NEEDS.map(([k,n])=>`<div class="r${K.includes(k)?" key":""}"><span>${n}</span><div class="bar"><i style="width:${reveal?p[k]:0}%"></i></div></div>`).join("")}</div>`).join("")}</div>`;
+  if(l.t==="herz") return `<div class="hz"><div><h4>Hygiène · extrinsèques</h4><ul>${HYG.map(([k,n])=>`<li class="${c(k)}">${n}</li>`).join("")}</ul></div>
+      <div><h4>Motivation · intrinsèques</h4><ul>${MOT.map(([k,n])=>`<li class="${c(k)}">${n}</li>`).join("")}</ul></div></div>`;
+  if(l.t==="rps") return `<div><div class="lgrid three">${RPS.map(([k,n,d])=>`<div class="lt${c(k)}"><b>${n}</b>${d}</div>`).join("")}</div><div class="axis"><span>← sous-charge</span><span>surcharge →</span></div></div>`;
+  if(l.t==="role") return `<ol class="rl">${ROLE.map(([k,n])=>`<li class="${c(k)}"><span>${n}</span></li>`).join("")}</ol>`;
+  if(l.t==="equity"){
+    const card = (who, cls) => `<div class="lt${cls}"><b>${who}</b><span class="frac"><span>Rétributions</span><span>Contributions</span></span></div>`;
+    const sym = !reveal ? "?" : l.key==="sous" ? "&lt;" : ">";
+    return `<div><div class="eq">${card(l.me, reveal?" key":"")}<span class="sym" aria-hidden="true">${sym}</span>${card(l.ref+" (référent)", "")}</div>
+      <p class="note" style="margin-top:8px">${reveal ? (l.key==="sous" ? `${l.me} se perçoit sous-rétribué·e par rapport à ${l.ref}.` : `${l.me} se perçoit sur-rétribué·e par rapport à ${l.ref}.`) : "Chacun compare son rapport rétributions / contributions à celui d'un référent."}</p></div>`;
+  }
+  if(l.t==="just") return `<div class="lgrid">${JUST.map(([k,n,d])=>`<div class="lt${c(k)}"><b>${n}</b>${d}</div>`).join("")}</div>`;
+  return "";
+}
+function curChapter(){
+  const L=lv();
+  if(S.screen==="end") return L.ch[L.ch.length-1];
+  if(S.screen==="chapter") return L.ch[S.i];
+  return null;
+}
+function levelList(){
+  return `<ol class="lvls">${LV.map((l,L)=>{
+    const st = L<S.done ? `<span class="st ok">${ptsOf(L)} / ${l.ch.length*PTS.g}</span>`
+      : L===S.done ? `<span class="st">${S.lvl===L&&S.i>=0?"En cours":"À jouer"}</span>` : `<span class="st">Verrouillé</span>`;
+    return `<li class="${L>S.done?"lock":""}"><span class="n">${L+1}</span><span><b>${l.name}</b><small>${l.sector} · ${HSHORT[l.hint]}</small></span>${st}</li>`;
+  }).join("")}</ol>`;
+}
+function dossier(){
+  if(S.screen==="home" || S.screen==="final"){
+    $d.innerHTML = `<div><div class="eyebrow">Votre parcours</div><div class="conf">${total()} / ${MAXS} points</div></div>${levelList()}`;
+    return;
+  }
+  const L=lv(), c=curChapter();
+  const reveal = S.screen==="end" || S.picked!==null;
+  const show = c && (L.hint==="full" || S.screen==="end" || (L.hint==="after" && reveal));
+  const dots = L.ch.map((ch,k)=>{ const p=S.picks[S.lvl][k]; return `<span class="${p?p.q:""} ${k===S.i&&S.screen==="chapter"?"now":""}" title="${ch.diag?"Diagnostic":"Chapitre"} ${k+1}"></span>`; }).join("");
+  $d.innerHTML = `<div><div class="eyebrow">Grille de lecture · niveau ${S.lvl+1}</div><div class="conf">${show?LT[c.lens.t]:L.name}</div>
+      <p class="meta">${show?(reveal?`En jeu (contour rose) : ${c.lens.mech}`:"Quel élément de la grille est en jeu ? Réponse après votre décision."):HINT[L.hint]}</p></div>
+    ${show?lensView(c.lens, reveal):`<div class="masked">${L.hint==="after"?"La grille apparaîtra après votre décision.":L.hint==="none"?"Pas de grille à ce niveau : à vous de choisir la bonne théorie.":"La grille apparaîtra au premier chapitre."}</div>`}
+    <div class="gauge"><div class="row"><span>${L.trustLabel}</span><b>${S.trust}</b></div><div class="bar"><i style="width:${S.trust}%"></i></div></div>
+    <div class="gauge"><div class="row"><span>Motivation de l'équipe</span><b>${S.motiv}</b></div><div class="bar h"><i style="width:${S.motiv}%"></i></div></div>
+    <div class="gauge"><div class="row"><span>Bien-être (risques psychosociaux)</span><b>${S.well}</b></div><div class="bar w"><i style="width:${S.well}%"></i></div></div>
+    <div class="gauge"><div class="row"><span>Vos décisions</span></div><div class="dots">${dots}</div></div>`;
+}
+const av = k => { const c=lv().cast[k]; return `<span class="av" style="background:${c.c}" aria-hidden="true">${c.i||c.n[0]}</span>`; };
+const toTop = () => { if($s.getBoundingClientRect().top<0) $s.scrollIntoView({block:"start"}); };
+
+function home(){
+  S.screen="home";
+  const started = S.done>0 || S.i>=0;
+  const label = S.done>=LV.length ? "Voir le bilan final" : started ? `Reprendre : niveau ${S.lvl+1}` : "Commencer";
+  $s.innerHTML = `<div class="eyebrow">Votre carrière</div><h2>Quatre équipes, ${NCH} décisions</h2>
+    <p class="ctx">De la start-up au grand groupe, vous managez quatre équipes. À chaque étape, un membre de l'organisation vous expose une situation : choisissez votre réponse, puis lisez l'analyse fondée sur les théories de la motivation vues en séance (Maslow, McClelland, Herzberg, Adams, Greenberg). Certaines étapes sont des diagnostics : identifiez la cause avant d'agir. Les niveaux se débloquent dans l'ordre, et l'aide diminue de niveau en niveau. Votre progression est sauvegardée sur cet appareil.</p>
+    <form class="field" id="nameform" novalidate>
+      <label for="pname">Votre nom pour le classement</label>
+      <input id="pname" maxlength="30" autocomplete="name" placeholder="Prénom N." value="${esc(S.name)}">
+      <p class="err" id="nerr" hidden>Entrez un nom (2 caractères minimum) pour commencer.</p>
+      <div class="actions">${started?`<button class="btn ghost" type="button" id="reset">Tout recommencer</button>`:""}<button class="btn" type="submit">${label}</button></div>
+      <p class="confirm" id="rconf" hidden>Effacer votre progression sur cet appareil ? Votre meilleur score reste au classement.
+        <button class="link" type="button" id="ryes">Oui, effacer</button> <button class="link" type="button" id="rno" style="color:var(--navy)">Annuler</button></p>
+    </form>`;
+  document.getElementById("nameform").onsubmit=e=>{
+    e.preventDefault();
+    const v=document.getElementById("pname").value.trim().replace(/\s+/g," ");
+    if(v.length<2){ document.getElementById("nerr").hidden=false; return; }
+    S.name=v; try{ localStorage.setItem("carnet-name",v); }catch(e){}
+    resume();
+  };
+  if(started){
+    document.getElementById("reset").onclick=()=>{ document.getElementById("rconf").hidden=false; };
+    document.getElementById("rno").onclick=()=>{ document.getElementById("rconf").hidden=true; };
+    document.getElementById("ryes").onclick=()=>{ Object.assign(S, fresh()); try{ localStorage.removeItem(PKEY); }catch(e){} home(); };
+  }
+  dossier();
+}
+function resume(){
+  if(S.done>=LV.length) return finale();
+  if(S.i<0) return levelIntro();
+  if(S.picked!==null){ S.i++; S.picked=null; }
+  if(S.i>=lv().ch.length) return levelEnd();
+  chapter();
+}
+function levelIntro(){
+  S.screen="intro"; const L=lv();
+  $s.innerHTML = `<div class="eyebrow">Niveau ${S.lvl+1} / ${LV.length} · ${L.sector}</div><h2>${L.name}</h2>
+    <p class="ctx">${L.ctx}</p>
+    <p class="note"><b>${HINT[L.hint]}</b></p>
+    ${S.debug?`<p class="note">Accès direct au niveau : vous entrerez votre nom à la fin du niveau pour enregistrer votre score.</p>`:""}
+    <h3>Les personnages</h3>
+    <div class="cast">${Object.keys(L.cast).map(k=>`<div>${av(k)}<span><b>${L.cast[k].n}</b><small>${L.cast[k].r}</small></span></div>`).join("")}</div>
+    <div class="actions"><button class="btn" id="start">Commencer le niveau</button></div>`;
+  document.getElementById("start").onclick=()=>{ Object.assign(S,{i:0, picked:null, trust:50, motiv:50, well:50}); S.picks[S.lvl]=[]; persist(); chapter(); };
+  dossier(); toTop();
+}
+function chapter(){
+  S.screen="chapter";
+  const L=lv(), c=L.ch[S.i], who=L.cast[c.who], key=S.lvl+"-"+S.i;
+  if(!S.order[key]){ S.order[key]=shuffle([0,1,2]); persist(); }
+  const order=S.order[key];
+  $s.innerHTML = `<div class="chap"><div class="eyebrow">Niveau ${S.lvl+1} · ${c.diag?"Diagnostic":"Chapitre"} ${S.i+1} / ${L.ch.length}</div><span class="when">${c.when}</span></div>
+    <p class="ctx">${c.ctx}</p>
+    <div class="bubble">${av(c.who)}<div class="say"><b>${who.n} · ${who.r}</b><p>${c.line}</p></div></div>
+    <div class="opts">${order.map((oi,n)=>`<button class="opt" data-o="${oi}"><span class="k">${"ABC"[n]}</span><span>${c.opts[oi].t}</span></button>`).join("")}</div>
+    <div id="out"></div>`;
+  $s.querySelectorAll(".opt").forEach(b=>b.onclick=()=>choose(+b.dataset.o));
+  dossier(); toTop();
+}
+function choose(oi){
+  if(S.picked!==null) return;
+  const L=lv(), c=L.ch[S.i], o=c.opts[oi]; S.picked=oi; S.picks[S.lvl][S.i]={oi,q:o.q};
+  const d={g:[12,12,10],m:[2,0,0],b:[-10,-12,-10]}[o.q];
+  S.trust=clamp(S.trust+d[0]); S.motiv=clamp(S.motiv+d[1]); S.well=clamp(S.well+d[2]);
+  persist();
+  $s.querySelectorAll(".opt").forEach(b=>{ b.disabled=true; const oo=+b.dataset.o;
+    if(oo===oi) b.classList.add(o.q); else if(c.opts[oo].q==="g") b.classList.add("g"); else b.classList.add("dim"); });
+  const best=c.opts.find(x=>x.q==="g");
+  const last=S.i===L.ch.length-1;
+  document.getElementById("out").innerHTML = `
+    <div class="bubble">${av(c.who)}<div class="say"><b>${L.cast[c.who].n}</b><p>${o.r}</p></div></div>
+    <div class="analysis"><h3>Analyse · ${o.q==="g"?(c.diag?"Bon diagnostic":"Bonne décision"):o.q==="m"?(c.diag?"Diagnostic partiel":"Décision partielle"):(c.diag?"Diagnostic erroné":"Décision risquée")}</h3>
+      <p>${o.a}</p>${o.q!=="g"?`<p style="margin-top:8px"><b>${c.diag?"Meilleur diagnostic":"Meilleure option"} :</b> ${best.a}</p>`:""}
+      <div class="tags">${(o.q==="g"?o.tags:best.tags).map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>
+    <div class="actions"><button class="btn" id="next">${last?"Voir le bilan du niveau":"Chapitre suivant"}</button></div>`;
+  const n=document.getElementById("next"); n.focus({preventScroll:true});
+  n.onclick=()=>{ S.i++; S.picked=null; persist(); last?levelEnd():chapter(); };
+  dossier();
+}
+function levelEnd(){
+  S.screen="end"; const L=lv(), n=L.ch.length, lvl=S.lvl;
+  S.i=n; S.picked=null; if(S.done<lvl+1) S.done=lvl+1; persist();
+  const g=goodOf(lvl), pts=ptsOf(lvl), lastLvl=lvl===LV.length-1;
+  const v = g>=5?L.v[0]:g>=3?L.v[1]:L.v[2];
+  const base = `${g}/${n} bonnes décisions · ${pts} / ${n*PTS.g} points sur ce niveau · total : ${total()} / ${MAXS}.`;
+  $s.innerHTML = `<div class="eyebrow">Bilan · niveau ${lvl+1} / ${LV.length} · ${L.name}</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span class="big">${pts}</span><h2>${v}</h2></div>
+    <p class="note" id="saved">${base}${S.debug||S.saved[lvl]?"":" Enregistrement…"}</p>
+    ${S.debug&&!S.saved[lvl]?`<form class="field" id="endname" novalidate>
+      <label for="ename">Votre nom pour le classement</label>
+      <input id="ename" maxlength="30" autocomplete="name" placeholder="Prénom N." value="${esc(S.name)}">
+      <p class="err" id="eerr" hidden>Entrez un nom (2 caractères minimum).</p>
+      <div class="actions"><button class="btn" type="submit">Enregistrer mon score</button></div>
+    </form>`:""}
+    <div class="tbl"><table><thead><tr><th>Étape</th><th>Votre choix</th><th>Notions en jeu</th></tr></thead><tbody>
+    ${L.ch.map((c,k)=>{const p=S.picks[lvl][k]; const best=c.opts.find(x=>x.q==="g"); return `<tr><td>${c.when}${c.diag?" · diagnostic":""}</td>
+      <td><span class="pill ${p?p.q:""}">${!p?"–":p.q==="g"?"Bon":p.q==="m"?"Partiel":"Risqué"}</span></td><td>${best.tags.join(" · ")}</td></tr>`}).join("")}
+    </tbody></table></div>
+    <h3>Pour le débat en classe</h3>
+    <ol class="disc">${L.disc.map(q=>`<li>${q}</li>`).join("")}</ol>
+    <div class="actions"><button class="btn" id="next">${lastLvl?"Voir le bilan final":`Niveau ${lvl+2} : ${LV[lvl+1].name}`}</button></div>`;
+  document.getElementById("next").onclick=()=>{ if(lastLvl) return finale(); S.lvl++; S.i=-1; S.picked=null; persist(); levelIntro(); };
+  dossier(); toTop();
+  const send = () => saveScore().then(r=>{
+    if(r==="best"||r==="kept"){ S.saved[lvl]=true; persist(); }
+    const el=document.getElementById("saved"); if(!el || S.screen!=="end") return;
+    el.textContent = base + " " + ({best:"Nouveau record enregistré dans le classement.", kept:"Score enregistré ; votre meilleur score reste inchangé.", skip:"Classement indisponible : score non enregistré.", fail:"Le score n'a pas pu être enregistré."}[r]);
+  });
+  if(S.saved[lvl]) return;
+  if(!S.debug) return send();
+  // direct level link: no name was asked at the start, so ask for it here
+  document.getElementById("endname").onsubmit=e=>{
+    e.preventDefault();
+    const v=document.getElementById("ename").value.trim().replace(/\s+/g," ");
+    if(v.length<2){ document.getElementById("eerr").hidden=false; return; }
+    S.name=v; try{ localStorage.setItem("carnet-name",v); }catch(e){}
+    document.getElementById("endname").remove();
+    document.getElementById("saved").textContent = base + " Enregistrement…";
+    send();
+  };
+}
+function finale(){
+  S.screen="final"; const t=total(), g=totalGood();
+  const v = g>=20?"Le groupe vous nomme directeur·rice des ressources humaines.":g>=14?"Quatre équipes menées à bon port, avec quelques détours coûteux.":"Quelques années de terrain supplémentaires s'imposent…";
+  $s.innerHTML = `<div class="eyebrow">Bilan final</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span class="big">${t}</span><h2>${v}</h2></div>
+    <p class="note">${esc(S.name)} · ${g}/${NCH} bonnes décisions · score sur ${MAXS}.</p>
+    <div class="tbl"><table><thead><tr><th>Niveau</th><th>Organisation</th><th>Bonnes décisions</th><th>Points</th></tr></thead><tbody>
+    ${LV.map((l,L)=>`<tr><td>${L+1}</td><td>${l.name}</td><td>${goodOf(L)} / ${l.ch.length}</td><td>${ptsOf(L)}</td></tr>`).join("")}
+    </tbody></table></div>
+    <h3>Pour conclure</h3>
+    <ol class="disc">
+      <li>Maslow, McClelland, Herzberg, Adams : laquelle de ces théories vous paraît la plus utile à un manager, et pourquoi ?</li>
+      <li>Plusieurs situations pouvaient se lire avec deux théories (Karima : Herzberg ou Adams ; Romain : McClelland ou Adams). Comment choisir la bonne grille de lecture ?</li>
+      <li>Reprenez le rôle du manager vu en séance (objectifs, besoins, feedback, participation, équité) : lesquels de ces rôles avez-vous exercés dans les quatre missions ?</li>
+    </ol>
+    <div class="actions"><button class="btn" id="again">Rejouer toute la carrière</button></div>`;
+  document.getElementById("again").onclick=()=>{ Object.assign(S, fresh()); if(!S.debug){ try{ localStorage.removeItem(PKEY); }catch(e){} } home(); };
+  dossier(); toTop();
+}
+const clamp=x=>Math.max(0,Math.min(100,x));
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
+S.debug ? levelIntro() : home();
+</script>
+</body>
+</html>
