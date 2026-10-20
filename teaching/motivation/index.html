@@ -206,11 +206,11 @@ const LV = [
   ctx:"Premier dossier : recruter un·e développeur·se. Chloé a reçu 60 candidatures.",
   line:"Nathalie voudrait qu'on fasse passer le MBTI à tout le monde et qu'on ne garde que les profils « extravertis et meneurs », comme elle. Ça vous va ?",
   opts:[
-   {t:"Partir de la fiche de poste : définir les connaissances, compétences et attitudes (KSA) requises, puis les évaluer en entretien et par un test technique. Le MBTI peut éclairer l'entretien, pas trier les candidats.", q:"g", r:"C'est plus solide. Je reprends la fiche de poste avec vous demain.",
+   {t:"Partir de la fiche de poste : définir les KSA requises (connaissances, compétences, attitudes) et les évaluer en entretien.", q:"g", r:"C'est plus solide. Je reprends la fiche de poste avec vous demain.",
     a:"Le person-job fit consiste à faire correspondre les exigences du poste (description et spécification) avec les caractéristiques de la personne. La spécification du poste s'exprime en KSA : connaissances, compétences techniques et non techniques, attitudes. Un test de personnalité décrit des traits ; il ne dit pas si la personne sait faire le travail.", tags:["Person-job fit","KSA","Fiche de poste"]},
-   {t:"Oui : un profil qui ressemble à Nathalie s'intégrera forcément bien.", q:"b", r:"Trois finalistes très à l'aise à l'oral… dont aucun ne réussit le test technique.",
+   {t:"Oui : un profil qui ressemble à Nathalie partagera sa vision et s'intégrera plus vite dans une équipe de start-up.", q:"b", r:"Trois finalistes très à l'aise à l'oral… dont aucun ne réussit le test technique.",
     a:"Recruter sur la ressemblance avec la dirigeante confond personnalité et capacité à tenir le poste. Le MBTI décrit des préférences, pas des compétences, et ce filtre écarte des candidats qualifiés.", tags:["Personnalité ≠ compétences"]},
-   {t:"Ne retenir que le meilleur score au test technique, sans regarder le reste.", q:"m", r:"Le meilleur au test… mais il refuse de documenter son code et de travailler en binôme.",
+   {t:"Ne retenir que les meilleurs scores au test technique : c'est le critère le plus objectif, et c'est ce qu'on attend d'un développeur.", q:"m", r:"Le meilleur au test… mais il refuse de documenter son code et de travailler en binôme.",
     a:"Les compétences techniques comptent, mais les KSA incluent aussi les compétences non techniques (communication, gestion du temps) et les attitudes. Le person-job fit ne se réduit pas au savoir-faire technique.", tags:["Compétences techniques seules"]}
   ],
   lens:{t:"fit", key:"job", mech:"Person-job fit (KSA)"}},
@@ -219,11 +219,11 @@ const LV = [
   ctx:"Mélissa, arrivée il y a trois mois, est excellente : ses maquettes ont fait progresser les inscriptions de 20 %. Elle s'entend bien avec l'équipe et apprécie votre façon de manager. Pourtant, elle parle de partir. Chez Lumea, on félicite ceux qui répondent aux messages à minuit, et la réunion du lundi commence par la liste des « héros du week-end ».",
   line:"J'aime mon travail, j'aime l'équipe. Mais je ne me reconnais pas dans cette façon de fonctionner. Qu'est-ce qui ne va pas, selon vous ?",
   opts:[
-   {t:"Un défaut d'adéquation entre la personne et l'organisation : ses compétences et ses relations vont bien, mais ses valeurs ne correspondent pas à la culture de l'entreprise.", q:"g", r:"Oui. Ce n'est ni le poste ni les gens : c'est ce que l'entreprise valorise.",
+   {t:"Un défaut d'adéquation avec l'organisation : ses valeurs ne correspondent pas à la culture de l'entreprise.", q:"g", r:"Oui. Ce n'est ni le poste ni les gens : c'est ce que l'entreprise valorise.",
     a:"Les quatre adéquations sont distinctes. Ici, le person-job, le person-group et le person-supervisor fit sont bons ; c'est le person-organization fit qui manque : se retrouver dans la culture de l'organisation. Les valeurs alimentent les normes, ces règles de bon et de mauvais comportement que l'entreprise rend visibles par ses rituels et ses « héros ».", tags:["Person-organization fit","Valeurs","Normes et culture"]},
-   {t:"Un défaut d'adéquation au poste : il faudrait revoir sa fiche de poste.", q:"m", r:"Ma fiche de poste me convient très bien. Ce sont les soirées et les week-ends qui me posent problème.",
+   {t:"Un défaut d'adéquation au poste : ses missions ne lui correspondent plus, il faudrait revoir sa fiche de poste.", q:"m", r:"Ma fiche de poste me convient très bien. Ce sont les soirées et les week-ends qui me posent problème.",
     a:"Le person-job fit est bon, ses résultats le montrent. Modifier le poste ne changerait pas ce qui la gêne : les valeurs et les normes de l'entreprise.", tags:["Person-job fit"]},
-   {t:"Un problème de personnalité : elle est trop introvertie pour une start-up.", q:"b", r:"Introvertie ? Je présente mes maquettes à toute l'entreprise chaque mois…",
+   {t:"Un problème de personnalité : elle est trop introvertie pour le rythme et la culture très sociale d'une start-up.", q:"b", r:"Introvertie ? Je présente mes maquettes à toute l'entreprise chaque mois…",
     a:"Attribuer le malaise à un trait de personnalité évite d'interroger la culture de l'organisation. Rien n'indique ici un problème de personnalité.", tags:["Erreur de diagnostic"]}
   ],
   lens:{t:"fit", key:"org", on:["job","group","sup"], mech:"Person-organization fit (valeurs, culture)"}},
@@ -232,11 +232,11 @@ const LV = [
   ctx:"Yanis, en alternance, gère le support client. Son contrat se termine dans quatre mois et personne ne lui a dit s'il serait embauché. Il paie un loyer élevé et cherche déjà ailleurs. Depuis quelques semaines, ses réponses aux clients sont plus lentes.",
   line:"Je propose qu'on le nomme « talent du mois » devant toute l'équipe. Un peu de reconnaissance, et il sera remotivé. Bonne idée ?",
   opts:[
-   {t:"D'abord lever l'incertitude : lui dire clairement, et vite, si une embauche en CDI est envisageable et à quelles conditions. La reconnaissance viendra ensuite.", q:"g", r:"On peut lui proposer un CDI sous conditions. Je lui en parle cette semaine.",
+   {t:"D'abord lui dire clairement, et vite, si un CDI est envisageable. La reconnaissance viendra ensuite.", q:"g", r:"On peut lui proposer un CDI sous conditions. Je lui en parle cette semaine.",
     a:"Selon Maslow, les besoins sont hiérarchisés : physiologiques, sécurité, sociaux, estime, accomplissement. Tant que le besoin de sécurité (l'emploi, le revenu) n'est pas satisfait, un levier d'estime a peu de prise.", tags:["Maslow","Besoin de sécurité","Hiérarchie des besoins"]},
-   {t:"Oui : la reconnaissance publique compte, faisons-le.", q:"m", r:"Yanis a souri sur la photo. Le lendemain, il passait un entretien chez un concurrent.",
+   {t:"Oui : la reconnaissance publique compte, et ce titre devant toute l'équipe lui montrera qu'on tient vraiment à lui.", q:"m", r:"Yanis a souri sur la photo. Le lendemain, il passait un entretien chez un concurrent.",
     a:"La reconnaissance est un vrai levier, celui des besoins d'estime. Mais elle n'agit pas sur le besoin qui domine ici : la sécurité de l'emploi.", tags:["Besoin d'estime"]},
-   {t:"Lui confier un projet ambitieux pour qu'il puisse s'accomplir.", q:"b", r:"Un projet de plus, sans savoir s'il sera encore là pour le finir ?",
+   {t:"Lui confier un projet ambitieux et visible pour qu'il s'accomplisse et ait envie de rester chez Lumea.", q:"b", r:"Un projet de plus, sans savoir s'il sera encore là pour le finir ?",
     a:"Viser l'accomplissement, au sommet de la pyramide, alors que le besoin de sécurité n'est pas satisfait, revient à ajouter de la charge à une personne inquiète pour son avenir.", tags:["Besoin d'accomplissement"]}
   ],
   lens:{t:"maslow", key:"securite", on:["physio"], mech:"Besoin de sécurité non satisfait"}},
@@ -245,11 +245,11 @@ const LV = [
   ctx:"Un an plus tard. Les salaires sont au-dessus du marché, tous les contrats sont en CDI, les locaux sont neufs, déjeuners offerts et baby-foot compris. Pourtant, l'enquête interne montre une motivation en baisse. Plusieurs développeurs disent : « On exécute des tickets, on ne sait pas à quoi ils servent. »",
   line:"Je ne comprends pas. On leur donne tout ! Qu'est-ce qui leur manque ?",
   opts:[
-   {t:"Les besoins de base sont satisfaits, donc ils ne motivent plus. Ce qui compte désormais, ce sont l'estime et l'accomplissement : le sens du travail, la reconnaissance, l'épanouissement.", q:"g", r:"Donc ce n'est pas qu'ils en veulent plus… c'est qu'ils veulent autre chose.",
+   {t:"Les besoins de base sont satisfaits et ne motivent plus : ils attendent désormais du sens et de la reconnaissance.", q:"g", r:"Donc ce n'est pas qu'ils en veulent plus… c'est qu'ils veulent autre chose.",
     a:"« Un besoin satisfait n'est pas une motivation en soi. » Une fois le niveau de vie assuré, les salariés cherchent l'appartenance, l'estime, la considération et l'épanouissement. Le comportement au travail est d'autant plus coopératif et productif que la personne trouve dans l'organisation un lieu où se réaliser.", tags:["Maslow","Besoin satisfait ≠ motivation","Estime et accomplissement"]},
-   {t:"Un manque de convivialité : il faut plus d'événements d'équipe.", q:"m", r:"On a fait trois afterworks ce trimestre. Ils viennent, mais ça ne change rien au travail.",
+   {t:"Un manque de convivialité et d'appartenance : il faudrait multiplier les événements d'équipe et les moments partagés.", q:"m", r:"On a fait trois afterworks ce trimestre. Ils viennent, mais ça ne change rien au travail.",
     a:"Les besoins sociaux comptent, mais l'équipe s'entend déjà bien. Ce qui manque, c'est le sens du travail et la reconnaissance : les besoins plus élevés.", tags:["Besoins sociaux"]},
-   {t:"Une rémunération encore insuffisante : il faut augmenter les salaires.", q:"b", r:"On est déjà 10 % au-dessus du marché…",
+   {t:"Une rémunération encore insuffisante face au marché de la tech : il faut augmenter les salaires pour garder les meilleurs.", q:"b", r:"On est déjà 10 % au-dessus du marché…",
     a:"Les besoins couverts par le salaire sont déjà satisfaits. Augmenter encore agit sur des besoins qui ne motivent plus.", tags:["Besoins physiologiques et de sécurité"]}
   ],
   lens:{t:"maslow", key:["estime","accomp"], on:["physio","securite","sociaux"], mech:"Besoins d'estime et d'accomplissement"}},
@@ -258,9 +258,9 @@ const LV = [
   ctx:"Il faut fixer la feuille de route du semestre. Les deux développeurs les plus expérimentés ont des idées précises sur ce que demandent les utilisateurs.",
   line:"Le plus rapide, c'est que vous décidiez seul·e et que vous annonciez le plan lundi. Pas besoin d'en faire un débat, non ?",
   opts:[
-   {t:"Associer les plus compétents et motivés à la décision, puis expliquer à toute l'équipe les objectifs et leurs raisons, avec des points de feedback réguliers.", q:"g", r:"Ça prendra une semaine de plus. Mais si ça les remobilise, je signe.",
+   {t:"Associer les plus compétents à la décision, puis expliquer à toute l'équipe les objectifs et leurs raisons.", q:"g", r:"Ça prendra une semaine de plus. Mais si ça les remobilise, je signe.",
     a:"Le rôle du manager dans la motivation : définir clairement les raisons et les objectifs de l'action, faire participer les plus compétents et motivés aux décisions, donner du feedback. Drucker place aussi en tête des tâches du manager : fixer les objectifs et les communiquer à ceux dont la participation est essentielle.", tags:["Rôle du manager","Participation aux décisions","Objectifs et feedback"]},
-   {t:"Décider seul·e, mais présenter le plan en détaillant ses raisons.", q:"m", r:"Les explications sont claires. Bastien remarque juste que ses suggestions n'y figurent pas.",
+   {t:"Décider seul·e pour aller vite, mais présenter le plan lundi en détaillant ses raisons.", q:"m", r:"Les explications sont claires. Bastien remarque juste que ses suggestions n'y figurent pas.",
     a:"Expliquer les raisons de l'action est utile, mais l'équipe reste spectatrice. Faire participer les plus compétents renforce l'implication dans la vie du groupe.", tags:["Expliquer sans impliquer"]},
    {t:"Laisser chacun choisir ses priorités : des développeurs autonomes sont des développeurs motivés.", q:"b", r:"Trois mois plus tard, huit projets avancent à moitié. Aucun n'est terminé.",
     a:"La motivation a une direction, une intensité et une persistance. Sans objectif commun, l'effort n'a plus de direction et se disperse.", tags:["Direction de l'effort"]}
@@ -271,11 +271,11 @@ const LV = [
   ctx:"Nathalie a promis aux investisseurs une nouvelle version de l'application en six semaines au lieu des quatre mois prévus. Bastien travaille 60 heures par semaine depuis un mois. Il est irritable en réunion, se dit « vidé » et répond à tout avec cynisme.",
   line:"Nathalie dit qu'il adore son travail et qu'il ne faut surtout pas le freiner. Moi, je suis inquiète. Vous faites quoi ?",
   opts:[
-   {t:"Traiter les signaux d'alerte : réduire sa charge, renégocier avec Nathalie un objectif réaliste et revoir la répartition du travail.", q:"g", r:"Nathalie a accepté de décaler deux fonctionnalités. Bastien a pris sa première soirée libre depuis un mois.",
+   {t:"Réduire sa charge et renégocier avec Nathalie un objectif réaliste pour le lancement.", q:"g", r:"Nathalie a accepté de décaler deux fonctionnalités. Bastien a pris sa première soirée libre depuis un mois.",
     a:"Le burnout est l'épuisement des ressources physiques et mentales causé par un effort excessif pour atteindre un objectif professionnel irréaliste. Irritabilité, épuisement et cynisme en sont des signaux. Selon l'OMS, les longues semaines de travail (55 heures ou plus) sont liées à des centaines de milliers de décès par AVC et maladie cardiaque. Réduire le stress au travail est l'un des rôles du management.", tags:["Risques psychosociaux","Burnout","Objectif irréaliste"]},
-   {t:"Lui verser une prime exceptionnelle et lui offrir une semaine de congé après le lancement.", q:"m", r:"Il apprécie le geste. Mais le lancement est dans cinq semaines, et il dort quatre heures par nuit.",
+   {t:"Lui verser une prime exceptionnelle et lui offrir une semaine de congé juste après le lancement.", q:"m", r:"Il apprécie le geste. Mais le lancement est dans cinq semaines, et il dort quatre heures par nuit.",
     a:"Reconnaître l'effort est légitime, mais la cause du problème, un objectif irréaliste, reste intacte. La récupération arrive trop tard.", tags:["Compenser sans prévenir"]},
-   {t:"Le laisser faire : il est passionné, c'est son choix.", q:"b", r:"Deux semaines plus tard, Bastien est en arrêt maladie. Le lancement est repoussé de deux mois.",
+   {t:"Le laisser faire : il est passionné, c'est son choix, et freiner son élan risquerait de le démotiver.", q:"b", r:"Deux semaines plus tard, Bastien est en arrêt maladie. Le lancement est repoussé de deux mois.",
     a:"La passion ne protège pas de l'épuisement : ce sont souvent les plus engagés qui s'épuisent. Laisser faire, c'est renoncer au rôle du manager.", tags:["Inaction"]}
   ],
   lens:{t:"rps", key:"burnout", mech:"Burnout : surcharge, objectif irréaliste"}}
@@ -296,11 +296,11 @@ const LV = [
   ctx:"Sarah dépasse ses objectifs chaque trimestre. Elle refuse les petits comptes « faciles », réclame chaque lundi ses chiffres de la semaine, préfère prospecter seule et s'ennuie dans les réunions collectives. Elle se demande parfois si son succès est vraiment mérité.",
   line:"Sarah, c'est ma priorité : si elle part, l'agence perd 20 % de son chiffre. Avant d'agir, comment la décririez-vous ?",
   opts:[
-   {t:"Un besoin d'accomplissement dominant : elle cherche à exceller, fuit la réussite facile, a besoin de feedback régulier et préfère travailler seule.", q:"g", r:"C'est elle, trait pour trait. Même le doute : elle se demande souvent si elle n'a pas eu de la chance.",
+   {t:"Un besoin d'accomplissement dominant : elle cherche à exceller, à se mesurer à des défis, et veut du feedback régulier.", q:"g", r:"C'est elle, trait pour trait. Même le doute : elle se demande souvent si elle n'a pas eu de la chance.",
     a:"McClelland distingue trois besoins (accomplissement, affiliation, pouvoir), dont l'un domine chez chaque individu. Les profils nAch cherchent à exceller, évitent les situations à faible risque (la réussite facile n'est pas un accomplissement authentique), ont besoin d'un feedback régulier, préfèrent travailler seuls ou avec d'autres nAch, et sont sujets au syndrome de l'imposteur.", tags:["McClelland","Besoin d'accomplissement (nAch)","Feedback régulier"]},
-   {t:"Un besoin de pouvoir : elle aime gagner et être la meilleure.", q:"m", r:"Gagner, oui. Mais diriger les autres ne l'intéresse pas du tout.",
+   {t:"Un besoin de pouvoir dominant : elle aime la compétition, gagner et être reconnue comme la meilleure.", q:"m", r:"Gagner, oui. Mais diriger les autres ne l'intéresse pas du tout.",
     a:"Aimer la compétition rapproche du besoin de pouvoir, mais Sarah ne cherche ni à diriger ni le statut : elle cherche à se mesurer à des défis. Son moteur est l'accomplissement.", tags:["Besoin de pouvoir (nPow)"]},
-   {t:"Un besoin d'affiliation : elle a besoin d'être reconnue par le groupe.", q:"b", r:"Par le groupe ? Elle sèche la moitié des réunions d'équipe.",
+   {t:"Un besoin d'affiliation dominant : elle a besoin de se sentir reconnue et acceptée par le groupe.", q:"b", r:"Par le groupe ? Elle sèche la moitié des réunions d'équipe.",
     a:"Les profils nAff recherchent des relations harmonieuses et l'acceptation du groupe. Sarah travaille seule et s'ennuie en collectif.", tags:["Besoin d'affiliation (nAff)"]}
   ],
   lens:{t:"mccl", key:"ach", ps:[{n:"Sarah",ach:85,aff:20,pow:40}], mech:"Besoin d'accomplissement (nAch)"}},
@@ -311,9 +311,9 @@ const LV = [
   opts:[
    {t:"Un objectif difficile mais atteignable, avec un point hebdomadaire sur ses résultats.", q:"g", r:"Sarah a demandé si elle pouvait commencer dès lundi. Elle réclame déjà le tableau de suivi.",
     a:"Les nAch doivent recevoir des projets difficiles avec des objectifs atteignables, et un feedback régulier, qui les motive davantage que les incitations monétaires. Un risque modéré est la zone où leur effort fait vraiment la différence.", tags:["nAch","Défi atteignable","Feedback plutôt qu'argent"]},
-   {t:"Oui, un objectif triplé : elle adore les défis.", q:"b", r:"Sarah a fait le calcul : c'est impossible. Elle traite le segment au minimum.",
+   {t:"Oui, un objectif triplé avec une grosse prime : elle adore les défis, et plus ils sont grands, mieux c'est.", q:"b", r:"Sarah a fait le calcul : c'est impossible. Elle traite le segment au minimum.",
     a:"Dans les situations à haut risque, les nAch attribuent le résultat à la chance plutôt qu'à leurs efforts. Un objectif inatteignable les démotive au lieu de les stimuler.", tags:["Risque trop élevé"]},
-   {t:"Garder un objectif raisonnable, mais miser surtout sur une prime importante.", q:"m", r:"Elle prend la prime. Mais elle demande surtout comment elle saura si elle progresse.",
+   {t:"Un objectif raisonnable, mais miser surtout sur une prime importante pour marquer l'enjeu.", q:"m", r:"Elle prend la prime. Mais elle demande surtout comment elle saura si elle progresse.",
     a:"La prime n'est pas inutile, mais pour un profil nAch, le feedback régulier pèse plus que l'argent.", tags:["Incitation monétaire"]}
   ],
   lens:{t:"mccl", key:"ach", ps:[{n:"Sarah",ach:85,aff:20,pow:40}], mech:"nAch : défi atteignable + feedback"}},
@@ -322,11 +322,11 @@ const LV = [
   ctx:"Olivier a instauré un classement hebdomadaire des ventes, affiché à l'entrée de l'agence. Lucas, quinze ans d'ancienneté, est le pilier de l'équipe : il forme les nouveaux, désamorce les tensions, organise le pot du vendredi. Depuis le classement, il est en bas du tableau et se renferme.",
   line:"Avant, on s'entraidait sur les dossiers. Maintenant, chacun garde ses prospects pour lui. Je ne reconnais plus cette agence.",
   opts:[
-   {t:"Lui confier un rôle coopératif (tutorat des nouveaux, objectifs en binôme) et compléter le classement par un objectif collectif d'agence.", q:"g", r:"J'ai pris deux nouveaux sous mon aile. On a signé notre premier gros contrat à trois.",
+   {t:"Lui confier un rôle coopératif (tutorat, objectifs en binôme) et ajouter un objectif collectif d'agence.", q:"g", r:"J'ai pris deux nouveaux sous mon aile. On a signé notre premier gros contrat à trois.",
     a:"Les profils nAff ont besoin de relations harmonieuses et de se sentir acceptés ; ils se conforment aux normes du groupe et sont plus performants dans des environnements coopératifs. Une compétition affichée détruit précisément ce qui les motive.", tags:["Besoin d'affiliation (nAff)","Environnement coopératif"]},
-   {t:"Garder le classement, mais le féliciter en privé pour son rôle dans l'équipe.", q:"m", r:"Merci, ça me touche. Mais lundi, le tableau sera toujours là.",
+   {t:"Garder le classement, mais le féliciter en privé pour tout ce qu'il apporte à la vie de l'équipe.", q:"m", r:"Merci, ça me touche. Mais lundi, le tableau sera toujours là.",
     a:"La reconnaissance aide, mais l'environnement reste compétitif, ce qui va à l'encontre de ce qui motive un profil nAff.", tags:["Reconnaissance seule"]},
-   {t:"Renforcer la compétition : un challenge individuel avec un voyage pour le premier, ça va le piquer au vif.", q:"b", r:"Lucas a postulé pour un poste dans une autre agence.",
+   {t:"Renforcer la compétition avec un challenge individuel et un voyage pour le premier : ça va le piquer au vif.", q:"b", r:"Lucas a postulé pour un poste dans une autre agence.",
     a:"Pour un profil nAff, la compétition individuelle est un repoussoir : elle menace l'harmonie du groupe, qui est son moteur.", tags:["Compétition"]}
   ],
   lens:{t:"mccl", key:"aff", ps:[{n:"Lucas",ach:35,aff:85,pow:20}], mech:"nAff : environnement coopératif"}},
@@ -335,11 +335,11 @@ const LV = [
   ctx:"L'agence s'agrandit et vous devez nommer un chef d'équipe. Deux candidats. Kévin aime la compétition, veut toujours avoir raison, apprécie le statut et parle souvent de « ses » troupes. Amira, moins visible, organise déjà spontanément la répartition des prospects pour que l'agence atteigne ses objectifs.",
   line:"Kévin me harcèle pour ce poste. Il a l'air bien plus motivé pour diriger. Qui choisissez-vous ?",
   opts:[
-   {t:"Amira : elle veut organiser les efforts des autres au service des objectifs de l'agence.", q:"g", r:"Pas le choix le plus évident… mais trois mois plus tard, l'équipe dépasse ses objectifs.",
+   {t:"Amira : elle organise déjà les efforts des autres au service des objectifs de l'agence.", q:"g", r:"Pas le choix le plus évident… mais trois mois plus tard, l'équipe dépasse ses objectifs.",
     a:"McClelland distingue le pouvoir personnel (vouloir diriger les autres) et le pouvoir institutionnel (organiser les efforts des autres pour atteindre les objectifs de l'organisation). Les managers à fort besoin de pouvoir institutionnel tendent à être plus efficaces.", tags:["Besoin de pouvoir (nPow)","Pouvoir institutionnel","Choisir un manager"]},
-   {t:"Kévin : c'est lui qui a le plus envie de diriger.", q:"b", r:"Kévin s'attribue les succès et reproche les échecs. Deux conseillers demandent à changer d'équipe.",
+   {t:"Kévin : c'est lui qui a le plus envie de diriger, et il a de l'ascendant sur le reste de l'équipe.", q:"b", r:"Kévin s'attribue les succès et reproche les échecs. Deux conseillers demandent à changer d'équipe.",
     a:"Le besoin de pouvoir personnel, la volonté de diriger les autres, est généralement perçu comme indésirable et produit des managers moins efficaces.", tags:["Pouvoir personnel"]},
-   {t:"Ne pas trancher : une codirection Kévin–Amira.", q:"m", r:"Les réunions tournent au bras de fer. Amira finit par tout faire, sans le titre.",
+   {t:"Ne pas trancher : une codirection Kévin–Amira, qui combine l'énergie de l'un et le sens de l'organisation de l'autre.", q:"m", r:"Les réunions tournent au bras de fer. Amira finit par tout faire, sans le titre.",
     a:"Éviter le choix revient à ignorer la différence entre pouvoir personnel et pouvoir institutionnel. Le conflit se déplace au lieu de se résoudre.", tags:["Éviter la décision"]}
   ],
   lens:{t:"mccl", key:"pow", ps:[{n:"Kévin (pouvoir personnel)",ach:50,aff:15,pow:85},{n:"Amira (pouvoir institutionnel)",ach:45,aff:40,pow:80}], mech:"nPow : personnel ou institutionnel ?"}},
@@ -348,11 +348,11 @@ const LV = [
   ctx:"Kévin n'a pas digéré la nomination d'Amira. Il reste un excellent vendeur, mais il critique ouvertement ses décisions et ses chiffres baissent.",
   line:"Franchement, je me demande ce que je fais encore ici. Diriger, c'est ce que je sais faire.",
   opts:[
-   {t:"Lui confier une vraie responsabilité au service de l'agence : piloter, avec deux conseillers, le lancement d'une offre pour les start-up, sur des objectifs collectifs.", q:"g", r:"Un projet à moi, avec une équipe ? D'accord. Je vais vous montrer ce que je vaux.",
+   {t:"Lui confier le pilotage d'un projet de l'agence, avec deux conseillers et des objectifs collectifs.", q:"g", r:"Un projet à moi, avec une équipe ? D'accord. Je vais vous montrer ce que je vaux.",
     a:"Les responsables doivent donner à ceux qui cherchent le pouvoir l'occasion de diriger. En liant cette responsabilité aux objectifs de l'organisation, vous orientez un besoin de pouvoir personnel vers le pouvoir institutionnel.", tags:["nPow","Occasion de diriger","Vers le pouvoir institutionnel"]},
-   {t:"Lui expliquer en détail pourquoi Amira a été choisie.", q:"m", r:"Il comprend… mais ça ne lui dit pas quoi faire de son envie de diriger.",
+   {t:"Lui expliquer en détail, et honnêtement, pourquoi Amira a été choisie plutôt que lui.", q:"m", r:"Il comprend… mais ça ne lui dit pas quoi faire de son envie de diriger.",
     a:"Expliquer la décision est utile (c'est la justice informationnelle, que vous retrouverez au niveau 4), mais cela ne répond pas à son besoin de pouvoir.", tags:["Expliquer seulement"]},
-   {t:"Lui donner le titre de « Senior Sales Leader », sans équipe ni responsabilité.", q:"b", r:"Kévin a vite compris que le titre était vide. Il le dit à tout le monde.",
+   {t:"Lui donner le titre de « Senior Sales Leader » pour reconnaître son statut auprès des clients, sans changer son poste.", q:"b", r:"Kévin a vite compris que le titre était vide. Il le dit à tout le monde.",
     a:"Un titre vide flatte le statut un moment, sans offrir de réelle occasion de diriger. Perçu comme une manœuvre, il nourrit le ressentiment.", tags:["Statut sans contenu"]}
   ],
   lens:{t:"mccl", key:"pow", ps:[{n:"Kévin",ach:50,aff:15,pow:85}], mech:"nPow : donner l'occasion de diriger"}},
@@ -361,11 +361,11 @@ const LV = [
   ctx:"Le siège demande à chaque agence de proposer sa politique de motivation pour l'an prochain.",
   line:"Je propose une prime unique sur le chiffre d'affaires, la même pour tous. C'est simple et tout le monde comprend. Ça vous va ?",
   opts:[
-   {t:"Différencier les leviers selon les besoins dominants (défis et feedback pour les nAch, objectifs collectifs pour les nAff, responsabilités pour les nPow), avec un feedback régulier et des récompenses lisibles pour tous.", q:"g", r:"Plus compliqué à gérer, mais je vois la logique. On teste un an.",
+   {t:"Différencier les leviers selon le besoin dominant de chacun : défis et feedback, coopération, responsabilités.", q:"g", r:"Plus compliqué à gérer, mais je vois la logique. On teste un an.",
     a:"Implications managériales de McClelland : un feedback régulier sur la performance, valoriser les réussites et en faire des modèles, proposer des défis de niveau modéré, et rendre lisibles promotions et récompenses pour que chacun voie de façon réaliste comment atteindre ses objectifs. Le manager prend en compte la multiplicité des besoins.", tags:["McClelland","Multiplicité des besoins","Implications managériales"]},
-   {t:"La prime commune, plus un trophée mensuel du meilleur vendeur.", q:"m", r:"Sarah gagne le trophée onze mois sur douze. Les autres ont cessé de regarder.",
+   {t:"Garder la prime commune et y ajouter un trophée mensuel du meilleur vendeur pour valoriser les modèles.", q:"m", r:"Sarah gagne le trophée onze mois sur douze. Les autres ont cessé de regarder.",
     a:"Valoriser les « héros » est une piste de McClelland, mais un trophée unique ne parle qu'aux profils compétitifs et récompense toujours la même personne.", tags:["Un levier pour un seul profil"]},
-   {t:"Oui, une prime unique : l'argent motive tout le monde de la même façon.", q:"b", r:"Les chiffres bougent à peine. Lucas et Amira ne se sentent pas concernés.",
+   {t:"Oui, une prime unique sur le chiffre d'affaires : l'argent motive tout le monde de la même façon.", q:"b", r:"Les chiffres bougent à peine. Lucas et Amira ne se sentent pas concernés.",
     a:"Une incitation unique ignore que chacun a un besoin dominant différent. Pour les nAch, le feedback compte plus que l'argent ; les nAff réagissent à la coopération, les nPow aux responsabilités.", tags:["Levier unique"]}
   ],
   lens:{t:"mccl", key:["ach","aff","pow"], ps:[{n:"Sarah",ach:85,aff:20,pow:40},{n:"Lucas",ach:35,aff:85,pow:20},{n:"Amira",ach:45,aff:40,pow:80}], mech:"Un levier par besoin dominant"}}
@@ -386,11 +386,11 @@ const LV = [
   ctx:"L'enquête interne liste les plaintes : chauffage en panne depuis l'hiver dernier, plannings modifiés la veille, chefs d'équipe qui crient, salaires au minimum de la convention collective. Franck a déjà sa solution : une prime de 100 € pour tous.",
   line:"Les gens sont à bout. Avant de choisir quoi faire, comment lisez-vous ces résultats ?",
   opts:[
-   {t:"Ce sont des facteurs d'hygiène : extrinsèques au travail, ils créent de l'insatisfaction quand ils sont mal gérés. Les corriger réduira l'insatisfaction, mais ne suffira pas à motiver.", q:"g", r:"Donc la prime ne fera pas de miracle. Mais on ne peut pas faire l'impasse sur le chauffage.",
+   {t:"Des facteurs d'hygiène défaillants : les corriger réduira l'insatisfaction, mais ne suffira pas à motiver.", q:"g", r:"Donc la prime ne fera pas de miracle. Mais on ne peut pas faire l'impasse sur le chauffage.",
     a:"Herzberg distingue deux familles de facteurs. Les facteurs d'hygiène (politique de l'entreprise, supervision, relations, conditions de travail, rémunération) sont extrinsèques : mal gérés, ils produisent de l'insatisfaction. Les facteurs de motivation (accomplissement, reconnaissance, contenu du travail, responsabilités, développement) sont intrinsèques, et eux seuls motivent.", tags:["Herzberg","Facteurs d'hygiène","Insatisfaction"]},
-   {t:"Un problème de rémunération avant tout : la prime de Franck réglera l'essentiel.", q:"m", r:"Une prime, d'accord. Mais avec le chauffage en panne et des plannings changés la veille ?",
+   {t:"Un problème de rémunération avant tout : la prime de Franck réglera l'essentiel, le reste suivra.", q:"m", r:"Une prime, d'accord. Mais avec le chauffage en panne et des plannings changés la veille ?",
     a:"La rémunération est bien en cause, mais ce n'est qu'un facteur d'hygiène parmi d'autres, et une prime ponctuelle n'agit ni sur les conditions de travail ni sur la supervision.", tags:["Rémunération (facteur d'hygiène)"]},
-   {t:"Des salariés peu qualifiés et peu motivés par nature : il faut surtout mieux sélectionner à l'embauche.", q:"b", r:"Sandrine est là depuis douze ans. Elle était motivée, avant.",
+   {t:"Des salariés peu qualifiés et peu motivés par nature : il faut surtout mieux sélectionner les candidats à l'embauche.", q:"b", r:"Sandrine est là depuis douze ans. Elle était motivée, avant.",
     a:"Attribuer l'insatisfaction aux personnes ignore des causes clairement identifiées dans l'environnement de travail.", tags:["Erreur de diagnostic"]}
   ],
   lens:{t:"herz", key:["conditions","supervision","politique","remu"], mech:"Facteurs d'hygiène défaillants"}},
@@ -399,9 +399,9 @@ const LV = [
   ctx:"Franck débloque 150 000 € pour l'année.",
   line:"Vous avez carte blanche. Où mettez-vous l'argent ?",
   opts:[
-   {t:"D'abord les facteurs d'hygiène : réparer le chauffage, fixer les plannings trois semaines à l'avance, former les chefs d'équipe à encadrer sans crier, revaloriser les plus bas salaires.", q:"g", r:"Le chauffage marche, les plannings tiennent. Les plaintes au CSE ont été divisées par trois.",
+   {t:"D'abord l'hygiène : réparer le chauffage, stabiliser les plannings, former les chefs d'équipe, revaloriser les bas salaires.", q:"g", r:"Le chauffage marche, les plannings tiennent. Les plaintes au CSE ont été divisées par trois.",
     a:"L'amélioration des conditions de travail a pour rôle de réduire l'insatisfaction. Traiter les facteurs d'hygiène est un préalable : tant qu'ils restent défaillants, l'insatisfaction domine.", tags:["Facteurs d'hygiène","Réduire l'insatisfaction"]},
-   {t:"Tout mettre dans une prime annuelle de 1 000 € par salarié.", q:"m", r:"La prime fait plaisir en décembre. En janvier, il fait toujours 9 °C dans l'entrepôt.",
+   {t:"Tout mettre dans une prime annuelle de 1 000 € par salarié, versée en fin d'année.", q:"m", r:"La prime fait plaisir en décembre. En janvier, il fait toujours 9 °C dans l'entrepôt.",
     a:"La rémunération est un facteur d'hygiène, mais une prime ne répare ni le chauffage, ni les plannings, ni la supervision.", tags:["Rémunération seule"]},
    {t:"Organiser un grand séminaire de motivation avec un conférencier et une soirée d'équipe.", q:"b", r:"Le conférencier parle de passion. Dans la salle, on pense au chauffage.",
     a:"Chercher à motiver avant d'avoir réduit l'insatisfaction ne fonctionne pas : les facteurs d'hygiène défaillants occupent tout l'espace.", tags:["Motiver avant de réparer"]}
@@ -412,11 +412,11 @@ const LV = [
   ctx:"Six mois plus tard, les plaintes ont presque disparu. Mais la productivité stagne, l'absentéisme reste à 9 % et personne ne propose d'amélioration.",
   line:"On a tout réparé, tout amélioré. Ils ne se plaignent plus, mais ils ne sont pas plus motivés ! Qu'est-ce que j'ai raté ?",
   opts:[
-   {t:"Rien n'a raté : ne plus être insatisfait ne veut pas dire être motivé. Satisfaction et insatisfaction ne sont pas les deux extrémités d'un même continuum.", q:"g", r:"Donc on a fait la moitié du chemin. Et l'autre moitié ?",
+   {t:"Rien n'a raté : ne plus être insatisfait n'est pas être motivé. Ce sont deux dimensions distinctes.", q:"g", r:"Donc on a fait la moitié du chemin. Et l'autre moitié ?",
     a:"C'est l'idée centrale d'Herzberg : les conditions qui conduisent à la satisfaction ne sont pas celles qui conduisent à l'insatisfaction. L'absence d'insatisfaction est un point neutre ; la motivation vient des facteurs intrinsèques : contenu du travail, responsabilités, accomplissement.", tags:["Herzberg","Deux continuums distincts"]},
-   {t:"Les conditions ne sont pas encore assez bonnes : il faut aller plus loin (nouvelle salle de pause, tickets restaurant).", q:"m", r:"La nouvelle salle de pause est très appréciée. La productivité, elle, ne bouge pas.",
+   {t:"Les conditions ne sont pas encore assez bonnes : il faut aller plus loin, avec une nouvelle salle de pause et des tickets restaurant.", q:"m", r:"La nouvelle salle de pause est très appréciée. La productivité, elle, ne bouge pas.",
     a:"Améliorer encore les facteurs d'hygiène réduit l'insatisfaction résiduelle, mais ne crée pas de motivation.", tags:["Facteurs d'hygiène"]},
-   {t:"Le problème vient des intérimaires, qui tirent la moyenne vers le bas.", q:"b", r:"Les salariés en CDI ont exactement les mêmes chiffres.",
+   {t:"Le problème vient des intérimaires, peu impliqués, qui tirent vers le bas la moyenne de tout le site.", q:"b", r:"Les salariés en CDI ont exactement les mêmes chiffres.",
     a:"Rien ne montre que le statut explique le plateau. Ce diagnostic évite la question du contenu du travail.", tags:["Erreur de diagnostic"]}
   ],
   lens:{t:"herz", key:["accomp","reco","contenu","resp","dev"], on:["conditions","supervision","politique","remu","relations"], mech:"Hygiène traitée, motivation absente"}},
@@ -425,11 +425,11 @@ const LV = [
   ctx:"Un préparateur scanne et dépose des colis sur un trajet fixé par le logiciel, sept heures par jour. Sandrine connaît l'entrepôt par cœur et sait d'où viennent les erreurs. Personne ne lui a jamais demandé son avis.",
   line:"Je fais le même geste 2 000 fois par jour depuis douze ans. Qu'est-ce que vous comptez changer, concrètement ?",
   opts:[
-   {t:"Enrichir le travail : équipes autonomes qui organisent leur zone, rotation entre réception, préparation et expédition, responsabilité de la qualité, formations certifiantes (cariste, chef d'équipe).", q:"g", r:"On a réorganisé la zone B à cinq. Les erreurs ont baissé de moitié, et je passe mon CACES le mois prochain.",
+   {t:"Enrichir le travail : autonomie des équipes, rotation des postes, responsabilité de la qualité, formations.", q:"g", r:"On a réorganisé la zone B à cinq. Les erreurs ont baissé de moitié, et je passe mon CACES le mois prochain.",
     a:"Herzberg recommande d'élargir et d'enrichir le travail : autonomie, développement, responsabilités. On agit alors sur les facteurs de motivation, intrinsèques au travail : son contenu, l'accomplissement, la reconnaissance, les perspectives.", tags:["Enrichissement du travail","Facteurs de motivation","Autonomie et responsabilités"]},
-   {t:"Un panneau « préparateur du mois » à l'entrée de l'entrepôt.", q:"m", r:"J'ai eu ma photo en mars. En avril, je faisais toujours le même geste 2 000 fois par jour.",
+   {t:"Afficher chaque mois un « préparateur du mois » à l'entrée, avec sa photo et ses résultats.", q:"m", r:"J'ai eu ma photo en mars. En avril, je faisais toujours le même geste 2 000 fois par jour.",
     a:"La reconnaissance est un facteur de motivation, mais isolée, elle ne change ni le contenu du travail ni les responsabilités.", tags:["Reconnaissance seule"]},
-   {t:"Une prime au rendement : 5 centimes par ligne préparée au-delà de la cadence.", q:"b", r:"Les cadences montent pendant un mois. Puis les troubles musculo-squelettiques et les erreurs aussi.",
+   {t:"Une prime au rendement : 5 centimes par ligne préparée au-delà de la cadence, pour récompenser les plus rapides.", q:"b", r:"Les cadences montent pendant un mois. Puis les troubles musculo-squelettiques et les erreurs aussi.",
     a:"Une prime au rendement intensifie le même travail. Elle relève de la rémunération, un facteur d'hygiène, et ajoute de la pression physique.", tags:["Intensification du travail"]}
   ],
   lens:{t:"herz", key:["contenu","resp","dev","accomp"], on:["conditions","supervision","politique","remu","relations"], mech:"Enrichir le travail"}},
@@ -438,11 +438,11 @@ const LV = [
   ctx:"Enzo, intérimaire de 20 ans, est affecté au contrôle des colis en heures creuses : peu de flux, des tâches répétitives, de longs temps morts. Il est souvent sur son téléphone, arrive en retard et semble de plus en plus éteint.",
   line:"Il ne fait rien de la journée. Je veux le signaler à l'agence d'intérim pour qu'on ne le reprenne pas. D'accord ?",
   opts:[
-   {t:"Avant de sanctionner, penser au bore-out : un travail vide et sans enjeu épuise et démotive autant qu'une surcharge.", q:"g", r:"Je n'y avais pas pensé. Je l'ai mis en binôme à la réception : il ne regarde plus son téléphone.",
+   {t:"Un possible bore-out : un travail vide et sans enjeu épuise et démotive autant qu'une surcharge.", q:"g", r:"Je n'y avais pas pensé. Je l'ai mis en binôme à la réception : il ne regarde plus son téléphone.",
     a:"Le bore-out est l'épuisement par l'ennui et la sous-charge : tâches vides de sens, inactivité, sentiment d'inutilité. C'est un risque psychosocial au même titre que le burnout, à l'autre bout du spectre de la charge de travail. La réponse rejoint Herzberg : donner du contenu et des responsabilités.", tags:["Risques psychosociaux","Bore-out","Contenu du travail"]},
-   {t:"Un manque de compétences : il faut le former au poste.", q:"m", r:"Le poste s'apprend en une heure. Enzo l'a appris en vingt minutes.",
+   {t:"Un manque de compétences : il n'a jamais été vraiment formé au contrôle des colis, il faut lui proposer une formation.", q:"m", r:"Le poste s'apprend en une heure. Enzo l'a appris en vingt minutes.",
     a:"Ce n'est pas un problème de KSA : Enzo sait faire le travail. C'est le travail lui-même qui est vide.", tags:["KSA"]},
-   {t:"Un problème d'attitude : il faut le signaler et le remplacer.", q:"b", r:"Son remplaçant tient deux semaines, puis montre exactement les mêmes signes.",
+   {t:"Un problème d'attitude et de sérieux : il faut le signaler à l'agence d'intérim et le remplacer.", q:"b", r:"Son remplaçant tient deux semaines, puis montre exactement les mêmes signes.",
     a:"Sanctionner un symptôme laisse la cause en place : n'importe qui, à ce poste, finit par décrocher.", tags:["Erreur de diagnostic"]}
   ],
   lens:{t:"rps", key:"boreout", mech:"Bore-out : sous-charge, ennui"}},
@@ -451,11 +451,11 @@ const LV = [
   ctx:"Le Black Friday approche : +60 % de volume pendant six semaines, et le siège refuse les renforts intérimaires demandés. Moussa, chef d'équipe de nuit, enchaîne 58 heures par semaine depuis un mois. Il ne dort plus, s'emporte contre son équipe et répète que « de toute façon, ça ne sert à rien ».",
   line:"Franck veut qu'on tienne coûte que coûte. Moussa va craquer, et son équipe avec. Que faites-vous ?",
   opts:[
-   {t:"Signaler à Franck que l'objectif est irréaliste sans renforts, obtenir des intérimaires ou étaler les livraisons, limiter les heures de Moussa et répartir sa charge.", q:"g", r:"Franck a fini par obtenir quinze intérimaires. Moussa est repassé à 42 heures.",
+   {t:"Signaler à Franck que l'objectif est irréaliste, obtenir des renforts et limiter les heures de Moussa.", q:"g", r:"Franck a fini par obtenir quinze intérimaires. Moussa est repassé à 42 heures.",
     a:"Le burnout naît d'un effort excessif pour atteindre un objectif irréaliste ; épuisement, irritabilité et cynisme en sont les signaux. Au-delà de 55 heures par semaine, l'OMS associe un risque accru d'AVC et de maladie cardiaque. Réduire le stress au travail fait partie du rôle du management, et cela passe ici par l'objectif lui-même.", tags:["Burnout","Objectif irréaliste","55 heures et plus"]},
-   {t:"Tenir le pic, puis offrir à Moussa une prime et deux semaines de congé en janvier.", q:"m", r:"Moussa tient jusqu'au 20 décembre, puis s'effondre. Il est en arrêt six semaines.",
+   {t:"Tenir le pic, puis offrir à Moussa une prime exceptionnelle et deux semaines de congé en janvier pour récupérer.", q:"m", r:"Moussa tient jusqu'au 20 décembre, puis s'effondre. Il est en arrêt six semaines.",
     a:"Compenser après coup ne prévient pas l'épuisement : la charge et l'objectif irréaliste restent intacts pendant tout le pic.", tags:["Compenser sans prévenir"]},
-   {t:"C'est le pic, tout le monde souffre : on tient.", q:"b", r:"Deux chefs d'équipe démissionnent en décembre. Les erreurs d'expédition triplent.",
+   {t:"C'est le pic : tout le monde souffre, et ce n'est pas le moment de lâcher. On tient jusqu'en janvier.", q:"b", r:"Deux chefs d'équipe démissionnent en décembre. Les erreurs d'expédition triplent.",
     a:"Banaliser la surcharge revient à renoncer au rôle du manager. Le coût humain se double d'un coût économique.", tags:["Banalisation de la surcharge"]}
   ],
   lens:{t:"rps", key:"burnout", mech:"Burnout : surcharge, objectif irréaliste"}}
@@ -476,11 +476,11 @@ const LV = [
   ctx:"Karima, conseillère senior et tutrice des nouveaux, a appris que Romain, recruté il y a trois mois sur le même poste, gagne 15 % de plus qu'elle. Depuis, elle a arrêté le tutorat, ne prend plus les appels difficiles et part à l'heure pile.",
   line:"Elle ne fait plus que le strict minimum. Comment expliquez-vous ce changement ?",
   opts:[
-   {t:"Une iniquité perçue : Karima compare le rapport entre ses efforts et ses rétributions à celui d'un collègue au même poste, se sent sous-payée, et réduit ses efforts pour rétablir l'équilibre.", q:"g", r:"C'est exactement ce qu'elle m'a dit : « Pourquoi en ferais-je plus que lui, pour moins ? »",
+   {t:"Une iniquité perçue : elle se compare à Romain, se sent sous-payée et réduit ses efforts pour rétablir l'équilibre.", q:"g", r:"C'est exactement ce qu'elle m'a dit : « Pourquoi en ferais-je plus que lui, pour moins ? »",
     a:"Selon Adams, la motivation dépend de l'équité perçue entre efforts et récompenses, et entre son salaire et celui des personnes qui font un travail similaire. Une personne qui se perçoit sous-payée réduit ses contributions pour rétablir l'équilibre. C'est une question de justice distributive.", tags:["Théorie de l'équité (Adams)","Sous-rétribution perçue","Justice distributive"]},
-   {t:"Un problème de rémunération, facteur d'hygiène : son salaire est trop bas.", q:"m", r:"Son salaire lui convenait très bien… jusqu'à la semaine dernière.",
+   {t:"Un problème de rémunération, facteur d'hygiène : son salaire est trop bas pour son ancienneté.", q:"m", r:"Son salaire lui convenait très bien… jusqu'à la semaine dernière.",
     a:"Herzberg aide à voir que la rémunération peut créer de l'insatisfaction. Mais le salaire de Karima n'a pas changé : c'est la comparaison avec Romain qui a tout déclenché. C'est le mécanisme décrit par Adams.", tags:["Herzberg","Rémunération"]},
-   {t:"De la jalousie : un trait de personnalité qu'elle doit apprendre à gérer.", q:"b", r:"Jalouse ? Elle a formé Romain elle-même, et elle l'apprécie.",
+   {t:"De la jalousie envers un collègue plus jeune : un trait de personnalité qu'elle doit apprendre à gérer.", q:"b", r:"Jalouse ? Elle a formé Romain elle-même, et elle l'apprécie.",
     a:"Ramener sa réaction à sa personnalité ignore que la perception d'injustice provoque des réponses cognitives et comportementales prévisibles.", tags:["Erreur de diagnostic"]}
   ],
   lens:{t:"equity", key:"sous", me:"Karima", ref:"Romain", mech:"Sous-rétribution perçue"}},
@@ -489,11 +489,11 @@ const LV = [
   ctx:"La DRH confirme l'écart : Romain a été recruté sur la grille d'une des entités fusionnées, plus généreuse. Le budget des augmentations est déjà bouclé pour l'année.",
   line:"On ne peut rien faire avant janvier. Le plus simple, c'est de rappeler à tout le monde que les salaires sont confidentiels. Non ?",
   opts:[
-   {t:"Reconnaître l'écart auprès de Karima, lui présenter un rattrapage daté et fondé sur des critères clairs, et lancer l'harmonisation des grilles issues de la fusion.", q:"g", r:"Elle m'a dit : « Au moins, on ne me prend pas pour une idiote. » Elle a repris le tutorat.",
+   {t:"Reconnaître l'écart, lui annoncer un rattrapage daté selon des critères clairs, et harmoniser les grilles.", q:"g", r:"Elle m'a dit : « Au moins, on ne me prend pas pour une idiote. » Elle a repris le tutorat.",
     a:"Rétablir l'équité passe par les rétributions (justice distributive), mais aussi par la manière : un processus clair (justice procédurale) et des explications honnêtes (justice informationnelle). Même sans augmentation immédiate, la perception d'équité peut se reconstruire.", tags:["Équité","Justice distributive et procédurale","Transparence"]},
-   {t:"Lui verser discrètement une prime exceptionnelle, sans autre explication.", q:"m", r:"Elle accepte la prime. Puis elle demande : « Et l'année prochaine ? Et les autres ? »",
+   {t:"Lui verser discrètement une prime exceptionnelle qui compense l'écart cette année, sans autre explication.", q:"m", r:"Elle accepte la prime. Puis elle demande : « Et l'année prochaine ? Et les autres ? »",
     a:"La prime réduit l'écart cette année, mais sans règle ni explication, rien ne garantit que l'iniquité ne reviendra pas, ni qu'elle ne touche pas d'autres salariés.", tags:["Corriger sans règle"]},
-   {t:"Oui : rappeler la confidentialité des salaires et passer à autre chose.", q:"b", r:"Le message circule. Dans la journée, trois autres conseillers comparent leurs fiches de paie.",
+   {t:"Rappeler à tous que les salaires sont confidentiels, et que les comparer entre collègues n'est pas professionnel.", q:"b", r:"Le message circule. Dans la journée, trois autres conseillers comparent leurs fiches de paie.",
     a:"Étouffer la comparaison ne supprime pas le sentiment d'injustice : il se transforme en défiance envers la direction.", tags:["Opacité"]}
   ],
   lens:{t:"equity", key:"sous", me:"Karima", ref:"Romain", mech:"Rétablir l'équité, et l'expliquer"}},
@@ -502,11 +502,11 @@ const LV = [
   ctx:"Romain a appris lui aussi l'écart de salaire. Depuis, il prend tous les dossiers difficiles, reste tard le soir et s'excuse presque d'être là.",
   line:"Je gagne plus que des collègues qui m'ont tout appris. Je suis mal à l'aise. Je me dis qu'il faut que je le mérite.",
   opts:[
-   {t:"Une sur-rétribution perçue : Romain se sent trop payé par rapport à ses collègues, et augmente ses efforts pour rétablir l'équité.", q:"g", r:"Oui, c'est ça. Ce n'est pas de l'ambition, c'est de la culpabilité.",
+   {t:"Une sur-rétribution perçue : il se sent trop payé par rapport à ses collègues et compense par ses efforts.", q:"g", r:"Oui, c'est ça. Ce n'est pas de l'ambition, c'est de la culpabilité.",
     a:"Adams montre que l'iniquité agit dans les deux sens : la sous-rétribution, mais aussi la sur-rétribution, affectent le comportement. Se sentir trop payé crée un inconfort que la personne réduit en augmentant ses contributions, ce qui n'est pas tenable longtemps.", tags:["Théorie de l'équité (Adams)","Sur-rétribution perçue"]},
-   {t:"Un fort besoin d'accomplissement : il cherche à exceller.", q:"m", r:"Exceller ? Je veux juste ne plus avoir l'impression de voler ma place.",
+   {t:"Un fort besoin d'accomplissement : il cherche à exceller et à se mesurer aux dossiers les plus difficiles du service.", q:"m", r:"Exceller ? Je veux juste ne plus avoir l'impression de voler ma place.",
     a:"Le comportement ressemble à celui d'un profil nAch, mais le moteur n'est pas le défi : c'est l'inconfort de l'iniquité.", tags:["McClelland (nAch)"]},
-   {t:"De l'opportunisme : il veut se faire bien voir pour obtenir une promotion.", q:"b", r:"Il a refusé de postuler au poste de superviseur le mois dernier.",
+   {t:"De l'opportunisme : il veut se faire bien voir de la direction pour obtenir une promotion rapide.", q:"b", r:"Il a refusé de postuler au poste de superviseur le mois dernier.",
     a:"Lui prêter une stratégie de carrière ignore la cause que le contexte indique : la comparaison avec ses collègues.", tags:["Erreur de diagnostic"]}
   ],
   lens:{t:"equity", key:"sur", me:"Romain", ref:"Karima", mech:"Sur-rétribution perçue"}},
@@ -515,11 +515,11 @@ const LV = [
   ctx:"Une enveloppe de primes de 60 000 € doit être répartie entre les 45 conseillers. L'an dernier, elle avait été répartie sans critères connus, et plusieurs conseillers avaient contesté.",
   line:"Je compte répartir moi-même, à l'instinct : je sais qui travaille bien. On annonce les montants individuellement. Ça vous va ?",
   opts:[
-   {t:"Fixer avec l'équipe des critères connus à l'avance (qualité, taux de résolution, tutorat), les appliquer à tous de la même façon, sur des données, avec une possibilité de recours.", q:"g", r:"Les montants vont du simple au triple, et personne ne conteste. C'est une première.",
+   {t:"Fixer avec l'équipe des critères connus à l'avance, appliqués à tous de la même façon, avec un recours possible.", q:"g", r:"Les montants vont du simple au triple, et personne ne conteste. C'est une première.",
     a:"La justice procédurale porte sur les processus utilisés pour distribuer les récompenses. Des critères connus, cohérents et contestables rendent la répartition acceptable, même inégale. Elle rétablit aussi le lien entre performance et rétribution, au cœur du rôle du manager.", tags:["Justice procédurale","Critères transparents","Lien performance-rétribution"]},
-   {t:"Répartir à parts égales, 1 333 € chacun : personne ne pourra se plaindre.", q:"m", r:"Personne ne se plaint… sauf ceux qui ont tenu le service pendant les absences.",
+   {t:"Répartir à parts égales, 1 333 € chacun : c'est simple, et personne ne pourra se plaindre.", q:"m", r:"Personne ne se plaint… sauf ceux qui ont tenu le service pendant les absences.",
     a:"L'égalité stricte évite les conflits, mais rompt le lien entre performance et rétribution. Selon Adams, ceux qui ont fourni plus d'efforts se sentiront sous-rétribués.", tags:["Égalité ≠ équité"]},
-   {t:"Oui, à l'instinct : c'est au manager de juger.", q:"b", r:"Les montants fuitent. Ceux qui déjeunent avec Thomas ont les plus grosses primes.",
+   {t:"Oui, à l'instinct : c'est au manager de juger, il connaît mieux que personne le travail de chacun.", q:"b", r:"Les montants fuitent. Ceux qui déjeunent avec Thomas ont les plus grosses primes.",
     a:"Une décision opaque, même bien intentionnée, est perçue comme arbitraire. La justice procédurale est violée, et la défiance s'installe.", tags:["Arbitraire"]}
   ],
   lens:{t:"just", key:"procedurale", on:["distributive"], mech:"Justice procédurale"}},
@@ -528,11 +528,11 @@ const LV = [
   ctx:"En réunion de service, Thomas a reproché à une conseillère, devant tous ses collègues, une erreur de facturation, en ironisant sur ses « capacités ». L'erreur était réelle. L'équipe est sortie choquée.",
   line:"Sur le fond, il avait peut-être raison. Mais on ne traite pas les gens comme ça. Vous comptez faire quelque chose ?",
   opts:[
-   {t:"En parler à Thomas en tête-à-tête : on recadre une erreur en privé, avec respect et sur les faits. Puis revoir la conseillère pour traiter à la fois l'erreur et l'incident.", q:"g", r:"Thomas a reconnu qu'il était allé trop loin. Il est allé s'excuser auprès d'elle.",
+   {t:"En parler à Thomas en tête-à-tête : une erreur se recadre en privé, avec respect et sur les faits. Puis revoir la conseillère.", q:"g", r:"Thomas a reconnu qu'il était allé trop loin. Il est allé s'excuser auprès d'elle.",
     a:"La justice interpersonnelle tient au fait d'être traité avec respect par les représentants de l'autorité. Un reproche fondé, exprimé de façon humiliante, est perçu comme injuste : la forme compte autant que le fond. Le feedback reste possible, mais en privé et sur des faits.", tags:["Justice interpersonnelle","Respect","Feedback en privé"]},
-   {t:"Envoyer à toute l'équipe un mail rappelant les valeurs de respect du groupe.", q:"m", r:"Le mail est bien écrit. Tout le monde a compris de qui il parlait, sauf Thomas.",
+   {t:"Envoyer à toute l'équipe un mail rappelant les valeurs de respect du groupe, sans viser personne.", q:"m", r:"Le mail est bien écrit. Tout le monde a compris de qui il parlait, sauf Thomas.",
     a:"Rappeler une norme générale évite la conversation nécessaire. La justice interpersonnelle se joue dans les relations concrètes, pas dans les chartes.", tags:["Réponse générique"]},
-   {t:"Ne rien faire : l'erreur était réelle, et Thomas est votre supérieur.", q:"b", r:"La conseillère est en arrêt maladie. Deux collègues demandent à changer de service.",
+   {t:"Ne rien faire : l'erreur était réelle, Thomas est votre supérieur, et le contredire affaiblirait votre position.", q:"b", r:"La conseillère est en arrêt maladie. Deux collègues demandent à changer de service.",
     a:"Laisser passer une humiliation publique valide le comportement aux yeux de l'équipe. Le coût en confiance et en santé dépasse largement l'erreur initiale.", tags:["Inaction"]}
   ],
   lens:{t:"just", key:"interpersonnelle", on:["distributive","procedurale"], mech:"Justice interpersonnelle"}},
@@ -541,11 +541,11 @@ const LV = [
   ctx:"Vendredi à 18 h, un mail de la direction générale annonce le regroupement du service sur le site de Lille d'ici neuf mois. Les douze conseillers lyonnais apprennent la nouvelle en même temps que tout le monde. Les rumeurs circulent tout le week-end.",
   line:"Lundi, vous aurez votre équipe devant vous. Je n'ai pas toutes les réponses non plus. Que faites-vous ?",
   opts:[
-   {t:"Réunir l'équipe dès lundi : expliquer les raisons de la décision, ce qui est décidé et ce qui ne l'est pas encore, le calendrier et les critères des choix à venir, puis recevoir chacun individuellement.", q:"g", r:"Personne n'est content de la décision. Mais chacun sait à quoi s'attendre, et personne n'a démissionné.",
+   {t:"Réunir l'équipe lundi : expliquer les raisons, le calendrier et ce qui reste à décider, puis recevoir chacun.", q:"g", r:"Personne n'est content de la décision. Mais chacun sait à quoi s'attendre, et personne n'a démissionné.",
     a:"La justice informationnelle porte sur le fait que les autorités prennent le temps d'expliquer leurs décisions de manière approfondie et raisonnable. Associée à des critères clairs (justice procédurale) et à un traitement respectueux (justice interpersonnelle), elle rend une mauvaise nouvelle acceptable. Elle répond aussi au besoin de sécurité que l'annonce menace.", tags:["Justice informationnelle","Expliquer les décisions","Quatre dimensions de la justice"]},
-   {t:"Transférer le mail officiel et dire que votre porte est ouverte.", q:"m", r:"Trois personnes passent vous voir. Les neuf autres consultent les offres d'emploi.",
+   {t:"Transférer le mail officiel à l'équipe et dire que votre porte est ouverte à ceux qui ont des questions.", q:"m", r:"Trois personnes passent vous voir. Les neuf autres consultent les offres d'emploi.",
     a:"La porte ouverte est un geste, mais le mail laisse les questions essentielles sans réponse : pourquoi, quand, selon quels critères.", tags:["Information minimale"]},
-   {t:"Ne rien dire tant que tout n'est pas décidé, pour éviter la panique.", q:"b", r:"Le silence nourrit les rumeurs. Les meilleurs conseillers lyonnais partent les premiers.",
+   {t:"Ne rien dire tant que tout n'est pas décidé : annoncer des informations incomplètes ne ferait qu'alimenter la panique.", q:"b", r:"Le silence nourrit les rumeurs. Les meilleurs conseillers lyonnais partent les premiers.",
     a:"Retenir l'information pour éviter l'inquiétude produit l'effet inverse : en l'absence d'explication, chacun imagine le pire.", tags:["Silence"]}
   ],
   lens:{t:"just", key:"informationnelle", on:["distributive","procedurale","interpersonnelle"], mech:"Justice informationnelle"}}
