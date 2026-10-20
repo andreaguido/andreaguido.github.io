@@ -612,13 +612,14 @@ function renderBoard(){
   el.innerHTML = html;
 }
 
-async function saveScore(){
+async function saveScore(score=total(), good=totalGood()){
   if(!API_OK) return "skip";
   try{
     const r = await fetch(API_URL, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"},
-      body: JSON.stringify({game:GAME, id:LB.me, name:S.name, score:total(), good:totalGood()})});
+      body: JSON.stringify({game:GAME, id:LB.me, name:S.name, score, good})});
     const j = await r.json();
     if(!j.ok) return "fail";
+    try{ localStorage.setItem(PKEY+"-synced", String(Math.max(score, Number(localStorage.getItem(PKEY+"-synced"))||0))); }catch(e){}
     await loadBoard();
     return j.best ? "best" : "kept";
   }catch(e){ return "fail"; }
@@ -835,6 +836,14 @@ function finale(){
 }
 const clamp=x=>Math.max(0,Math.min(100,x));
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
+// re-send the completed-level total once if the board never accepted it (e.g. saves refused by an older server limit)
+function resync(){
+  if(S.debug || S.name.length<2 || S.done<1) return;
+  const n=Math.min(S.done, LV.length), sc=LV.slice(0,n).reduce((s,_,L)=>s+ptsOf(L),0), gd=LV.slice(0,n).reduce((s,_,L)=>s+goodOf(L),0);
+  let synced=0; try{ synced=Number(localStorage.getItem(PKEY+"-synced"))||0; }catch(e){}
+  if(sc>synced) saveScore(sc, gd);
+}
+resync();
 S.debug ? levelIntro() : home();
 </script>
 </body>
