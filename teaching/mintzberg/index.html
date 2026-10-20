@@ -175,9 +175,9 @@ const CH = [
   opts:[
    {t:"Non. À cette taille, vous coordonnez vous-même en disant à chacun quoi faire. Gardez les choses simples.", q:"g", r:"Ouf. Honnêtement, ça me rassure.",
     a:"C'est une structure simple : petite entreprise récente, pas de technostructure, peu de fonctions supports. La supervision directe suffit et la partie clé est le sommet stratégique.", tags:["Structure simple","Supervision directe","Sommet stratégique"]},
-   {t:"Oui, recrutez un ingénieur méthodes pour standardiser tous les gestes de fabrication.", q:"b", r:"Un salaire de plus pour écrire ce que mes artisans savent déjà faire ? Ça me paraît cher…",
+   {t:"Oui : recrutez un ingénieur méthodes pour standardiser les gestes de fabrication avant que l'atelier ne grandisse.", q:"b", r:"Un salaire de plus pour écrire ce que mes artisans savent déjà faire ? Ça me paraît cher…",
     a:"C'est prématuré : la technostructure n'existe pas dans une structure simple. Avec six personnes, standardiser les procédés coûte plus qu'il ne rapporte.", tags:["Technostructure prématurée"]},
-   {t:"Laissez l'équipe s'organiser seule entre artisans, sans vous en mêler.", q:"m", r:"Possible… mais c'est moi qui connais les clients et les commandes.",
+   {t:"Laissez les artisans s'organiser entre eux, sans vous en mêler : ils connaissent leur métier mieux que personne.", q:"m", r:"Possible… mais c'est moi qui connais les clients et les commandes.",
     a:"L'ajustement mutuel fonctionne entre artisans, mais dans une jeune entreprise c'est la fondatrice qui coordonne : le mécanisme dominant est la supervision directe.", tags:["Ajustement mutuel"]}
   ],
   org:{on:["sommet","centre"], key:"sommet", conf:"Structure simple", mech:"Supervision directe"}},
@@ -188,9 +188,9 @@ const CH = [
   opts:[
    {t:"Créer un bureau des méthodes qui définit les étapes de montage pour chaque poste.", q:"g", r:"Enfin une même façon de faire pour tout le monde ! Les gars vont râler une semaine, puis ça ira.",
     a:"Production de masse, tâches répétitives : c'est le terrain de l'organisation mécaniste. On coordonne par la standardisation des procédés, conçue par la technostructure (les analystes), qui devient la partie clé.", tags:["Organisation mécaniste","Standardisation des procédés","Technostructure"]},
-   {t:"Camille doit superviser encore plus étroitement, poste par poste.", q:"b", r:"Elle est déjà épuisée… et elle ne peut pas être partout à la fois.",
+   {t:"Camille doit superviser encore plus étroitement, poste par poste, pour repérer elle-même les défauts.", q:"b", r:"Elle est déjà épuisée… et elle ne peut pas être partout à la fois.",
     a:"La supervision directe atteint vite sa limite quand la taille augmente. Une seule personne ne peut pas coordonner 120 opérateurs.", tags:["Limite de la supervision directe"]},
-   {t:"Fixer à chaque équipe un objectif de taux de défaut, sans dire comment l'atteindre.", q:"m", r:"Un objectif, d'accord, mais mes équipes ne savent pas comment l'atteindre.",
+   {t:"Fixer à chaque équipe un objectif de taux de défaut, sans lui imposer de méthode pour l'atteindre.", q:"m", r:"Un objectif, d'accord, mais mes équipes ne savent pas comment l'atteindre.",
     a:"Standardiser les résultats aide, mais pour des tâches répétitives et routinières on spécifie plutôt le contenu du travail lui-même : la standardisation des procédés.", tags:["Standardisation des résultats"]}
   ],
   org:{on:["sommet","centre","techno","support"], key:"techno", conf:"Organisation mécaniste", mech:"Standardisation des procédés"}},
@@ -201,9 +201,9 @@ const CH = [
   opts:[
    {t:"Nommez des responsables d'usine et des chefs de service entre vous et les équipes.", q:"g", r:"Des managers de managers… Je deviens une « vraie » entreprise, alors !",
     a:"Quand un manager ne peut plus encadrer tout le monde, il faut une ligne hiérarchique (le management intermédiaire) qui transmet l'autorité du sommet vers le centre opérationnel.", tags:["Ligne hiérarchique","Organigramme"]},
-   {t:"Embauchez davantage d'analystes pour écrire des procédures sur tout.", q:"m", r:"On a déjà un bureau des méthodes… mais il ne prend pas les décisions à ma place.",
+   {t:"Embauchez davantage d'analystes pour écrire des procédures sur tout, afin que les décisions ne remontent plus jusqu'à vous.", q:"m", r:"On a déjà un bureau des méthodes… mais il ne prend pas les décisions à ma place.",
     a:"La technostructure standardise le travail, elle n'encadre pas. Le problème ici, c'est l'éventail de contrôle trop large du sommet.", tags:["Technostructure"]},
-   {t:"Supprimez la hiérarchie : tout le monde décide ensemble en réunion.", q:"b", r:"400 personnes dans une réunion ? Vous plaisantez ?",
+   {t:"Supprimez la hiérarchie : les équipes décident ensemble en réunion, comme au temps de l'atelier.", q:"b", r:"400 personnes dans une réunion ? Vous plaisantez ?",
     a:"L'ajustement mutuel ne passe pas à l'échelle dans une organisation mécaniste de cette taille, avec des tâches routinières.", tags:["Ajustement mutuel"]}
   ],
   org:{on:["sommet","ligne","centre","techno","support"], key:"techno", conf:"Organisation mécaniste", mech:"Standardisation des procédés"}},
@@ -214,9 +214,9 @@ const CH = [
   opts:[
    {t:"Créer trois divisions autonomes ; le siège leur fixe des objectifs de résultats et contrôle la performance.", q:"g", r:"Chacun son compte de résultat, et le siège regarde les chiffres. Les patrons de division vont adorer.",
     a:"C'est la structure divisionnalisée, une extension de l'organisation mécaniste. Le sommet central donne des lignes directrices, la technostructure reste au siège, et l'on coordonne par la standardisation des résultats. La partie clé est la ligne hiérarchique, avec les directeurs de division.", tags:["Structure divisionnalisée","Standardisation des résultats","Ligne hiérarchique"]},
-   {t:"Centraliser encore plus : un seul manuel de procédures pour tout le groupe.", q:"b", r:"C'est exactement ce qui nous ralentit aujourd'hui…",
+   {t:"Centraliser davantage : un manuel de procédures unique pour tout le groupe, pour garantir la cohérence.", q:"b", r:"C'est exactement ce qui nous ralentit aujourd'hui…",
     a:"Des activités hétérogènes ne se coordonnent pas avec les mêmes procédés. La centralisation aggrave le problème.", tags:["Sur-centralisation"]},
-   {t:"Laisser les trois patrons s'entendre directement entre eux, sans rôle du siège.", q:"m", r:"Et qui arbitre les investissements ? Qui consolide les comptes ?",
+   {t:"Laisser les trois patrons d'activité s'entendre directement entre eux, sans intervention du siège.", q:"m", r:"Et qui arbitre les investissements ? Qui consolide les comptes ?",
     a:"L'autonomie est la bonne intuition, mais il faut un sommet stratégique central qui fixe les objectifs. Les divisions ont peu de coordination entre elles.", tags:["Ajustement mutuel"]}
   ],
   org:{on:["sommet","ligne","centre","techno","support"], key:"ligne", conf:"Structure divisionnalisée", mech:"Standardisation des résultats"}},
@@ -227,9 +227,9 @@ const CH = [
   opts:[
    {t:"Équipes projet pluridisciplinaires, peu de règles formelles : vous vous coordonnez en échangeant en continu.", q:"g", r:"Oui ! On fait le point tous les matins, et chacun s'adapte. C'est comme ça qu'on avance.",
     a:"Tâches non routinières et environnement changeant : c'est l'adhocratie (organisation innovante). Peu formalisée et décentralisée, presque sans technostructure, elle coordonne par l'ajustement mutuel. Les spécialistes font partie du centre opérationnel.", tags:["Adhocratie","Ajustement mutuel","Centre opérationnel / fonctions supports"]},
-   {t:"Appliquer quand même les procédures de l'usine, par cohérence.", q:"b", r:"Alors on aura des formulaires parfaits… et aucun prototype.",
+   {t:"Appliquer quand même les procédures de l'usine : un même groupe doit avoir les mêmes règles partout.", q:"b", r:"Alors on aura des formulaires parfaits… et aucun prototype.",
     a:"La standardisation des procédés convient aux tâches répétitives, pas à l'innovation, qui exige souplesse et adaptation rapide.", tags:["Standardisation des procédés"]},
-   {t:"Ne recruter que des ingénieurs diplômés des meilleures écoles et les laisser travailler chacun de leur côté.", q:"m", r:"Les diplômes, on les a déjà. Le problème, c'est de travailler ensemble sur l'inconnu.",
+   {t:"Ne recruter que des ingénieurs issus des meilleures écoles, et laisser chacun travailler de son côté en toute autonomie.", q:"m", r:"Les diplômes, on les a déjà. Le problème, c'est de travailler ensemble sur l'inconnu.",
     a:"La standardisation des qualifications caractérise l'organisation professionnelle (hôpitaux, universités), où les experts travaillent de façon autonome. Le Lab innove en équipe : il a besoin d'ajustement mutuel.", tags:["Standardisation des qualifications"]}
   ],
   org:{on:["sommet","ligne","centre","techno","support"], key:"centre", conf:"Divisions + Lab adhocratique", mech:"Ajustement mutuel (au Lab)"}},
@@ -238,11 +238,11 @@ const CH = [
   ctx:"Les équipes de la location en libre-service sont démotivées. Le turnover atteint 35 %. Beaucoup ont rejoint l'entreprise pour sa mission : « rendre la ville respirable ».",
   line:"On les pilote uniquement avec des tableaux de bord : vélos réparés par heure, tickets fermés… Ils me disent qu'ils ne savent plus pourquoi ils travaillent ici. Que faire ?",
   opts:[
-   {t:"Remettre la mission au centre : la partager, recruter sur les valeurs, laisser la culture guider les décisions du quotidien.", q:"g", r:"C'est ce qu'ils demandent depuis des mois. On peut aussi impliquer les associations cyclistes locales.",
+   {t:"Remettre la mission au centre : recruter sur les valeurs et laisser la culture guider le quotidien.", q:"g", r:"C'est ce qu'ils demandent depuis des mois. On peut aussi impliquer les associations cyclistes locales.",
     a:"Vous mobilisez l'idéologie, sixième partie ajoutée par Mintzberg en 1983 : le halo de normes, de valeurs et de culture. La standardisation des normes est le mécanisme dominant de l'organisation missionnaire (associations, ONG, entreprises libérées).", tags:["Organisation missionnaire","Standardisation des normes","Idéologie"]},
-   {t:"Ajouter des indicateurs et des primes à la performance.", q:"b", r:"Encore des chiffres… c'est justement ce qui les fait fuir.",
+   {t:"Ajouter des indicateurs et des primes à la performance, pour que chacun voie l'effet de son travail.", q:"b", r:"Encore des chiffres… c'est justement ce qui les fait fuir.",
     a:"Renforcer la standardisation des résultats ne répond pas à une perte de sens. Le levier ici est culturel.", tags:["Standardisation des résultats"]},
-   {t:"Renforcer le contrôle par les chefs d'équipe.", q:"m", r:"Ça réduira peut-être les absences, mais pas les démissions.",
+   {t:"Renforcer l'encadrement de proximité : des chefs d'équipe plus présents sur le terrain, qui suivent chacun.", q:"m", r:"Ça réduira peut-être les absences, mais pas les démissions.",
     a:"La supervision directe contrôle les comportements, mais elle ne crée pas d'adhésion. Ici, ce sont les normes partagées qui coordonnent.", tags:["Supervision directe"]}
   ],
   org:{on:["sommet","ligne","centre","techno","support","ideo"], key:"ideo", conf:"Groupe divisionnalisé, culture missionnaire", mech:"Résultats + normes"}}
@@ -273,11 +273,11 @@ const LV = [
   ctx:"Chaque service est dirigé par un chef de service médecin. Les médecins ont au moins dix ans de formation ; leurs protocoles viennent des sociétés savantes et des recommandations de la Haute Autorité de santé. La direction gère les budgets, les achats, la logistique et le personnel non médical, mais n'intervient pas dans les décisions cliniques. Les fonctions supports (blanchisserie, restauration, stérilisation, brancardage) emploient 1 400 personnes.",
   line:"Avant de me conseiller quoi que ce soit, dites-moi ce que vous voyez. Comment caractériseriez-vous cette organisation ?",
   opts:[
-   {t:"Une organisation professionnelle : coordination par la standardisation des qualifications, centre opérationnel comme partie clé, et une hiérarchie descendante pour les fonctions supports.", q:"g", r:"C'est exactement ce que je vis : je dirige 1 400 personnes en logistique, et j'influence à peine 900 médecins.",
+   {t:"Une organisation professionnelle : coordination par les qualifications, centre opérationnel comme partie clé.", q:"g", r:"C'est exactement ce que je vis : je dirige 1 400 personnes en logistique, et j'influence à peine 900 médecins.",
     a:"Le travail clinique est complexe mais stable : il est confié à des professionnels formés hors de l'organisation, qui appliquent des programmes standardisés avec une large autonomie. La partie clé est le centre opérationnel. Mintzberg souligne les hiérarchies parallèles : démocratique et ascendante pour les professionnels, mécaniste et descendante pour les fonctions supports.", tags:["Organisation professionnelle","Standardisation des qualifications","Centre opérationnel","Hiérarchies parallèles"]},
    {t:"Une organisation mécaniste : les protocoles standardisent le travail, et la technostructure en est la partie clé.", q:"m", r:"Des protocoles, il y en a partout… mais ce n'est pas mon service qualité qui les écrit.",
     a:"Les protocoles existent, mais ils sont conçus hors de l'organisation (sociétés savantes, formation) et appliqués avec le jugement du professionnel. Ce n'est pas une technostructure interne qui programme le travail : c'est la standardisation des qualifications, non des procédés.", tags:["Standardisation des procédés"]},
-   {t:"Une adhocratie : des experts très qualifiés qui s'ajustent en permanence les uns aux autres.", q:"b", r:"S'ajuster en permanence ? Mes chirurgiens travaillent côte à côte depuis vingt ans sans presque se parler.",
+   {t:"Une adhocratie : des experts très qualifiés qui s'ajustent en permanence les uns aux autres autour des patients.", q:"b", r:"S'ajuster en permanence ? Mes chirurgiens travaillent côte à côte depuis vingt ans sans presque se parler.",
     a:"Confusion classique. L'adhocratie réunit des experts en équipes pour produire des solutions nouvelles (pensée divergente). L'organisation professionnelle applique des programmes connus à des cas classés (pensée convergente) : chaque professionnel travaille largement seul dans sa case.", tags:["Adhocratie"]}
   ],
   org:{on:ALL5, key:"centre", conf:"Organisation professionnelle", mech:"Standardisation des qualifications"}},
@@ -286,11 +286,11 @@ const LV = [
   ctx:"Les 14 salles du bloc opératoire tournent à 62 % de leur capacité. Les retards s'enchaînent : patient pas prêt, matériel stérile manquant, chirurgien qui décale sa vacation. Le Dr Marchal, présidente de la commission médicale d'établissement (CME), défend l'autonomie des chirurgiens.",
   line:"Je veux fixer des objectifs d'activité à chaque chirurgien et confier le planning du bloc au contrôle de gestion. Vous me suivez ?",
   opts:[
-   {t:"Séparer les deux hiérarchies : standardiser vous-même la logistique (brancardage, stérilisation, planning des salles) et confier la régulation médicale à un chirurgien coordinateur désigné avec la CME, appuyé sur des données partagées.", q:"g", r:"Le Dr Marchal accepte de coprésider le conseil de bloc. Je n'aurais pas parié là-dessus.",
+   {t:"Standardiser vous-même la logistique du bloc, et confier la régulation médicale à un chirurgien désigné avec la CME.", q:"g", r:"Le Dr Marchal accepte de coprésider le conseil de bloc. Je n'aurais pas parié là-dessus.",
     a:"Dans l'organisation professionnelle, les fonctions supports relèvent d'une logique mécaniste : la direction peut et doit les standardiser. Le travail médical, lui, ne se pilote pas d'en haut : l'influence passe par les pairs et les instances professionnelles. Le pouvoir de l'administrateur vient de sa gestion des frontières et des ressources.", tags:["Hiérarchies parallèles","Fonctions supports mécanistes","Pouvoir des pairs"]},
    {t:"Oui : des objectifs individuels par chirurgien, suivis chaque mois, et un planning fixé par le contrôle de gestion.", q:"b", r:"Trois chirurgiens menacent de partir dans le privé. La CME vote une motion de défiance.",
     a:"Le contrôle technocratique du travail professionnel échoue : l'activité d'un chirurgien ne se réduit pas à un volume, et des objectifs chiffrés poussent à sélectionner les cas faciles. Les professionnels résistent, ou contournent.", tags:["Contrôle technocratique","Effets pervers des indicateurs"]},
-   {t:"Non : l'autonomie clinique est la règle. Laissez les chirurgiens s'organiser comme ils l'entendent.", q:"m", r:"Le Dr Marchal est ravie. Moi, j'ai toujours un bloc vide un tiers du temps.",
+   {t:"Non : l'autonomie clinique est la règle, et c'est aux chirurgiens d'organiser le bloc comme ils l'entendent.", q:"m", r:"Le Dr Marchal est ravie. Moi, j'ai toujours un bloc vide un tiers du temps.",
     a:"Respecter l'autonomie professionnelle est juste, mais Mintzberg identifie aussi les problèmes de discrétion : certains professionnels ignorent les besoins de l'organisation. Et une partie du problème vient de la logistique, qui ne relève pas de leur autonomie.", tags:["Problèmes de discrétion"]}
   ],
   org:{on:ALL5, key:"centre", conf:"Organisation professionnelle", mech:"Qualifications (médecins) / procédés (supports)"}},
@@ -299,11 +299,11 @@ const LV = [
   ctx:"M. Lefèvre, 82 ans, insuffisant cardiaque et rénal, est passé par les urgences, la cardiologie, la néphrologie puis la gériatrie : onze jours d'hospitalisation, trois ordonnances de sortie contradictoires. Il est réhospitalisé quinze jours plus tard. Chaque service a respecté ses protocoles.",
   line:"Chaque équipe a bien fait son travail, et pourtant le résultat est mauvais. Avant de chercher une solution : quelle est la cause ?",
   opts:[
-   {t:"Le cloisonnement : la standardisation des qualifications coordonne à l'intérieur de chaque spécialité, mais rien ne coordonne entre elles. Les cas qui ne rentrent dans aucune case tombent entre les cases.", q:"g", r:"« Entre les cases »… c'est exactement ça. Personne n'est responsable du patient dans son ensemble.",
+   {t:"Le cloisonnement : chaque spécialité est bien coordonnée en interne, mais rien ne coordonne les spécialités entre elles.", q:"g", r:"« Entre les cases »… c'est exactement ça. Personne n'est responsable du patient dans son ensemble.",
     a:"Mintzberg parle de cloisonnement (pigeonholing) : le professionnel classe le cas dans une catégorie, puis applique le programme correspondant. Cela fonctionne pour les cas typiques. Les patients polypathologiques, qui relèvent de plusieurs catégories, révèlent la limite de ce mécanisme.", tags:["Cloisonnement","Limites de la standardisation des qualifications"]},
-   {t:"Un déficit de compétences : il faut renforcer la formation continue des médecins sur les patients âgés.", q:"m", r:"Ils sont déjà bien formés. Le problème, c'est qu'ils ne se parlent pas.",
+   {t:"Un déficit de compétences : les médecins sont mal formés aux patients âgés, il faut renforcer leur formation continue.", q:"m", r:"Ils sont déjà bien formés. Le problème, c'est qu'ils ne se parlent pas.",
     a:"La formation renforce la qualification dans chaque spécialité, mais ne crée pas de coordination entre spécialités. Elle agit sur le bon mécanisme, au mauvais endroit.", tags:["Standardisation des qualifications"]},
-   {t:"Un manque d'autorité : les chefs de service ne contrôlent pas assez ce que font leurs médecins.", q:"b", r:"Plus de contrôle ? Ils feraient la même chose, avec plus de formulaires.",
+   {t:"Un manque d'autorité : les chefs de service ne contrôlent pas assez les décisions de sortie de leurs médecins.", q:"b", r:"Plus de contrôle ? Ils feraient la même chose, avec plus de formulaires.",
     a:"Chaque médecin a respecté les règles de sa spécialité. Plus de supervision directe ne change rien à un problème qui se situe à l'interface entre services.", tags:["Supervision directe"]}
   ],
   org:{on:ALL5, key:"centre", conf:"Organisation professionnelle", mech:"Standardisation des qualifications"}},
@@ -312,11 +312,11 @@ const LV = [
   ctx:"La direction veut éviter que le cas de M. Lefèvre se reproduise. 30 % des patients de plus de 75 ans passent par au moins trois services.",
   line:"Alors, comment coordonner autour du patient sans casser ce qui marche dans chaque service ?",
   opts:[
-   {t:"Créer des dispositifs de liaison aux interfaces : infirmières coordinatrices de parcours, équipe mobile de gériatrie, réunions de concertation pluridisciplinaires pour les cas complexes.", q:"g", r:"Mes infirmières attendaient ça depuis longtemps. Elles suivent le patient de bout en bout.",
+   {t:"Des rôles de liaison aux interfaces : infirmières coordinatrices de parcours et réunions pluridisciplinaires.", q:"g", r:"Mes infirmières attendaient ça depuis longtemps. Elles suivent le patient de bout en bout.",
     a:"Vous ajoutez de l'ajustement mutuel là où la standardisation des qualifications ne suffit pas, grâce à des rôles de liaison et des comités, sans toucher au cœur du travail de chaque spécialité. Glouberman et Mintzberg (2001) décrivent l'hôpital comme quatre mondes mal reliés : la médecine (cure), le soin (care), la gestion (control) et la communauté (community). Les dispositifs de liaison les relient autour du patient.", tags:["Mécanismes de liaison","Ajustement mutuel","Rôles de liaison"]},
-   {t:"Écrire un chemin clinique standard pour tous les patients âgés, de l'admission à la sortie.", q:"m", r:"Utile pour les fractures du col du fémur. Pour M. Lefèvre et ses cinq maladies, beaucoup moins.",
+   {t:"Écrire un chemin clinique standard pour tous les patients âgés, de l'admission à la sortie, commun à tous les services.", q:"m", r:"Utile pour les fractures du col du fémur. Pour M. Lefèvre et ses cinq maladies, beaucoup moins.",
     a:"Standardiser le parcours fonctionne pour les cas fréquents et prévisibles. Les cas polypathologiques sont justement ceux qui échappent à la standardisation : il faut de l'ajustement mutuel.", tags:["Standardisation des procédés"]},
-   {t:"Centraliser à la direction toutes les décisions de sortie des patients de plus de 75 ans.", q:"b", r:"La direction qui décide d'une sortie médicale ? Le Dr Marchal en rit encore.",
+   {t:"Centraliser à la direction toutes les décisions de sortie des patients de plus de 75 ans, pour garantir la cohérence.", q:"b", r:"La direction qui décide d'une sortie médicale ? Le Dr Marchal en rit encore.",
     a:"Le sommet n'a ni la compétence ni la légitimité pour coordonner un travail clinique. La centralisation ne fonctionne pas dans une organisation professionnelle.", tags:["Centralisation"]}
   ],
   org:{on:ALL5, key:"centre", conf:"Organisation professionnelle + dispositifs de liaison", mech:"Qualifications + ajustement mutuel aux interfaces"}},
@@ -325,9 +325,9 @@ const LV = [
   ctx:"Le déficit atteint 18 M€. L'Agence régionale de santé (ARS) impose un contrat de retour à l'équilibre et des indicateurs mensuels. La tarification à l'activité (T2A) récompense le volume d'actes. Le conseil de surveillance réclame des résultats rapides.",
   line:"Le plus simple serait un rabot uniforme : moins 5 % sur chaque service, avec un tableau de bord mensuel par médecin. Qu'en dites-vous ?",
   opts:[
-   {t:"Que la direction absorbe la pression externe : négocier le plan avec l'ARS, cibler les économies là où les résultats se mesurent (achats, logistique, durée de séjour) et construire les indicateurs cliniques avec la CME.", q:"g", r:"Moins spectaculaire qu'un rabot, mais la CME signe le plan. C'est une première.",
+   {t:"Négocier le plan avec l'ARS, cibler les économies là où elles se mesurent et bâtir les indicateurs cliniques avec la CME.", q:"g", r:"Moins spectaculaire qu'un rabot, mais la CME signe le plan. C'est une première.",
     a:"Le contrôle externe pousse toute organisation vers la centralisation et la formalisation, donc vers la forme mécaniste. Dans l'organisation professionnelle, un rôle clé de l'administrateur est de servir de tampon entre l'environnement et les professionnels. La standardisation des résultats n'est appropriée que là où les résultats sont mesurables.", tags:["Contrôle externe","Rôle de tampon","Standardisation des résultats ciblée"]},
-   {t:"Oui : rabot uniforme et tableau de bord individuel. C'est simple et équitable.", q:"b", r:"Certains services codent plus d'actes, la gériatrie en code moins. Le déficit baisse peu, les départs augmentent.",
+   {t:"Oui : un rabot uniforme et un tableau de bord par médecin. C'est simple, rapide, et chacun fait le même effort.", q:"b", r:"Certains services codent plus d'actes, la gériatrie en code moins. Le déficit baisse peu, les départs augmentent.",
     a:"Traiter une organisation professionnelle comme une organisation mécaniste provoque une contamination : des indicateurs de volume appliqués à un travail complexe entraînent un déplacement des objectifs (on optimise le codage, pas le soin) et démotivent les professionnels.", tags:["Contamination mécaniste","Déplacement des objectifs"]},
    {t:"Confier entièrement le plan à la CME, sans objectif chiffré imposé : les médecins savent où sont les gaspillages.", q:"m", r:"La CME propose un plan… d'économies dans les services des autres.",
     a:"Associer les professionnels est indispensable, mais sans cadrage par la direction, chaque spécialité défend son territoire. La démocratie professionnelle arbitre mal entre services.", tags:["Démocratie professionnelle","Conflits entre services"]}
@@ -338,7 +338,7 @@ const LV = [
   ctx:"Le Pr Ferrand veut créer un programme de télésurveillance de l'insuffisance cardiaque fondé sur l'IA, avec des cardiologues, des infirmières, des ingénieurs, des data scientists et une start-up. Aujourd'hui, chaque projet passe par le service concerné, puis par un comité d'investissement qui statue en neuf mois.",
   line:"Personne ici ne sait encore faire ça. Comment nous organiser ?",
   opts:[
-   {t:"Créer une unité projet transversale, avec un budget propre et une équipe pluridisciplinaire qui s'ajuste en continu, reliée aux services par des rôles de liaison.", q:"g", r:"Premier prototype testé chez 40 patients en huit mois. Les cardiologues viennent d'eux-mêmes aux réunions.",
+   {t:"Une unité projet transversale, avec son propre budget et une équipe pluridisciplinaire qui s'ajuste en continu.", q:"g", r:"Premier prototype testé chez 40 patients en huit mois. Les cardiologues viennent d'eux-mêmes aux réunions.",
     a:"L'organisation professionnelle innove mal : ses programmes standardisés et son cloisonnement favorisent la pensée convergente. Innover entre plusieurs disciplines exige une enclave adhocratique : des experts réunis en équipes projet, coordonnés par l'ajustement mutuel.", tags:["Enclave adhocratique","Ajustement mutuel","Pensée divergente"]},
    {t:"Laisser chaque service développer sa partie (la cardiologie l'algorithme, l'informatique la plateforme), puis intégrer.", q:"m", r:"Deux ans plus tard, on a un algorithme et une plateforme… qui ne se parlent pas.",
     a:"L'expertise de chaque spécialité est nécessaire, mais le cloisonnement empêche d'inventer à l'interface. On reproduit la structure professionnelle là où il faudrait de l'ajustement mutuel.", tags:["Cloisonnement"]},
@@ -364,11 +364,11 @@ const LV = [
   ctx:"Chaque acte repose sur un texte : loi, décret, délibération, note de service. Les agents sont recrutés par concours et classés en grades. Toute décision suit une chaîne de visas jusqu'à la direction générale, puis jusqu'aux élus. Les directions juridique, financière et des ressources humaines encadrent tout. Le préfet contrôle la légalité des actes, et la chambre régionale des comptes contrôle les comptes.",
   line:"Vous avez lu le rapport et visité les services. Quel est votre diagnostic de notre organisation ?",
   opts:[
-   {t:"Une organisation mécaniste sous contrôle externe : standardisation des procédés, technostructure clé, centralisation et formalisation renforcées par l'obligation de rendre des comptes.", q:"g", r:"Dur, mais juste. Ici, chacun se couvre par une signature.",
+   {t:"Une organisation mécaniste sous contrôle externe : des procédés standardisés et une centralisation renforcée.", q:"g", r:"Dur, mais juste. Ici, chacun se couvre par une signature.",
     a:"Le travail est encadré par des règles conçues par la technostructure (juristes, finances, RH). Mintzberg montre que le contrôle externe (élus, préfet, juridictions financières) accentue la centralisation et la formalisation : on décide en haut et on documente tout, pour pouvoir rendre des comptes. C'est le modèle de l'État-machine.", tags:["Organisation mécaniste","Contrôle externe","Standardisation des procédés","Technostructure"]},
    {t:"Une organisation professionnelle : les agents sont recrutés sur concours, donc coordonnés par leurs qualifications.", q:"m", r:"Le concours garantit un niveau, pas une manière de travailler. Ce sont les procédures qui décident.",
     a:"Le concours standardise les qualifications à l'entrée, et certains métiers (ingénieurs, travailleurs sociaux) relèvent en partie d'une logique professionnelle. Mais le travail de la plupart des agents est programmé par des règles écrites, non par le jugement autonome d'un professionnel.", tags:["Standardisation des qualifications"]},
-   {t:"Une structure divisionnalisée : chaque direction est une division qui gère son domaine.", q:"b", r:"Autonomes, nos directions ? Elles ne peuvent pas acheter un ordinateur sans trois visas.",
+   {t:"Une structure divisionnalisée : chaque direction est une division qui gère son domaine et son budget.", q:"b", r:"Autonomes, nos directions ? Elles ne peuvent pas acheter un ordinateur sans trois visas.",
     a:"Dans une structure divisionnalisée, les divisions sont autonomes et pilotées par leurs résultats. Ici, les directions sont des unités fonctionnelles sans autonomie budgétaire, coordonnées par des procédures communes : c'est une organisation mécaniste.", tags:["Structure divisionnalisée"]}
   ],
   org:{on:ALL5, key:"techno", conf:"Organisation mécaniste (État-machine)", mech:"Standardisation des procédés"}},
@@ -377,11 +377,11 @@ const LV = [
   ctx:"Le délai moyen d'instruction d'un permis de construire est de 4,5 mois, contre deux à trois mois prévus par la loi selon les cas. Paul Garnier, chef du service, compte 14 visas par dossier, y compris pour une simple véranda.",
   line:"Les promoteurs saturent mon agenda, et les élections sont dans dix-huit mois. Il me faut des résultats. Que proposez-vous ?",
   opts:[
-   {t:"Repenser la procédure avec les instructeurs : trier les dossiers simples et complexes, supprimer les visas redondants, déléguer la signature des dossiers simples.", q:"g", r:"Paul Garnier est surpris qu'on lui demande son avis. Le délai passe sous trois mois pour 70 % des dossiers.",
+   {t:"Revoir la procédure avec les instructeurs : trier les dossiers, supprimer les visas inutiles, déléguer les cas simples.", q:"g", r:"Paul Garnier est surpris qu'on lui demande son avis. Le délai passe sous trois mois pour 70 % des dossiers.",
     a:"Pour un travail routinier, répétitif et à fort volume, la standardisation des procédés reste le bon mécanisme. Le problème n'est pas la bureaucratie en soi, mais son obsession du contrôle : des visas qui protègent les signataires sans améliorer les décisions. Décentraliser les décisions routinières allège le sommet.", tags:["Standardisation des procédés","Décentralisation des décisions routinières","Obsession du contrôle"]},
    {t:"Fixer un objectif de deux mois par dossier, avec une prime individuelle pour les instructeurs qui le tiennent.", q:"b", r:"Le délai baisse sur le papier : les dossiers sont déclarés incomplets pour arrêter le chronomètre. Les recours explosent.",
     a:"Plaquer une standardisation des résultats sur un travail dont la procédure reste inchangée produit des stratégies de contournement. L'indicateur s'améliore, le service non.", tags:["Effets pervers des indicateurs"]},
-   {t:"Recruter six instructeurs supplémentaires.", q:"m", r:"Le délai baisse un peu. Les 14 visas, eux, sont toujours là.",
+   {t:"Recruter six instructeurs supplémentaires pour absorber le stock de dossiers et réduire les délais.", q:"m", r:"Le délai baisse un peu. Les 14 visas, eux, sont toujours là.",
     a:"Ajouter de la capacité soulage, mais laisse intacte la procédure, qui est la vraie cause du délai. Coûteux pour un gain limité.", tags:["Capacité ou procédé"]}
   ],
   org:{on:ALL5, key:"techno", conf:"Organisation mécaniste (État-machine)", mech:"Standardisation des procédés"}},
@@ -390,7 +390,7 @@ const LV = [
   ctx:"Le président de la Métropole s'inspire de la réforme britannique des agences (Next Steps) : il veut transformer l'eau, la collecte des déchets, les transports et l'aide sociale à l'enfance en agences autonomes, chacune liée à la Métropole par un contrat d'objectifs chiffrés.",
   line:"Le président attend ma recommandation vendredi. Vous en pensez quoi ?",
   opts:[
-   {t:"Créer des agences pour l'eau, les déchets et les transports, dont les résultats sont mesurables. Garder l'aide sociale à l'enfance en régie, avec un pilotage fondé sur la déontologie professionnelle plutôt que sur des quotas.", q:"g", r:"Le président voulait tout transformer, mais l'argument sur l'enfance l'a convaincu.",
+   {t:"Des agences pour l'eau, les déchets et les transports, mais garder l'aide sociale à l'enfance en régie.", q:"g", r:"Le président voulait tout transformer, mais l'argument sur l'enfance l'a convaincu.",
     a:"C'est le modèle du contrôle par la performance (Mintzberg, 1996) : une forme divisionnalisée appliquée à l'État, qui coordonne par la standardisation des résultats. Il ne fonctionne que si les résultats sont mesurables et séparables des choix politiques. Or beaucoup d'activités sont publiques précisément parce que leurs résultats se mesurent mal.", tags:["Contrôle par la performance","Structure divisionnalisée","Standardisation des résultats","Limites de la mesure"]},
    {t:"Tout transformer en agences, y compris l'aide sociale à l'enfance, avec des indicateurs du type « dossiers traités par agent ».", q:"b", r:"Le premier rapport de l'agence Enfance est excellent : les dossiers sont clos deux fois plus vite.",
     a:"Appliquer le contrôle par la performance à un service dont le résultat est ambigu (le bien-être d'un enfant) conduit à mesurer ce qui se compte, pas ce qui compte. Mintzberg ajoute que les divisions pilotées par les chiffres tendent elles-mêmes à devenir des organisations mécanistes.", tags:["Contrôle par la performance mal appliqué","Déplacement des objectifs"]},
@@ -403,11 +403,11 @@ const LV = [
   ctx:"Le pôle Solidarités a reçu un tableau de bord hebdomadaire : dossiers ouverts, dossiers clos, délai moyen par agent. Six mois plus tard, le taux de dossiers clos a progressé de 40 %, mais les familles reviennent, et trois travailleurs sociaux expérimentés ont démissionné.",
   line:"On ferme les dossiers vite pour faire du chiffre, même quand on sait que la famille reviendra. Les situations compliquées, plus personne n'en veut. Selon vous, d'où vient le problème ?",
   opts:[
-   {t:"L'indicateur ne mesure pas le vrai résultat : la sortie durable des difficultés ne s'observe pas à court terme. On optimise donc ce qui se compte, au détriment de ce qui compte.", q:"g", r:"Merci. Je croyais que c'était nous qui étions devenus mauvais.",
+   {t:"L'indicateur ne mesure pas le vrai résultat : on optimise ce qui se compte, au détriment de ce qui compte.", q:"g", r:"Merci. Je croyais que c'était nous qui étions devenus mauvais.",
     a:"Quand le résultat est ambigu ou différé, la standardisation des résultats déplace les objectifs. Le travail social relève plutôt de la standardisation des qualifications et des normes : formation, déontologie, supervision par les pairs.", tags:["Déplacement des objectifs","Résultats non mesurables","Normes professionnelles"]},
-   {t:"Les agents manquent de formation pour traiter les situations complexes.", q:"m", r:"On est diplômés d'État. On sait faire : on n'a juste plus le temps de bien faire.",
+   {t:"Les agents manquent de formation pour traiter les situations familiales les plus complexes, qui demandent du temps.", q:"m", r:"On est diplômés d'État. On sait faire : on n'a juste plus le temps de bien faire.",
     a:"La qualification est un levier pertinent pour ce métier, mais elle ne traite pas la cause : un système de mesure qui pénalise les cas complexes.", tags:["Standardisation des qualifications"]},
-   {t:"Les agents résistent au changement : il faut un accompagnement à la conduite du changement.", q:"b", r:"Résister ? On applique le tableau de bord à la lettre. C'est bien ça le problème.",
+   {t:"Les agents résistent au nouveau pilotage : il faut un accompagnement à la conduite du changement.", q:"b", r:"Résister ? On applique le tableau de bord à la lettre. C'est bien ça le problème.",
     a:"Le diagnostic de « résistance au changement » rend les personnes responsables d'un défaut de conception. Ici, les agents se conforment parfaitement à l'indicateur.", tags:["Erreur de diagnostic"]}
   ],
   org:{on:ALL5, key:"ligne", conf:"Mécaniste au centre, agences divisionnalisées", mech:"Résultats (inadaptés au travail social)"}},
@@ -416,11 +416,11 @@ const LV = [
   ctx:"Le projet « Valrive en ligne » doit dématérialiser 120 démarches en dix-huit mois. Sept directions sont concernées. La DSI a rédigé, il y a deux ans, un cahier des charges de 300 pages. Le comité de direction mensuel doit valider chaque étape, et chaque achat passe par la commande publique.",
   line:"À ce rythme, on livrera en 2031. Comment devrais-je organiser le projet ?",
   opts:[
-   {t:"Une équipe produit pluridisciplinaire (agents des métiers, développeurs, designers, juriste), un mandat clair de la direction générale, des livraisons courtes testées avec les usagers, et un comité restreint qui arbitre vite.", q:"g", r:"Première démarche en ligne en dix semaines. La direction juridique vient aux ateliers au lieu de rendre des avis écrits.",
+   {t:"Une équipe produit pluridisciplinaire, mandatée par la direction générale, qui livre court et teste avec les usagers.", q:"g", r:"Première démarche en ligne en dix semaines. La direction juridique vient aux ateliers au lieu de rendre des avis écrits.",
     a:"Vous créez une adhocratie administrative : une équipe de spécialistes qui conçoit pour l'organisation elle-même, coordonnée par l'ajustement mutuel, à l'abri des procédures mécanistes. Les fonctions supports en sont la partie clé. Le défi est l'interface avec la machine, d'où le mandat explicite du sommet.", tags:["Adhocratie administrative","Ajustement mutuel","Fonctions supports"]},
    {t:"Respecter le cahier des charges existant et la validation mensuelle : c'est la garantie de la régularité.", q:"b", r:"Au bout d'un an, on a validé les spécifications. Les deux tiers sont obsolètes.",
     a:"Un projet d'innovation ne peut pas être entièrement spécifié à l'avance. Lui appliquer la standardisation des procédés garantit la régularité, pas la pertinence.", tags:["Standardisation des procédés"]},
-   {t:"Confier l'ensemble au forfait à un grand cabinet de conseil, sur la base du cahier des charges.", q:"m", r:"Le cabinet livre dans les délais… ce que dit le cahier des charges, qui ne correspond plus aux besoins.",
+   {t:"Confier l'ensemble au forfait à un grand cabinet de conseil habitué à ces projets, sur la base du cahier des charges.", q:"m", r:"Le cabinet livre dans les délais… ce que dit le cahier des charges, qui ne correspond plus aux besoins.",
     a:"Le prestataire peut fonctionner en adhocratie, mais le contrat au forfait fige dès le départ les résultats attendus, et la Métropole ne construit aucune compétence interne.", tags:["Externalisation","Adhocratie opérationnelle"]}
   ],
   org:{on:ALL5, key:"support", conf:"Mécaniste + adhocratie administrative (projet)", mech:"Ajustement mutuel (au sein du projet)"}},
@@ -429,11 +429,11 @@ const LV = [
   ctx:"Les réformes ont réveillé les conflits. Les syndicats bloquent la réorganisation, deux vice-présidents se disputent le pilotage du numérique, la DSI refuse de céder la main sur les outils, et la direction juridique multiplie les avis défavorables. Plus rien n'avance.",
   line:"Je passe mes journées à arbitrer des querelles de territoire. Comment en sortir ?",
   opts:[
-   {t:"Rendre le conflit explicite et le canaliser : un mandat politique écrit et un seul élu pilote, une négociation avec les syndicats sur les conditions de travail, et un récit commun sur le sens du service public.", q:"g", r:"Le président tranche le pilotage. Les syndicats signent un accord de méthode. On respire.",
+   {t:"Canaliser le conflit : un seul élu pilote, un accord de méthode avec les syndicats, un récit commun du service public.", q:"g", r:"Le président tranche le pilotage. Les syndicats signent un accord de méthode. On respire.",
     a:"Mintzberg décrit la politique comme une force qui tire l'organisation dans des directions opposées (jeux de territoire, conflits entre opérationnels et fonctionnels). Pour éviter que l'organisation ne devienne une arène politique, il faut clarifier l'autorité légitime et mobiliser l'idéologie, la force qui rassemble. Un conflit canalisé peut même faciliter le changement.", tags:["Configuration politique","Idéologie (force qui rassemble)","Jeux de pouvoir"]},
-   {t:"Passer en force : décision du président, calendrier imposé, sanctions en cas d'obstruction.", q:"m", r:"Les décisions sont prises. Les blocages, eux, deviennent discrets : arrêts maladie, dossiers qui traînent.",
+   {t:"Passer en force : décision du président, calendrier imposé et sanctions en cas d'obstruction, pour couper court aux querelles.", q:"m", r:"Les décisions sont prises. Les blocages, eux, deviennent discrets : arrêts maladie, dossiers qui traînent.",
     a:"Le recours à l'autorité peut trancher à court terme, mais la politique passe alors dans la clandestinité. Sans adhésion, les jeux de pouvoir continuent sous une autre forme.", tags:["Supervision directe","Politique clandestine"]},
-   {t:"Laisser le conflit s'éteindre de lui-même et suspendre les réformes en attendant.", q:"b", r:"Six mois plus tard, le conflit ne s'est pas éteint : il s'est installé.",
+   {t:"Laisser le conflit s'éteindre de lui-même et suspendre les réformes le temps que les esprits se calment.", q:"b", r:"Six mois plus tard, le conflit ne s'est pas éteint : il s'est installé.",
     a:"Un conflit non traité s'étend : l'organisation dérive vers l'arène politique, où le pouvoir se dispute plutôt qu'il ne s'exerce.", tags:["Arène politique"]}
   ],
   org:{on:ALL6, key:"ideo", conf:"Organisation mécaniste traversée par la politique", mech:"Procédés + normes partagées"}}
@@ -455,11 +455,11 @@ const LV = [
   ctx:"40 salariés et 300 bénévoles. Les salaires sont 30 % sous le marché, mais les candidatures affluent. On recrute sur l'engagement plus que sur le diplôme. Il y a peu de procédures, et les décisions importantes se prennent en assemblée. Chaque année, un week-end de plantation réunit toute l'organisation. Malik raconte souvent l'histoire de la forêt de son village, disparue en dix ans.",
   line:"Les financeurs disent que nous sommes « mal structurés ». Moi, je trouve qu'on fonctionne bien. Qu'est-ce que vous voyez ?",
   opts:[
-   {t:"Une organisation missionnaire : coordination par la standardisation des normes, idéologie comme partie clé, contrôle par la sélection et la socialisation plutôt que par les règles.", q:"g", r:"« Missionnaire »… le mot me fait sourire, mais c'est bien ça.",
+   {t:"Une organisation missionnaire : des valeurs partagées coordonnent, entretenues par la sélection et la socialisation.", q:"g", r:"« Missionnaire »… le mot me fait sourire, mais c'est bien ça.",
     a:"Mintzberg décrit l'organisation missionnaire : une idéologie forte, souvent née d'un fondateur charismatique et de son histoire, puis entretenue par des rituels. Le contrôle passe par la sélection et la socialisation : chacun agit de façon autonome parce que tous partagent les mêmes valeurs. Peu de spécialisation, de technostructure et de hiérarchie.", tags:["Organisation missionnaire","Standardisation des normes","Idéologie"]},
-   {t:"Une structure simple : tout tourne autour du charisme du fondateur.", q:"m", r:"On m'écoute, c'est vrai. Mais les équipes au Sénégal prennent leurs décisions sans moi.",
+   {t:"Une structure simple : tout tourne autour du fondateur, de son charisme et de l'histoire qu'il raconte.", q:"m", r:"On m'écoute, c'est vrai. Mais les équipes au Sénégal prennent leurs décisions sans moi.",
     a:"Le fondateur charismatique est souvent à l'origine de l'idéologie, mais c'est l'idéologie institutionnalisée (normes, rituels, récits) qui coordonne, et non la supervision directe de Malik.", tags:["Structure simple","Leadership charismatique"]},
-   {t:"Une adhocratie : peu de procédures, des décisions collectives, du travail en équipe.", q:"b", r:"On travaille ensemble, oui. Mais on ne réinvente pas tout à chaque projet.",
+   {t:"Une adhocratie : peu de procédures, des décisions prises collectivement en assemblée, et beaucoup de travail en équipe.", q:"b", r:"On travaille ensemble, oui. Mais on ne réinvente pas tout à chaque projet.",
     a:"L'absence de règles et la décision collective rapprochent superficiellement les deux formes. L'adhocratie coordonne des experts par l'ajustement mutuel pour innover ; ici, ce sont les valeurs partagées qui coordonnent.", tags:["Adhocratie"]}
   ],
   org:{on:["sommet","centre","ideo"], key:"ideo", conf:"Organisation missionnaire", mech:"Standardisation des normes"}},
@@ -468,9 +468,9 @@ const LV = [
   ctx:"Un grand bailleur public propose 12 M€ sur cinq ans pour un programme d'agroforesterie dans quatre pays, soit trois fois le budget actuel. Ses conditions : un cadre logique de 60 indicateurs, ses procédures d'achat, des audits annuels et un reporting trimestriel.",
   line:"C'est l'occasion de changer d'échelle. Mais les équipes disent que la paperasse va tuer l'esprit de Terre Vive. On fait quoi ?",
   opts:[
-   {t:"Accepter, mais contenir la formalisation : une cellule de gestion des subventions qui absorbe le reporting, des recrutements qui partagent la mission, et des fonds propres non fléchés pour garder de l'autonomie.", q:"g", r:"La cellule tourne à quatre personnes. Le terrain voit à peine la différence.",
+   {t:"Accepter, mais confier tout le reporting à une petite cellule dédiée et garder des fonds propres non fléchés.", q:"g", r:"La cellule tourne à quatre personnes. Le terrain voit à peine la différence.",
     a:"Le contrôle externe pousse vers la formalisation et la centralisation, une menace directe pour l'organisation missionnaire. Une technostructure circonscrite sert de tampon : vous contenez la contamination au lieu de la laisser se diffuser. Préserver des ressources propres limite la dépendance.", tags:["Contrôle externe","Contenir la contamination","Technostructure tampon"]},
-   {t:"Refuser : l'indépendance vaut plus que 12 M€.", q:"m", r:"L'équipe applaudit. Le programme dans trois pays ne verra pas le jour.",
+   {t:"Refuser : l'indépendance de Terre Vive vaut plus que 12 M€, et d'autres financeurs viendront plus tard.", q:"m", r:"L'équipe applaudit. Le programme dans trois pays ne verra pas le jour.",
     a:"La décision protège l'idéologie, mais renonce à l'impact. Mintzberg note que certaines organisations missionnaires se replient sur elles-mêmes pour préserver leur pureté (le cloître), au risque de la marginalisation.", tags:["Repli missionnaire (cloître)"]},
    {t:"Accepter et étendre les procédures du bailleur à toute l'organisation, bénévoles compris, par souci de cohérence.", q:"b", r:"Les bénévoles reçoivent des fiches de temps à remplir. Une centaine ne revient pas.",
     a:"Étendre les procédures du bailleur à toute l'organisation, c'est la contamination : la logique mécaniste se répand dans des activités qui fonctionnaient par les normes.", tags:["Contamination mécaniste"]}
@@ -481,11 +481,11 @@ const LV = [
   ctx:"Le programme démarre dans 60 villages. Les sols, le régime foncier, les cultures et les organisations villageoises varient d'un site à l'autre. Chaque site demande un agronome, un animateur, un spécialiste du foncier et des représentants des communautés.",
   line:"Le siège nous envoie un manuel de 80 pages et un modèle de projet unique. Mais chaque village est un cas à part. Comment travailler ?",
   opts:[
-   {t:"Des équipes pluridisciplinaires par site, qui conçoivent les solutions avec les communautés. Le siège fixe des principes et quelques résultats communs, pas la méthode.", q:"g", r:"On a enfin le droit d'adapter. Et le siège reçoit des résultats comparables.",
+   {t:"Des équipes pluridisciplinaires par site, avec les communautés ; le siège fixe des principes et des résultats communs.", q:"g", r:"On a enfin le droit d'adapter. Et le siège reçoit des résultats comparables.",
     a:"Concevoir des solutions sur mesure pour chaque client en combinant plusieurs expertises, c'est l'adhocratie opérationnelle, coordonnée par l'ajustement mutuel. Les normes partagées et quelques résultats communs assurent la cohérence d'ensemble.", tags:["Adhocratie opérationnelle","Ajustement mutuel","Normes + résultats"]},
-   {t:"Laisser chaque pays totalement libre de sa méthode et de ses indicateurs.", q:"m", r:"Chaque pays avance… mais personne ne sait comparer, ni apprendre des autres.",
+   {t:"Laisser chaque pays totalement libre de sa méthode et de ses indicateurs : c'est lui qui connaît le terrain.", q:"m", r:"Chaque pays avance… mais personne ne sait comparer, ni apprendre des autres.",
     a:"L'autonomie est nécessaire, mais sans principes ni résultats communs, l'organisation perd sa capacité d'apprendre et de rendre des comptes. Ce sont les normes et les résultats qui coordonnent, pas l'absence de coordination.", tags:["Autonomie sans coordination"]},
-   {t:"Garder le manuel, mais confier chaque projet à un expert du siège qui l'adapte sur place.", q:"b", r:"Les experts sont compétents, mais les villages participent peu. Les arbres plantés sans eux ne survivent pas.",
+   {t:"Garder le manuel, mais confier chaque projet à un expert du siège qui l'adapte lui-même sur le terrain.", q:"b", r:"Les experts sont compétents, mais les villages participent peu. Les arbres plantés sans eux ne survivent pas.",
     a:"On remplace l'ajustement mutuel avec les communautés par la supervision directe d'un expert. Le projet perd l'adhésion locale, dont dépend sa réussite.", tags:["Supervision directe"]}
   ],
   org:{on:ALL6, key:"centre", conf:"Missionnaire + adhocratie opérationnelle", mech:"Normes + ajustement mutuel"}},
@@ -494,11 +494,11 @@ const LV = [
   ctx:"Cinq ans plus tard : 350 salariés dans six pays, 25 M€ de budget. L'engagement mesuré par l'enquête interne passe de 89 % à 52 %. Les anciens partent ; les recrues venues du conseil et de la finance sont compétentes, mais disent « c'est un job ». Les réunions portent sur les indicateurs. Malik et Clara sont en conflit ouvert, et le réseau de bénévoles se divise.",
   line:"Je suis arrivée pour professionnaliser l'organisation, et c'est ce que j'ai fait. Pourquoi est-ce que tout se délite ?",
   opts:[
-   {t:"La croissance a dilué l'idéologie : recruter vite affaiblit la sélection et la socialisation, la logique mécaniste contamine la mission, et le conflit entre le fondateur et la directrice signale une politisation.", q:"g", r:"Donc ce n'est pas une question de personnes… c'est une question de structure.",
+   {t:"La croissance a dilué l'idéologie : recruter vite affaiblit la socialisation, et les chiffres ont pris la place de la mission.", q:"g", r:"Donc ce n'est pas une question de personnes… c'est une question de structure.",
     a:"Mintzberg note que les organisations missionnaires restent généralement petites : l'idéologie s'entretient par le contact personnel. La croissance et la formalisation l'érodent. Quand l'idéologie, la force qui rassemble, faiblit, la politique, la force qui divise, prend le relais : le conflit au sommet est un symptôme, pas la cause.", tags:["Érosion de l'idéologie","Contamination","Politisation"]},
-   {t:"Un problème de leadership : le fondateur doit se retirer pour laisser la direction professionnelle gérer.", q:"m", r:"Le conseil y pense. Mais la moitié des équipes partirait avec Malik.",
+   {t:"Un problème de leadership au sommet : le fondateur doit se retirer et laisser la direction professionnelle gérer l'organisation.", q:"m", r:"Le conseil y pense. Mais la moitié des équipes partirait avec Malik.",
     a:"Le conflit au sommet est réel, mais il est le symptôme d'une tension structurelle entre mission et professionnalisation. Changer les personnes sans traiter la structure déplace le problème.", tags:["Crise de succession"]},
-   {t:"Une communication interne insuffisante : il faut mieux expliquer la stratégie.", q:"b", r:"On a fait trois séminaires stratégiques cette année. Les salles étaient à moitié vides.",
+   {t:"Une communication interne insuffisante : il faut mieux expliquer la stratégie et les raisons de la croissance.", q:"b", r:"On a fait trois séminaires stratégiques cette année. Les salles étaient à moitié vides.",
     a:"Ce n'est pas un problème d'information : les salariés comprennent la stratégie. Ce qui manque, c'est l'adhésion produite par la sélection, la socialisation et des rituels partagés.", tags:["Erreur de diagnostic"]}
   ],
   org:{on:ALL6, key:"techno", conf:"Missionnaire contaminée", mech:"Résultats (en hausse) / normes (en recul)"}},
@@ -507,9 +507,9 @@ const LV = [
   ctx:"Le conseil d'administration doit décider de la structure de Terre Vive pour les cinq prochaines années. Les six bureaux pays ont des contextes très différents, et les financeurs exigent une gouvernance claire.",
   line:"On ne reviendra pas à 40 personnes. Mais je refuse de devenir une multinationale de l'humanitaire. Quelle structure ?",
   opts:[
-   {t:"Une fédération d'unités à taille humaine : des bureaux pays autonomes, qui intègrent les nouveaux par le parrainage et des rituels communs, et un siège léger qui garde la mission et quelques résultats partagés.", q:"g", r:"Chaque bureau aura son week-end de plantation. C'est un détail, mais c'est le nôtre.",
+   {t:"Une fédération de bureaux pays autonomes et à taille humaine, unis par des rituels communs et un siège léger.", q:"g", r:"Chaque bureau aura son week-end de plantation. C'est un détail, mais c'est le nôtre.",
     a:"Une organisation missionnaire grandit mieux en se reproduisant en unités de petite taille qu'en grossissant d'un seul bloc. Vous combinez une structure divisionnalisée (autonomie, résultats) et une forte socialisation (normes) : la culture fait contrepoids aux résultats.", tags:["Fédération missionnaire","Structure divisionnalisée","Socialisation"]},
-   {t:"Recentraliser temporairement autour du fondateur pour restaurer la cohésion, puis décentraliser.", q:"m", r:"Malik reprend la main. La crise s'apaise, mais il devient vite le goulot d'étranglement de 350 personnes.",
+   {t:"Recentraliser temporairement autour du fondateur pour restaurer la cohésion, puis décentraliser une fois la crise passée.", q:"m", r:"Malik reprend la main. La crise s'apaise, mais il devient vite le goulot d'étranglement de 350 personnes.",
     a:"Mintzberg observe qu'une crise justifie souvent une recentralisation temporaire autour d'un leader. Mais la supervision directe ne tient pas à 350 personnes dans six pays : elle doit rester transitoire.", tags:["Recentralisation de crise","Structure simple"]},
    {t:"Centraliser au siège, sous la directrice générale, avec des procédures uniformes pour tous les pays.", q:"b", r:"Les bureaux pays deviennent des exécutants. Les meilleurs responsables de programme partent dans d'autres ONG.",
     a:"Uniformiser les procédures pour des contextes aussi différents revient à imposer une organisation mécaniste. On sacrifie à la fois l'adaptation au terrain et l'idéologie.", tags:["Organisation mécaniste"]}
@@ -520,11 +520,11 @@ const LV = [
   ctx:"Une compagnie pétrolière propose 3 M€ sur trois ans pour financer des plantations, en échange de crédits carbone qui « compensent » ses émissions. La moitié des salariés menace de démissionner ; l'autre moitié estime qu'on ne peut pas refuser 3 M€ pour planter des arbres. Le conseil est divisé, et la presse commence à s'y intéresser.",
   line:"Peu importe ma position personnelle : si on gère mal ça, l'organisation explose. Comment décide-t-on ?",
   opts:[
-   {t:"Faire trancher par l'instance légitime, le conseil, sur des critères explicites et publics tirés de la mission (une charte éthique des partenariats), après une consultation ouverte des équipes, puis assumer la décision.", q:"g", r:"Le conseil décide, la charte est publiée. Quelques départs, mais personne ne conteste la façon de décider.",
+   {t:"Consulter les équipes, puis faire trancher le conseil selon une charte éthique publique tirée de la mission.", q:"g", r:"Le conseil décide, la charte est publiée. Quelques départs, mais personne ne conteste la façon de décider.",
     a:"Le conflit porte sur l'idéologie elle-même. En ancrant la décision dans la mission, avec un processus perçu comme légitime, vous mobilisez l'idéologie pour rassembler et canalisez le conflit dans une arène structurée, au lieu de le laisser contaminer toute l'organisation.", tags:["Idéologie comme arbitre","Canaliser le conflit","Configuration politique évitée"]},
-   {t:"Laisser chaque bureau pays décider s'il accepte des fonds de ce type.", q:"m", r:"Trois bureaux acceptent, trois refusent. Dans la presse, Terre Vive semble ne plus savoir ce qu'elle défend.",
+   {t:"Laisser chaque bureau pays décider s'il accepte des fonds de ce type, selon son contexte et ses partenaires.", q:"m", r:"Trois bureaux acceptent, trois refusent. Dans la presse, Terre Vive semble ne plus savoir ce qu'elle défend.",
     a:"Décentraliser une question qui touche à l'identité commune fragmente l'organisation. L'idéologie ne peut pas varier d'un bureau à l'autre sans cesser d'être une force qui rassemble.", tags:["Balkanisation"]},
-   {t:"Accepter discrètement, sans communication interne, pour éviter la polémique.", q:"b", r:"L'information fuite deux mois plus tard. Le cynisme s'installe, et c'est pire que des départs.",
+   {t:"Accepter discrètement, sans communication interne, pour éviter que la polémique ne divise encore plus les équipes.", q:"b", r:"L'information fuite deux mois plus tard. Le cynisme s'installe, et c'est pire que des départs.",
     a:"Dans une organisation missionnaire, contourner les valeurs en secret détruit la confiance qui fonde la coordination par les normes. La politique clandestine remplace l'idéologie.", tags:["Politique clandestine","Érosion de l'idéologie"]}
   ],
   org:{on:ALL6, key:"ideo", conf:"Fédération missionnaire, conflit canalisé", mech:"Standardisation des normes"}}
