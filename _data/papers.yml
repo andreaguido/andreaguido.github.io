@@ -95,6 +95,12 @@ chapters:
       these three dimensions. Together, the findings suggest that organizational interventions targeting
       behavior directly may fail if they leave the underlying causal representation unchanged.
 
+policy_briefs:
+  - key: guido_brief_moldova
+    title: "Brief Moldova"
+    authors: [Andrea Guido]
+    year: 2026
+
 publications:
   - key: guido2025nudging
     title: "Nudging or nagging: The perils of persuasion"

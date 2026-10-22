@@ -1,10 +1,10 @@
-{% comment %} One research item. Params: p (entry from _data/papers.yml), type (article | unpublished | incollection) {% endcomment %}
+{% comment %} One research item. Params: p (entry from _data/papers.yml), type (article | unpublished | incollection | techreport) {% endcomment %}
 {% assign p = include.p %}
 {% assign coauthors = "" | split: "" %}
 {% for a in p.authors %}{% unless a == "Andrea Guido" or a == "others" %}{% assign coauthors = coauthors | push: a %}{% endunless %}{% endfor %}
 <article class="paper" data-topics="{{ p.topics | join: ' ' }}">
   <div class="paper-venue">
-    {% if p.journal %}<span class="venue">{{ p.journal }}</span>{% elsif include.type == "incollection" %}<span class="venue">Book chapter</span>{% endif %}
+    {% if p.journal %}<span class="venue">{{ p.journal }}</span>{% elsif include.type == "incollection" %}<span class="venue">Book chapter</span>{% elsif include.type == "techreport" %}<span class="venue">Policy brief</span>{% endif %}
     {% if p.year %}<span class="year">{{ p.year }}</span>{% endif %}
     {% if p.note %}<span class="badge">{{ p.note }}</span>{% endif %}
   </div>
@@ -29,7 +29,8 @@
   author = {% raw %}{{% endraw %}{{ p.authors | join: " and " }}{% raw %}}{% endraw %},
   title = {% raw %}{{% endraw %}{{ p.title }}{% raw %}}{% endraw %},{% if p.journal %}
   {% if include.type == "article" %}journal{% else %}booktitle{% endif %} = {% raw %}{{% endraw %}{{ p.journal | replace: '&', '\&' }}{% raw %}}{% endraw %},{% endif %}{% if include.type == "unpublished" %}
-  note = {% raw %}{{% endraw %}Working paper{% raw %}}{% endraw %},{% endif %}
+  note = {% raw %}{{% endraw %}Working paper{% raw %}}{% endraw %},{% elsif include.type == "techreport" %}
+  type = {% raw %}{{% endraw %}Policy brief{% raw %}}{% endraw %},{% endif %}
   year = {% raw %}{{% endraw %}{{ p.year }}{% raw %}}{% endraw %}{% if p.volume %},
   volume = {% raw %}{{% endraw %}{{ p.volume }}{% raw %}}{% endraw %}{% endif %}{% if p.number %},
   number = {% raw %}{{% endraw %}{{ p.number }}{% raw %}}{% endraw %}{% endif %}{% if p.pages %},

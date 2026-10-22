@@ -81,6 +81,11 @@
         <h3>Book chapters</h3>
         {% for p in site.data.papers.chapters %}{% include paper.html p=p type="incollection" %}{% endfor %}
       </div>
+
+      <div class="group">
+        <h3>Policy briefs</h3>
+        {% for p in site.data.papers.policy_briefs %}{% include paper.html p=p type="techreport" %}{% endfor %}
+      </div>
       <p class="empty" hidden>No papers in this category yet.</p>
     </div>
   </section>
