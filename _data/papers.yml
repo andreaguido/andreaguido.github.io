@@ -109,6 +109,20 @@ policy_briefs:
       reward. The moral message had no effect, while the financial reward reduced willingness to report, both
       for a community member selling their vote and for a political organisation paying people to attend a rally.
 
+  - key: romaniuc_2021_vaccine
+    title: "Increasing vaccine acceptance and uptake: A review of the evidence"
+    authors: [Rustam Romaniuc, Andrea Guido, Nicholas Mai, Eli Spiegelman, Angela Sutan]
+    journal: "SSRN Working Paper"
+    year: 2021
+    doi: 10.2139/ssrn.3839654
+    topics: [nudges, norms]
+    abstract: >-
+      Review of recent behavioral research, mainly studies published after Brewer et al.'s 2017 survey, on
+      interventions that increase vaccine acceptance and uptake. Interventions tested in the lab, online and in
+      the field are grouped into four types: social norms, opt-out strategies, reminders and recalls, and
+      loss- or gain-framed (tailored or untailored) messages. The review identifies which policies work and what
+      drives their success, for researchers and public organisations seeking to raise COVID-19 vaccination rates.
+
 publications:
   - key: guido2025nudging
     title: "Nudging or nagging: The perils of persuasion"
