@@ -96,10 +96,18 @@ chapters:
       behavior directly may fail if they leave the underlying causal representation unchanged.
 
 policy_briefs:
-  - key: guido_brief_moldova
-    title: "Brief Moldova"
-    authors: [Andrea Guido]
+  - key: guido_romaniuc_2026_brief
+    title: "Can financial rewards encourage reporting of electoral fraud? Experimental evidence from Moldova"
+    authors: [Andrea Guido, Rustam Romaniuc]
+    journal: "FREE Network Policy Brief"
     year: 2026
+    url: https://freepolicybriefs.org/2026/10/19/can-financial-rewards-encourage-reporting-of-electoral-fraud/
+    topics: [norms]
+    abstract: >-
+      Survey experiment with 1,550 Moldovan adults shortly before the September 2025 parliamentary election,
+      testing two ways to encourage reporting of vote buying: a short moral message and a guaranteed financial
+      reward. The moral message had no effect, while the financial reward reduced willingness to report, both
+      for a community member selling their vote and for a political organisation paying people to attend a rally.
 
 publications:
   - key: guido2025nudging
