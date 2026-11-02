@@ -40,6 +40,8 @@ working_papers:
     note: "Under review"
     pdf: /files/papers/guido-making-information-stick.pdf
     podcast: /files/podcast-soft-commitments.mp3
+    materials:
+      - {label: "The Conversation", url: "https://theconversation.com/du-nudge-au-boost-comment-aider-les-utilisateurs-a-reduire-leur-empreinte-numerique-267127", type: media}
     topics: [nudges, env]
     abstract: >-
       Organizations are increasingly held accountable for the emissions their customers generate in using their
