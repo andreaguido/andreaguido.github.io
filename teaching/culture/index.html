@@ -1,0 +1,863 @@
+---
+layout: null
+sitemap: false
+permalink: /teaching/culture/
+---
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le code invisible</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: same as the Séance 3 and 4 role plays — the story on the left, a live "grille de lecture" (theory grid + gauges) on the right; stacks on phones. */
+:root{
+  --bg:#F5F6FB; --surface:#FFFFFF; --line:#D9DDEB; --fg:#1B2347; --muted:#5B6385;
+  --navy:#24346B; --magenta:#B5135F; --navy-soft:#E6EAF5; --magenta-soft:#F8E4EE;
+  --good:#1F7A4D; --good-soft:#E1F3E9; --mid:#9A6200; --mid-soft:#FBF0DB; --bad:#B3261E; --bad-soft:#FBE6E4;
+  --off:#EEF0F6; --off-stroke:#C9CEDF; --on:#C9D3EE; --on-stroke:#24346B; --halo:#F1E3EC;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1428; --surface:#172040; --line:#2B3762; --fg:#E8EBF6; --muted:#A3AACB;
+  --navy:#AFC0F2; --magenta:#EE6AA3; --navy-soft:#1E2A52; --magenta-soft:#3A1A30;
+  --good:#5FD39A; --good-soft:#123826; --mid:#F2BE5C; --mid-soft:#3A2C0E; --bad:#FF8A80; --bad-soft:#3E1714;
+  --off:#151D3A; --off-stroke:#2B3762; --on:#2C3B72; --on-stroke:#AFC0F2; --halo:#2A1C3A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1428; --surface:#172040; --line:#2B3762; --fg:#E8EBF6; --muted:#A3AACB;
+  --navy:#AFC0F2; --magenta:#EE6AA3; --navy-soft:#1E2A52; --magenta-soft:#3A1A30;
+  --good:#5FD39A; --good-soft:#123826; --mid:#F2BE5C; --mid-soft:#3A2C0E; --bad:#FF8A80; --bad-soft:#3E1714;
+  --off:#151D3A; --off-stroke:#2B3762; --on:#2C3B72; --on-stroke:#AFC0F2; --halo:#2A1C3A; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.1}
+h1{font-size:clamp(2rem,6vw,2.8rem);font-weight:800;color:var(--navy);letter-spacing:-.01em}
+h2{font-size:1.4rem;font-weight:700}
+h3{font-size:1rem;font-weight:700}
+.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--magenta);font-weight:700}
+.lede{color:var(--muted);max-width:64ch;margin:6px 0 0}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:820px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.chap{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.chap .when{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.ctx{margin:0;color:var(--muted)}
+.bubble{display:flex;gap:12px;align-items:flex-start}
+.av{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:800 1rem var(--display);color:#fff;background:var(--navy)}
+.say{background:var(--navy-soft);border-radius:4px 14px 14px 14px;padding:12px 14px;min-width:0}
+.say b{display:block;font-size:.82rem;color:var(--navy)}
+.say p{margin:2px 0 0}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{font:inherit;text-align:left;padding:13px 15px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;display:flex;gap:12px;align-items:flex-start}
+.opt:hover:not(:disabled){border-color:var(--magenta)}
+.opt:disabled{cursor:default}
+.opt .k{flex:none;font:800 .9rem var(--display);width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--navy-soft);color:var(--navy)}
+.opt.g{border-color:var(--good);background:var(--good-soft)}
+.opt.m{border-color:var(--mid);background:var(--mid-soft)}
+.opt.b{border-color:var(--bad);background:var(--bad-soft)}
+.opt.dim{opacity:.5}
+button:focus-visible{outline:3px solid var(--magenta);outline-offset:2px}
+.analysis{border-left:4px solid var(--magenta);background:var(--navy-soft);border-radius:0 12px 12px 0;padding:12px 16px}
+.analysis h3{color:var(--magenta);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.analysis p{margin:0}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--navy)}
+.actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.btn{font:700 .95rem var(--body);padding:11px 18px;border-radius:10px;border:0;background:var(--magenta);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--navy);border:1.5px solid var(--line)}
+
+.sidecol{display:flex;flex-direction:column;gap:20px;min-width:0}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-weight:700;font-size:.9rem}
+.field input{font:inherit;padding:11px 13px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);max-width:360px}
+.field input:focus-visible{outline:3px solid var(--magenta);outline-offset:1px}
+.err{color:var(--bad);font-size:.85rem;margin:0}
+.board ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.board li{display:grid;grid-template-columns:2.2em minmax(0,1fr) auto;gap:8px;align-items:baseline;padding:7px 0;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.board li .rk{font:800 1rem var(--display);color:var(--muted)}
+.board li:nth-child(1) .rk{color:var(--magenta)}
+.board li .nm{overflow-wrap:anywhere}
+.board li .nm small{color:var(--muted);font-size:.78rem}
+.board li .sc{font-weight:700;color:var(--navy)}
+.board li.me{background:var(--magenta-soft);border-radius:8px;padding-inline:8px}
+.note{font-size:.85rem;color:var(--muted);margin:0}
+.link{background:none;border:0;padding:0;font:inherit;font-size:.82rem;color:var(--bad);cursor:pointer;text-decoration:underline}
+.confirm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:.85rem}
+
+/* Grille de lecture: one renderer per theory. Neutral before the decision; "on" = already addressed, "key" (magenta) = what is at stake. */
+.side svg{width:100%;height:auto;max-width:320px;align-self:center}
+.tier .s{fill:var(--off);stroke:var(--off-stroke);stroke-width:1.5;stroke-dasharray:4 4;transition:fill .5s,stroke .5s}
+.tier.on .s{fill:var(--on);stroke:var(--on-stroke);stroke-dasharray:none;stroke-width:2}
+.tier.key .s{fill:var(--halo);stroke:var(--magenta);stroke-dasharray:none;stroke-width:3.5}
+.t{font:700 12px var(--body);fill:var(--muted);text-anchor:middle}
+.tier.on .t,.tier.key .t{fill:var(--fg)}
+.lgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lgrid.three{grid-template-columns:repeat(3,1fr)}
+.lt{border:1.5px dashed var(--off-stroke);background:var(--off);border-radius:10px;padding:8px 10px;font-size:.8rem;color:var(--muted);transition:background .5s,border-color .5s;min-width:0}
+.lt b{display:block;font-size:.85rem;color:var(--fg);overflow-wrap:anywhere}
+.lt.on{background:var(--on);border-style:solid;border-color:var(--on-stroke)}
+.lt.key{background:var(--halo);border:3px solid var(--magenta);color:var(--fg)}
+.axis{display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted);margin-top:4px}
+.hz{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hz h4{margin:0 0 6px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hz ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.hz li{font-size:.8rem;padding:5px 8px;border-radius:8px;border:1.5px dashed var(--off-stroke);background:var(--off);transition:background .5s,border-color .5s}
+.hz li.on{background:var(--on);border-style:solid;border-color:var(--on-stroke)}
+.hz li.key{background:var(--halo);border:2.5px solid var(--magenta)}
+.mc{display:flex;flex-direction:column;gap:10px}
+.mc .who{font-weight:700;font-size:.85rem}
+.mc .r{display:grid;grid-template-columns:9em minmax(0,1fr);gap:8px;align-items:center;font-size:.78rem;color:var(--muted)}
+.mc .r.key{color:var(--magenta);font-weight:700}
+.mc .bar i{background:var(--navy)}
+.mc .r.key .bar i{background:var(--magenta)}
+.eq{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:8px;align-items:center;text-align:center}
+.eq .lt{text-align:center}
+.eq .sym{font:800 2rem var(--display);color:var(--magenta);min-width:1.2em}
+.frac{display:inline-flex;flex-direction:column;font-size:.75rem;line-height:1.3}
+.frac span:first-child{border-bottom:1.5px solid currentColor}
+.rl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;counter-reset:r}
+.rl li{counter-increment:r;font-size:.8rem;padding:6px 9px;border-radius:8px;border:1.5px dashed var(--off-stroke);background:var(--off);display:grid;grid-template-columns:1.4em minmax(0,1fr);gap:6px}
+.rl li::before{content:counter(r);font:800 .85rem var(--display);color:var(--muted)}
+.rl li.on{background:var(--on);border-style:solid;border-color:var(--on-stroke)}
+.rl li.key{background:var(--halo);border:2.5px solid var(--magenta)}
+.conf{font-family:var(--display);font-weight:700;font-size:1.15rem;color:var(--navy)}
+.meta{font-size:.85rem;color:var(--muted);margin:0}
+.gauge{display:flex;flex-direction:column;gap:5px}
+.gauge .row{display:flex;justify-content:space-between;font-size:.82rem;font-variant-numeric:tabular-nums}
+.bar{height:8px;border-radius:4px;background:var(--navy-soft);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--magenta);transition:width .5s}
+.bar.h i{background:var(--good)}
+.bar.w i{background:var(--navy)}
+.dots{display:flex;gap:6px}
+.dots span{width:10px;height:10px;border-radius:50%;background:var(--navy-soft)}
+.dots span.g{background:var(--good)} .dots span.m{background:var(--mid)} .dots span.b{background:var(--bad)} .dots span.now{outline:2px solid var(--magenta);outline-offset:1px}
+
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pill{display:inline-block;font-size:.75rem;font-weight:700;padding:2px 8px;border-radius:999px}
+.pill.g{background:var(--good-soft);color:var(--good)} .pill.m{background:var(--mid-soft);color:var(--mid)} .pill.b{background:var(--bad-soft);color:var(--bad)}
+.big{font-family:var(--display);font-weight:800;font-size:3rem;color:var(--magenta);line-height:1;font-variant-numeric:tabular-nums}
+.cast{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.cast div{display:flex;gap:10px;align-items:center;font-size:.9rem}
+.cast small{display:block;color:var(--muted)}
+.disc{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.lvls{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.lvls li{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px}
+.lvls li.lock{opacity:.55}
+.lvls .n{font:800 .95rem var(--display);width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--navy-soft);color:var(--navy)}
+.lvls small{display:block;color:var(--muted);font-size:.8rem}
+.st{font-size:.78rem;font-weight:700;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.st.ok{color:var(--good)}
+.masked{border:1.5px dashed var(--line);border-radius:12px;padding:28px 16px;text-align:center;color:var(--muted);font-size:.9rem}
+/* Séance 5 lenses: Schein iceberg, Hofstede France-vs-country bars, grouped checklists (intercultural, GSZ) */
+.t2{font:400 10.5px var(--body);fill:var(--muted);text-anchor:middle}
+.wl{stroke:var(--navy);stroke-width:1.5;stroke-dasharray:6 4;opacity:.55}
+.wt{font:700 9px var(--body);fill:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.hf{display:flex;flex-direction:column;gap:5px}
+.hf .lg{display:flex;gap:14px;font-size:.78rem;color:var(--muted)}
+.hf .lg span{display:flex;align-items:center;gap:6px}
+.sw{display:inline-block;width:12px;height:8px;border-radius:2px}
+.sw.fr,.hf .bar.fr i{background:var(--navy)}
+.sw.co,.hf .bar.co i{background:var(--mid)}
+.hf .r{display:grid;grid-template-columns:8.6em minmax(0,1fr);gap:8px;align-items:center;font-size:.78rem;color:var(--muted);padding:4px 6px;border-radius:8px;border:1.5px solid transparent;transition:background .5s,border-color .5s}
+.hf .r.key{border:2.5px solid var(--magenta);background:var(--halo);color:var(--fg);font-weight:700}
+.hf .bb{display:flex;flex-direction:column;gap:3px}
+.hf .b2{display:grid;grid-template-columns:minmax(0,1fr) 1.8em;gap:6px;align-items:center;font-size:.72rem;text-align:right;font-variant-numeric:tabular-nums}
+.hf .bar{height:6px}
+.gl{display:flex;flex-direction:column;gap:10px}
+.gl h4{margin:0 0 6px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.gl ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.gl li{font-size:.8rem;padding:5px 8px;border-radius:8px;border:1.5px dashed var(--off-stroke);background:var(--off);transition:background .5s,border-color .5s}
+.gl li.on{background:var(--on);border-style:solid;border-color:var(--on-stroke)}
+.gl li.key{background:var(--halo);border:2.5px solid var(--magenta)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Séance 5 · Jeu de rôle</div>
+    <h1>Le code invisible</h1>
+    <p class="lede">Vous êtes chargé·e de la culture d'Arvéo, un fabricant de vélos électriques d'Annecy. De l'atelier à l'introduction en Bourse, en passant par quatre filiales à l'étranger et une fusion avec une entreprise japonaise, vos décisions façonnent la culture du groupe. Le dernier niveau s'appuie sur l'article de Guiso, Sapienza et Zingales (2015). Comptez environ 45 minutes.</p>
+  </header>
+  <div class="grid">
+    <main id="story" class="card" aria-live="polite"></main>
+    <div class="sidecol">
+      <aside class="card side" id="dossier"></aside>
+      <section class="card board" id="board" aria-live="polite">
+        <div><div class="eyebrow">Classement de la classe</div><h2>Meilleurs gardiens de la culture</h2></div>
+        <div id="boardBody"><p class="note">Chargement du classement…</p></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Grilles de lecture (séance 5). lens.t choisit la grille ; lens.key = ce qui est en jeu (contour rose), lens.on = ce qui est déjà traité ; lens.c = pays comparé à la France (Hofstede). */
+const LT = {schein:"Les trois niveaux de la culture (Schein)", hof:"Dimensions culturelles (Hofstede)", inter:"Management interculturel",
+  gsz:"La valeur de la culture (Guiso, Sapienza, Zingales)"};
+
+/* q: g = bonne réponse, m = partielle, b = erronée. lens.mech = levier affiché après la décision. */
+const LV = [
+{name:"Arvéo", sector:"PME industrielle", trustLabel:"Confiance d'Hélène", hint:"full",
+ ctx:"Vous êtes recruté·e comme responsable RH et culture chez Arvéo, un fabricant de vélos électriques d'Annecy : 180 salariés, une fondatrice charismatique, un atelier fier de son histoire. Votre première mission : comprendre la culture de l'entreprise avant de la faire évoluer.",
+ cast:{
+  helene:{n:"Hélène Marchal", r:"Fondatrice et PDG", c:"#24346B"},
+  julien:{n:"Julien Ferrand", r:"Directeur de production, depuis 2011", c:"#A3520F"},
+  sarah:{n:"Sarah Benali", r:"Cheffe de projet, arrivée il y a 2 mois", c:"#0F6E74"},
+  leo:{n:"Léo Martin", r:"Technicien après-vente", c:"#5B4BA8"}},
+ v:["Hélène vous confie la culture de tout le groupe.","Un bon diagnostic, avec quelques angles morts.","Hélène doute de votre lecture d'Arvéo…"],
+ disc:["Choisissez une organisation que vous connaissez (école, club, entreprise) : citez un artefact, une valeur déclarée et une hypothèse tacite.","Pourquoi les hypothèses fondamentales sont-elles si difficiles à changer ?","Le « droit à l'erreur » d'Arvéo : à quel moment précis la culture réelle a-t-elle été enseignée aux salariés ?","Une nouvelle arrivante comme Sarah a-t-elle un avantage ou un handicap pour lire une culture ?"],
+ ch:[
+ {when:"Semaine 1 · le livret", who:"helene",
+  ctx:"Hélène veut un livret d'accueil pour les nouveaux arrivants, avec une page sur la culture d'Arvéo. Dans le hall, trois mots sont peints en grand sur le mur : Audace, Confiance, Plaisir.",
+  line:"Notre culture, c'est simple : elle est sur le mur de l'accueil. Vous pouvez me la décrire en une page d'ici vendredi ?",
+  opts:[
+   {t:"Observer d'abord comment les équipes résolvent leurs problèmes, et demander aux anciens ce qui va de soi ici.", q:"g", r:"Bon. Prenez un mois, mais je veux lire le résultat.",
+    a:"Pour Schein, la culture est faite d'hypothèses tacites, partagées par un groupe, qui déterminent ses perceptions et ses comportements : « la façon dont nous faisons les choses ici ». Elle se lit à trois niveaux, et les valeurs affichées n'en sont qu'un. Pour atteindre les hypothèses fondamentales, il faut observer comment le groupe résout ses problèmes.", tags:["Schein","Trois niveaux","Hypothèses tacites"]},
+   {t:"Lancer un questionnaire où chaque salarié classe les trois valeurs du mur selon l'importance qu'il leur accorde.", q:"m", r:"Tout le monde place « Confiance » en tête. On n'a rien appris de plus.",
+    a:"Un questionnaire sur les valeurs du mur mesure l'adhésion déclarée à ces valeurs : on reste au niveau des valeurs déclarées, sans atteindre ce qui guide réellement les comportements.", tags:["Valeurs déclarées"]},
+   {t:"Reprendre les trois valeurs du mur et les illustrer de photos de l'équipe : c'est la culture officielle.", q:"b", r:"Joli livret. Les nouveaux disent qu'il ne ressemble pas à ce qu'ils vivent.",
+    a:"Confondre la culture avec son affichage revient à décrire ce que l'entreprise dit d'elle-même, pas la façon dont elle fonctionne.", tags:["Culture affichée ≠ culture vécue"]}
+  ],
+  lens:{t:"schein", key:"hyp", on:["art","val"], mech:"Viser les hypothèses tacites, pas seulement l'affichage"}},
+
+ {when:"Semaine 3 · le rapport d'étonnement", who:"sarah", diag:true,
+  ctx:"Sarah rédige son rapport d'étonnement. Elle a noté : pas de bureaux fermés, tout le monde tutoie Hélène, une cloche sonne dans l'atelier à chaque centième vélo livré, et le premier vélo de la fondatrice est suspendu dans le hall.",
+  line:"J'ai tout noté. Mais qu'est-ce que ça dit vraiment d'Arvéo ?",
+  opts:[
+   {t:"Ce sont des artefacts : visibles, mais difficiles à décoder sans savoir ce qu'ils signifient pour le groupe.", q:"g", r:"Donc je ne sais pas encore ce que veut dire le tutoiement ici. Il faut que je creuse.",
+    a:"Les artefacts sont le niveau le plus visible de la culture : locaux, langage, rituels, objets, tenues. Ils sont faciles à observer mais difficiles à interpréter : le tutoiement peut cohabiter avec une hiérarchie très forte. Il faut les relier aux valeurs et aux hypothèses du groupe pour les comprendre.", tags:["Artefacts","Visibles mais ambigus"]},
+   {t:"Des signes de valeurs égalitaires : l'open space et le tutoiement montrent que la hiérarchie compte peu dans l'entreprise.", q:"m", r:"C'est ce que j'ai cru. Puis j'ai vu que toutes les décisions passent par Hélène.",
+    a:"L'interprétation est trop rapide : un artefact ne dit pas, à lui seul, quelles valeurs ou hypothèses il exprime. Le même signe peut avoir des sens très différents selon les organisations.", tags:["Interprétation hâtive"]},
+   {t:"Des détails sans importance : la culture se lit dans la stratégie et l'organigramme, pas dans le décor.", q:"b", r:"Pourtant, la cloche, tout le monde m'en a parlé dès le premier jour.",
+    a:"Les artefacts font partie de la culture : ce sont ses manifestations visibles. Les ignorer, c'est se priver des premiers indices.", tags:["Ignorer les artefacts"]}
+  ],
+  lens:{t:"schein", key:"art", mech:"Les artefacts : visibles, difficiles à décoder"}},
+
+ {when:"Mois 2 · le droit à l'erreur", who:"helene", diag:true,
+  ctx:"La charte d'Arvéo affiche « le droit à l'erreur ». Le mois dernier, un technicien qui avait signalé lui-même une erreur de montage a été retiré de la ligne haut de gamme. Depuis, plus personne ne signale ses erreurs, et les défauts découverts par les clients augmentent.",
+  line:"On affiche le droit à l'erreur partout ! Pourquoi personne ne signale plus rien ?",
+  opts:[
+   {t:"La valeur déclarée contredit une hypothèse tacite, apprise par l'expérience : ici, l'erreur se paie.", q:"g", r:"Donc ce que les gens ont retenu, ce n'est pas la charte. C'est ce qu'on a fait au technicien.",
+    a:"Quand les valeurs déclarées et les hypothèses fondamentales divergent, ce sont les hypothèses qui guident les comportements. La culture est la propriété d'un groupe qui a partagé des expériences de résolution de problèmes : la sanction du technicien en est une, et elle a enseigné à tous que l'erreur coûte cher.", tags:["Valeurs déclarées vs hypothèses","Expérience partagée"]},
+   {t:"Le droit à l'erreur est mal communiqué : il faudrait le rappeler plus souvent, en réunion comme sur l'intranet.", q:"m", r:"On l'a rappelé lundi. Le lendemain, un défaut a encore été caché.",
+    a:"Le message est connu de tous ; le problème n'est pas la communication. Répéter la valeur déclarée ne change pas ce que le groupe a appris de l'expérience.", tags:["Communiquer plus"]},
+   {t:"Les techniciens manquent de conscience professionnelle : il faut sanctionner ceux qui cachent leurs erreurs.", q:"b", r:"Sanctionner ceux qui cachent… après avoir sanctionné celui qui avait avoué ?",
+    a:"Ajouter des sanctions confirmerait l'hypothèse tacite (« l'erreur se paie ») et pousserait à cacher davantage.", tags:["Erreur de diagnostic"]}
+  ],
+  lens:{t:"schein", key:"hyp", on:["val"], mech:"Une hypothèse tacite contredit la valeur affichée"}},
+
+ {when:"Mois 4 · la revue du lundi", who:"julien",
+  ctx:"Sarah propose de remplacer la « revue du lundi » (toute l'équipe debout dans l'atelier, 45 minutes, chaque semaine depuis 2013) par un tableau de bord en ligne. En 2013, Arvéo a failli disparaître après un lot de cadres défectueux ; c'est à ce moment que la revue est née.",
+  line:"Elle arrive et veut supprimer la revue du lundi. Elle ne sait pas d'où on vient. Vous la soutenez ?",
+  opts:[
+   {t:"Raconter à Sarah l'histoire de 2013, puis voir avec Julien ce que la revue protège avant de la changer.", q:"g", r:"Julien a accepté de raccourcir la revue. Sarah a compris pourquoi on ne pouvait pas la supprimer.",
+    a:"Le passé de l'organisation joue un rôle clé : la culture naît des problèmes que le groupe a résolus ensemble. La revue est l'artefact d'une hypothèse forgée en 2013 : « la qualité se vérifie ensemble, chaque semaine ». Comprendre ce qu'elle protège permet de la faire évoluer sans détruire ce qu'elle porte.", tags:["Rôle du passé","Résolution de problèmes","Comprendre avant de changer"]},
+   {t:"Donner raison à Julien : la revue fait partie de l'identité d'Arvéo, on n'y touche pas.", q:"m", r:"Sarah se tait. Mais elle confie à une collègue : « Ici, on ne peut rien proposer. »",
+    a:"Respecter l'histoire est juste, mais figer le rituel sans l'expliquer ferme la porte aux nouveaux arrivants, qui doivent pouvoir apprendre la culture et la faire vivre.", tags:["Figer la culture"]},
+   {t:"Donner raison à Sarah : un tableau de bord est plus efficace, et un rituel vieux de dix ans a perdu son sens.", q:"b", r:"La revue est supprimée. Trois mois plus tard, un défaut de série passe inaperçu.",
+    a:"Supprimer un rituel sans comprendre l'hypothèse qu'il porte, c'est ignorer le rôle du passé dans la culture.", tags:["Ignorer l'histoire"]}
+  ],
+  lens:{t:"schein", key:"hyp", on:["art"], mech:"Le rôle du passé : une culture née de problèmes résolus"}},
+
+ {when:"Mois 6 · le samedi", who:"leo",
+  ctx:"Un samedi, un client appelle : son vélo est en panne, et il part le lendemain pour trois semaines de voyage. La procédure après-vente ne prévoit rien pour le week-end. Léo ouvre l'atelier et répare le vélo gratuitement. Julien parle de sanction.",
+  line:"Le client était désespéré. La procédure ne dit rien du week-end. J'ai eu tort ?",
+  opts:[
+   {t:"Reconnaître que Léo a agi selon la culture de service d'Arvéo, et en tirer une règle simple pour le week-end.", q:"g", r:"Le client a écrit un message de remerciement que toute l'entreprise a lu.",
+    a:"La culture contraint et guide les comportements là où les règles ne prévoient rien : elle dit ce qui est approprié ou non. Face à un événement imprévu, Léo a donné la réponse que la culture d'Arvéo attendait. Le sanctionner enseignerait l'inverse à tous.", tags:["La culture guide les comportements","Situations imprévues"]},
+   {t:"Le féliciter en privé, mais lui rappeler que la procédure reste la référence et qu'il aurait dû appeler Julien.", q:"m", r:"Léo est soulagé. Mais il retient surtout qu'il aurait dû demander la permission.",
+    a:"Le message est mitigé : en privé, on salue le geste ; en public, la procédure prime. Le groupe retiendra la seconde partie.", tags:["Message ambigu"]},
+   {t:"Le sanctionner : si chacun s'écarte des procédures, l'entreprise devient vite ingérable.", q:"b", r:"Plus personne n'ouvre l'atelier le week-end. Les avis clients s'en ressentent.",
+    a:"Sanctionner un comportement conforme à la culture, mais non prévu par la procédure, apprend au groupe à ne faire que ce qui est écrit.", tags:["Sanction contre-productive"]}
+  ],
+  lens:{t:"schein", key:"hyp", on:["art","val"], mech:"La culture guide là où les règles se taisent"}},
+
+ {when:"Année 1 · changer la culture", who:"helene",
+  ctx:"Arvéo a doublé de taille. Hélène veut une entreprise plus innovante. Son plan : des locaux réaménagés (murs colorés, salles de créativité), un nouveau slogan, « Osez tout », et une nouvelle valeur peinte dans le hall.",
+  line:"Avec ça, en six mois, on a une culture d'innovation. Vous validez ?",
+  opts:[
+   {t:"Commencer par les dirigeants : saluer en public les essais, même ratés, pour créer de nouvelles expériences.", q:"g", r:"Hélène a présenté elle-même son projet raté de l'an dernier. La salle a applaudi.",
+    a:"Changer les artefacts et les valeurs déclarées ne touche pas les hypothèses tacites. Une culture évolue quand le groupe vit de nouvelles expériences de résolution de problèmes qui réussissent, et quand les dirigeants incarnent le changement. C'est aussi la leçon du « droit à l'erreur ».", tags:["Changer les hypothèses","Exemplarité des dirigeants"]},
+   {t:"Valider les locaux et le slogan, et ajouter une formation à la créativité pour tous les managers.", q:"m", r:"La formation est appréciée. Mais au premier échec, le projet est enterré sans bruit.",
+    a:"La formation est utile, mais tant que l'échec est sanctionné dans les faits, l'hypothèse tacite reste intacte.", tags:["Agir à la surface"]},
+   {t:"Valider tel quel : des locaux neufs et un slogan fort suffisent, car la culture suit toujours le cadre de travail.", q:"b", r:"Les murs sont orange. Les réunions, elles, n'ont pas changé.",
+    a:"Le plan n'agit que sur les artefacts et les valeurs déclarées : les deux niveaux les plus faciles à changer, et les moins décisifs.", tags:["Artefacts seuls"]}
+  ],
+  lens:{t:"schein", key:"hyp", on:["art","val"], mech:"Changer la culture : agir sur les hypothèses"}}
+ ]},
+
+{name:"Arvéo International", sector:"Filiales à l'étranger", trustLabel:"Confiance des équipes locales", hint:"full",
+ ctx:"Trois ans plus tard, Arvéo s'est internationalisée : un studio de design à Stockholm, une filiale commerciale à Denver, un bureau d'achats à Shenzhen, un site d'assemblage à Monterrey. Vous êtes directeur·rice du développement international. Chaque site a sa culture nationale. La grille compare les scores de Hofstede de la France et du pays concerné.",
+ cast:{
+  ingrid:{n:"Ingrid Lindqvist", r:"Directrice du studio, Stockholm", c:"#0F6E74"},
+  megan:{n:"Megan Carter", r:"Directrice commerciale, Denver", c:"#B5135F"},
+  wei:{n:"Wei Zhang", r:"Responsable achats, Shenzhen", c:"#A3520F"},
+  diego:{n:"Diego Ramírez", r:"Directeur du site, Monterrey", c:"#5B4BA8"}},
+ v:["Hélène vous confie l'intégration de la prochaine acquisition.","Les filiales tiennent, avec quelques frictions.","Plusieurs filiales demandent à rendre compte directement à Hélène…"],
+ disc:["Comparez la France avec un pays que vous connaissez sur hofstede-insights.com : sur quelle dimension l'écart est-il le plus grand, et quelle situation de travail cela pourrait-il compliquer ?","Hofstede décrit des préférences nationales, pas individuelles. Quels risques y a-t-il à s'en servir pour juger une personne ?","À Denver, qui avait « raison » : les ingénieurs d'Annecy ou l'équipe de Megan ?","La France combine une forte distance au pouvoir et un fort évitement de l'incertitude. Comment cela se voit-il dans votre école ?"],
+ ch:[
+ {when:"Mois 1 · Stockholm", who:"ingrid",
+  ctx:"Depuis l'intégration, chaque décision du studio de Stockholm (une couleur, le fournisseur d'une pièce) doit être validée par le directeur technique à Annecy, puis par Hélène. Trois semaines de délai en moyenne. Les designers suédois disent se sentir traités comme des enfants.",
+  line:"En Suède, on décide en équipe et le manager anime. Chez vous, tout remonte en haut. Mes designers parlent de partir. Que proposez-vous ?",
+  opts:[
+   {t:"Déléguer au studio les décisions de son périmètre, dans un cadre clair, et ne faire remonter que le stratégique.", q:"g", r:"Le délai moyen passe de trois semaines à deux jours. Personne n'est parti.",
+    a:"La distance au pouvoir mesure dans quelle mesure une répartition inégale du pouvoir est acceptée. La France a un score élevé : le pouvoir suit la position hiérarchique. La Suède a un score faible : relations démocratiques, structure aplatie. Déléguer dans un cadre adapte la méthode de gestion tout en respectant les obligations stratégiques du groupe.", tags:["Distance au pouvoir","Délégation","Adapter le management"]},
+   {t:"Organiser à Stockholm un séminaire sur le management à la française, pour que l'équipe comprenne enfin nos validations.", q:"m", r:"Les designers ont compris le système. Ils ne l'aiment pas davantage.",
+    a:"Expliquer sa propre culture est utile, mais l'effort reste à sens unique : on demande à l'équipe suédoise de s'adapter, sans adapter le management.", tags:["Adaptation à sens unique"]},
+   {t:"Maintenir la chaîne de validation : c'est la règle du groupe, et une filiale doit s'aligner sur le siège.", q:"b", r:"Deux designers démissionnent. Le nouveau modèle prend six mois de retard.",
+    a:"Imposer la distance au pouvoir française à une équipe habituée à une hiérarchie plate est vécu comme de la défiance.", tags:["Imposer le modèle du siège"]}
+  ],
+  lens:{t:"hof", c:"SE", key:"pdi", mech:"Distance au pouvoir : France élevée, Suède faible"}},
+
+ {when:"Mois 3 · Denver", who:"megan",
+  ctx:"Megan veut lancer le nouveau vélo cargo aux États-Unis le mois prochain, en « test and learn » : une petite série, ajustée selon les retours clients. L'ingénierie d'Annecy exige d'abord un dossier de validation de 80 pages. À Denver, on parle de paralysie ; à Annecy, d'amateurisme.",
+  line:"Ici, on teste, on corrige, on avance. Vos ingénieurs veulent tout prévoir. Si on attend, on rate la saison. Vous tranchez ?",
+  opts:[
+   {t:"Fixer ensemble les règles non négociables (sécurité, normes), et laisser le reste ouvert aux tests clients.", q:"g", r:"Le vélo sort à temps. Les ingénieurs ont validé la partie sécurité, et c'est tout ce qu'ils voulaient.",
+    a:"L'évitement de l'incertitude mesure la tolérance à l'ambiguïté : besoin de règles, stabilité souhaitée, stress. La France a un score très élevé, les États-Unis un score bien plus faible, avec une ouverture au changement et des règles plus souples. Chaque camp juge l'autre selon sa propre grille ; le manager interculturel combine les deux.", tags:["Évitement de l'incertitude","Règles et flexibilité"]},
+   {t:"Laisser Denver lancer à sa façon : c'est son marché, et Megan connaît mieux que personne ses clients américains.", q:"m", r:"Le lancement est rapide. Mais Annecy refuse désormais de soutenir la filiale.",
+    a:"Donner raison à Denver ignore le besoin de règles, légitime, de l'ingénierie d'Annecy : le conflit est simplement déplacé.", tags:["Trancher pour un camp"]},
+   {t:"Appliquer la procédure complète : un groupe sérieux ne vend pas un vélo dont tout n'a pas été prévu.", q:"b", r:"Le dossier est prêt en octobre. La saison est finie.",
+    a:"Imposer le fort évitement de l'incertitude du siège à toutes les filiales coûte cher sur un marché qui récompense la vitesse.", tags:["Imposer le modèle du siège"]}
+  ],
+  lens:{t:"hof", c:"US", key:"uai", mech:"Évitement de l'incertitude : France très élevé, États-Unis plus faible"}},
+
+ {when:"Mois 5 · Shenzhen", who:"wei",
+  ctx:"Le siège déploie un nouveau bonus : chaque acheteur a des objectifs individuels, et le meilleur du trimestre reçoit une prime importante, avec un classement affiché. À Shenzhen, les six acheteurs ont toujours négocié ensemble et partagé leurs contacts fournisseurs.",
+  line:"Avec ce classement, chacun va garder ses fournisseurs pour lui. L'équipe va se casser. Il faut vraiment l'appliquer ici ?",
+  opts:[
+   {t:"Ajouter une part collective liée aux objectifs de l'équipe, et ajuster le dispositif avec Wei et ses acheteurs.", q:"g", r:"Wei et son équipe ont proposé une répartition 60/40. Ils continuent de partager leurs contacts.",
+    a:"L'individualisme mesure si l'on veille sur soi ou sur le groupe. La Chine a un score très faible : les objectifs et le bien-être du groupe y comptent davantage. Mais Hofstede décrit des préférences nationales, pas individuelles : construire le dispositif avec les personnes concernées évite de plaquer une moyenne sur chacun.", tags:["Individualisme / collectivisme","Préférences nationales ≠ individuelles"]},
+   {t:"Remplacer le bonus par une prime purement collective pour toute l'équipe : Hofstede montre que la Chine est collectiviste.", q:"m", r:"L'équipe apprécie. Sauf Li, la meilleure acheteuse, qui demandait justement plus de reconnaissance individuelle.",
+    a:"Le constat est juste, mais appliquer un score national à chaque individu est un stéréotype : les dimensions décrivent des tendances moyennes.", tags:["Stéréotype"]},
+   {t:"L'appliquer tel quel : l'argent motive partout, et la concurrence fera ressortir les meilleurs acheteurs.", q:"b", r:"Au trimestre suivant, deux acheteurs se disputent le même fournisseur. Les prix montent.",
+    a:"Un dispositif conçu pour une culture individualiste peut détruire la coopération dans une équipe où le groupe prime.", tags:["Ignorer la culture locale"]}
+  ],
+  lens:{t:"hof", c:"CN", key:"idv", mech:"Individualisme : France élevé, Chine faible"}},
+
+ {when:"Mois 7 · le challenge", who:"ingrid",
+  ctx:"Le siège lance un « Challenge des ventes » copié sur Denver : classement, podium et un voyage pour le meilleur vendeur. À Stockholm, personne ne s'inscrit. Les vendeurs préfèrent finir à 16 h pour aller chercher leurs enfants.",
+  line:"Mon équipe trouve ce concours gênant. Ici, se mettre en avant contre ses collègues, ça ne se fait pas. On l'impose quand même ?",
+  opts:[
+   {t:"Adapter à Stockholm : un objectif commun, récompensé par du temps libre ou un projet choisi par l'équipe.", q:"g", r:"L'objectif collectif est dépassé. L'équipe a choisi trois jours de télétravail supplémentaires.",
+    a:"La dimension masculinité / féminité oppose l'orientation vers la tâche (compétition, rémunération, avancement) à l'orientation vers la personne (collaboration, cadre de vie, sécurité). La Suède a l'un des scores les plus faibles au monde : la compétition individuelle y est mal vue, la qualité de vie très valorisée.", tags:["Masculinité / féminité","Cadre de vie","Collaboration"]},
+   {t:"Garder le challenge, mais par équipes : la compétition demeure, sans opposer directement les personnes entre elles.", q:"m", r:"Deux équipes s'inscrivent. L'ambiance se tend entre elles.",
+    a:"Passer aux équipes atténue le problème, mais garde la logique de compétition, peu valorisée dans une culture « féminine ».", tags:["Compétition atténuée"]},
+   {t:"Doubler la récompense du gagnant : s'ils ne participent pas, c'est que l'enjeu n'est pas encore assez attractif.", q:"b", r:"Toujours aucune inscription. Le challenge devient une blague au bureau.",
+    a:"Augmenter la récompense renforce justement ce que l'équipe rejette : la compétition et la mise en avant individuelle.", tags:["Plus de la même chose"]}
+  ],
+  lens:{t:"hof", c:"SE", key:"mas", mech:"Masculinité : Suède parmi les plus faibles"}},
+
+ {when:"Mois 9 · la batterie", who:"wei",
+  ctx:"Arvéo a besoin d'une batterie sur mesure. Un fournisseur de Shenzhen propose de la développer avec Arvéo : investissement commun, marges réduites les deux premières années, en échange d'un partenariat de cinq ans. Megan préférerait acheter des batteries standard au moins cher, chaque trimestre.",
+  line:"Ce fournisseur raisonne à dix ans. Si on lui répond en trimestres, il travaillera pour quelqu'un d'autre. Que décidez-vous ?",
+  opts:[
+   {t:"Accepter un partenariat pluriannuel, avec des étapes de développement communes et des revues régulières.", q:"g", r:"La batterie sort avec un an d'avance sur la concurrence. Le fournisseur en a fait sa priorité.",
+    a:"L'orientation à long terme décrit une société tournée vers l'avenir, qui valorise la persévérance et l'adaptation pragmatique. La Chine a un score très élevé, les États-Unis un score faible. Répondre à un partenaire orienté long terme par une logique trimestrielle, c'est lui signaler que la relation n'a pas d'avenir.", tags:["Orientation long terme","Relation durable"]},
+   {t:"Signer pour un an renouvelable, afin de garder la liberté de changer si un concurrent devient moins cher.", q:"m", r:"Le fournisseur accepte, mais met ses meilleurs ingénieurs sur un autre client.",
+    a:"Le contrat d'un an préserve la flexibilité, mais pour un partenaire orienté long terme, il dit que l'engagement est fragile.", tags:["Engagement fragile"]},
+   {t:"Suivre Megan : acheter chaque trimestre au moins cher, car la fidélité à un fournisseur finit toujours par coûter.", q:"b", r:"Les batteries standard ne rentrent pas dans le nouveau cadre. Le projet est gelé.",
+    a:"Une logique purement court terme ignore à la fois le besoin d'une batterie sur mesure et la culture du partenaire.", tags:["Court-termisme"]}
+  ],
+  lens:{t:"hof", c:"CN", key:"lto", mech:"Orientation long terme : Chine très élevée"}},
+
+ {when:"Mois 12 · Monterrey", who:"diego",
+  ctx:"Le site de Monterrey atteint tous ses objectifs. Pour réduire les coûts, le contrôle de gestion d'Annecy veut supprimer le « convivio » mensuel (repas d'équipe et anniversaires du mois) et la sortie anticipée du vendredi, jugés « non productifs ».",
+  line:"Ici, profiter de la vie ensemble fait partie du travail. Si vous supprimez ça, l'équipe le vivra comme une trahison. Vous signez ?",
+  opts:[
+   {t:"Maintenir ces moments, en chiffrer le coût réel, et chercher les économies ailleurs avec Diego.", q:"g", r:"L'équipe de Diego trouve elle-même deux fois l'économie demandée, sur les emballages.",
+    a:"L'indulgence décrit le degré de liberté que les normes sociales laissent à la satisfaction des désirs liés au plaisir et à la jouissance de la vie. Le Mexique a l'un des scores les plus élevés au monde ; la France est plus réservée. Le management interculturel combine les spécificités culturelles (ces moments) avec les obligations stratégiques du groupe (les coûts).", tags:["Indulgence / retenue","Spécificités locales et objectifs globaux"]},
+   {t:"Les garder, mais une fois par trimestre au lieu de chaque mois : l'économie est réelle, et le symbole reste.", q:"m", r:"L'équipe accepte, sans enthousiasme. Le message reçu : « Annecy ne nous comprend pas. »",
+    a:"Le compromis limite les dégâts, mais il réduit ce que l'équipe valorise le plus, sans l'associer à la recherche d'économies.", tags:["Compromis imposé"]},
+   {t:"Signer : les règles de dépenses sont les mêmes pour tous les sites, sans exception locale.", q:"b", r:"Le taux d'absentéisme double en trois mois. Deux chefs d'équipe partent chez un concurrent.",
+    a:"Appliquer une règle uniforme sans tenir compte de la culture locale détruit à Monterrey ce qui fait la cohésion du site.", tags:["Règle uniforme"]}
+  ],
+  lens:{t:"hof", c:"MX", key:"ivr", mech:"Indulgence : Mexique parmi les plus élevés"}}
+ ]},
+
+{name:"Arvéo × Kazemori", sector:"Fusion internationale", trustLabel:"Confiance de Kazemori", hint:"after",
+ ctx:"Arvéo fusionne avec Kazemori, une entreprise familiale d'Osaka qui fabrique des moteurs de vélo électrique (400 salariés). L'opération est annoncée comme une « fusion entre égaux ». Vous pilotez l'intégration des deux entreprises.",
+ cast:{
+  marc:{n:"Marc Dufresne", r:"Directeur industriel, Arvéo", c:"#24346B"},
+  kenji:{n:"Kenji Ishida", r:"Directeur général, Kazemori", c:"#B5135F"},
+  aiko:{n:"Aiko Tanaka", r:"Ingénieure qualité, Kazemori", c:"#0F6E74"},
+  helene:{n:"Hélène Marchal", r:"PDG du nouveau groupe", c:"#5B4BA8"}},
+ v:["Kenji propose de vous confier l'intégration des équipes au Japon.","La fusion tient, mais les deux cultures restent côte à côte.","À Osaka, on parle désormais d'« absorption »…"],
+ disc:["Trouvez un mot qui n'a pas le même sens, ou pas la même connotation, dans deux langues que vous parlez.","Daimler-Chrysler : pourquoi une « fusion entre égaux » est-elle si souvent vécue comme une absorption ?","Recruter sur les valeurs : où passe la frontière entre adéquation culturelle et discrimination ? (lien avec le management de la diversité)","Le plan de réduction des contrôles : qui, dans le groupe, aurait dû repérer l'incohérence avec la charte ?"],
+ ch:[
+ {when:"Mois 2 · le prototype", who:"marc", diag:true,
+  ctx:"Arvéo a demandé à Kazemori un « prototype » du nouveau moteur pour mars. En mars, Kazemori livre un moteur testé, documenté, quasi prêt pour la série, après des semaines d'heures supplémentaires. Arvéo voulait une maquette pour faire des essais, et avait déjà changé deux fois le cahier des charges.",
+  line:"On demande un prototype, ils livrent un produit fini avec trois semaines de retard sur nos essais. Ils ne savent pas lire un cahier des charges ?",
+  opts:[
+   {t:"Une barrière sémantique : le même mot, « prototype », ne désigne pas la même chose des deux côtés.", q:"g", r:"Aiko confirme : chez Kazemori, un prototype doit déjà être irréprochable.",
+    a:"Les obstacles dus à la sémantique naissent quand un même mot recouvre des réalités différentes selon la langue ou l'organisation. Ici, les deux équipes parlaient anglais et employaient le même terme. Remède : un glossaire commun des mots clés, illustré d'exemples concrets.", tags:["Barrière sémantique","Glossaire commun"]},
+   {t:"Un problème de traduction : il faudrait un interprète professionnel à chaque réunion entre les deux équipes.", q:"m", r:"Un interprète aurait traduit « prototype » par… « prototype ».",
+    a:"La langue n'est pas en cause : les deux équipes utilisaient le même mot. C'est le sens donné au mot qui différait.", tags:["Traduction"]},
+   {t:"Un manque de compétence : les ingénieurs de Kazemori ne maîtrisent pas la méthode de développement utilisée chez Arvéo.", q:"b", r:"Les ingénieurs de Kazemori ont trente ans d'expérience dans le moteur.",
+    a:"Attribuer l'écart à l'incompétence du partenaire est le réflexe le plus courant, et le plus dommageable, dans une fusion.", tags:["Erreur de diagnostic"]}
+  ],
+  lens:{t:"inter", key:"semantique", mech:"Obstacle sémantique"}},
+
+ {when:"Mois 4 · le calendrier", who:"marc", diag:true,
+  ctx:"En comité de pilotage, Marc a présenté un calendrier serré : le moteur prêt en quatre mois. Kenji a répondu « hai, hai » en hochant la tête. Marc a noté « accord de Kazemori ». Quatre mois plus tard, rien n'est prêt, et Kenji affirme qu'il a toujours jugé ce délai impossible.",
+  line:"Il a dit oui ! Devant tout le monde ! Comment peut-il prétendre aujourd'hui qu'il n'était pas d'accord ?",
+  opts:[
+   {t:"« Hai » voulait dire « je vous écoute », pas « je suis d'accord » : le mot n'a pas la même connotation.", q:"g", r:"Kenji : « J'ai dit que j'écoutais. Je ne pouvais pas vous contredire devant votre équipe. »",
+    a:"Les mots impliquent des choses différentes selon les langues : c'est l'obstacle de la connotation. Le japonais « hai » se traduit par « oui », mais signifie souvent « oui, je vous écoute » plutôt que « oui, je suis d'accord ». Il faut vérifier un accord autrement : reformulation, confirmation écrite, échange en tête-à-tête.", tags:["Connotation des mots","Vérifier l'accord"]},
+   {t:"Un problème d'écoute : Marc a présenté trop vite, et Kenji n'a pas bien compris le calendrier.", q:"m", r:"Kenji avait très bien compris. C'est pour cela qu'il était inquiet.",
+    a:"Le contenu avait été compris. Ce qui a été mal interprété, c'est la réponse de Kenji, pas la présentation de Marc.", tags:["Compréhension"]},
+   {t:"Un manque de franchise : Kenji a accepté un délai qu'il savait intenable, pour ne pas perdre la face en réunion.", q:"b", r:"Kenji : « Je n'ai rien accepté. » Le ton monte entre les deux directions.",
+    a:"Accuser Kenji de mauvaise foi transforme un malentendu de connotation en conflit de personnes.", tags:["Procès d'intention"]}
+  ],
+  lens:{t:"inter", key:"connotation", on:["semantique"], mech:"Obstacle de la connotation"}},
+
+ {when:"Mois 6 · le défaut", who:"aiko",
+  ctx:"Aiko a identifié un défaut récurrent sur les moteurs assemblés à Annecy. Marc propose une grande réunion des deux équipes pour « tout mettre sur la table », désigner le responsable et obtenir des excuses explicites.",
+  line:"Une réunion pour désigner un coupable devant tout le monde ? Mon équipe ne dira rien. On ne peut pas faire autrement ?",
+  opts:[
+   {t:"Traiter le défaut en petit comité, sur le processus plutôt que les personnes, sans excuses publiques.", q:"g", r:"La cause est trouvée en deux jours : un réglage d'outil. Personne n'a perdu la face.",
+    a:"Les cultures diffèrent dans leur tolérance aux conflits et leur façon de les résoudre. Les cultures individualistes acceptent le conflit direct et attendent des excuses explicites. Les cultures plus collectivistes reconnaissent le conflit de façon implicite, évitent les disputes chargées d'émotion et l'attribuent plutôt à la situation qu'aux personnes.", tags:["Tolérance au conflit","Résolution des conflits"]},
+   {t:"Maintenir la réunion, mais demander à chacun d'envoyer avant son analyse écrite, pour limiter les tensions.", q:"m", r:"Les analyses écrites sont précises. En réunion, l'équipe d'Aiko reste muette.",
+    a:"L'écrit aide, mais la réunion garde son but : désigner un responsable en public, ce que l'équipe de Kazemori cherche à éviter.", tags:["Conflit public maintenu"]},
+   {t:"Maintenir la réunion : un conflit se règle en face, et celui qui a commis l'erreur doit présenter ses excuses.", q:"b", r:"La réunion dure trois heures. Le défaut n'est pas résolu, la relation l'est encore moins.",
+    a:"Imposer le mode de résolution d'une culture individualiste à des partenaires qui évitent le conflit ouvert bloque à la fois l'analyse et la relation.", tags:["Confrontation directe"]}
+  ],
+  lens:{t:"inter", key:"conflit", on:["semantique","connotation"], mech:"Tolérance et résolution des conflits"}},
+
+ {when:"Mois 9 · égaux ?", who:"helene",
+  ctx:"Neuf mois après la « fusion entre égaux », Annecy propose de remplacer les pratiques de Kazemori (reporting, réunions, évaluation) par celles d'Arvéo, « pour simplifier ». À Osaka, plusieurs ingénieurs ont démissionné ; les salariés parlent d'absorption.",
+  line:"On avait dit fusion entre égaux. Concrètement, qu'est-ce qu'on fait des deux cultures ?",
+  opts:[
+   {t:"Fixer un socle commun de valeurs et de règles, et garder les pratiques locales là où elles font la force de chacun.", q:"g", r:"La qualité de Kazemori devient la référence du groupe. La vitesse d'Arvéo, celle des lancements.",
+    a:"Le management interculturel repose sur la reconnaissance et la prise en compte des différences culturelles. Il combine les spécificités culturelles avec les obligations stratégiques globales de l'entreprise, dans un but : transformer les différences culturelles en avantages stratégiques. La fusion Daimler-Chrysler, annoncée entre égaux, a échoué en partie faute de l'avoir fait.", tags:["Différences → avantage stratégique","Daimler-Chrysler"]},
+   {t:"Laisser chaque entité fonctionner comme avant, avec sa propre culture, et ne fusionner que la finance.", q:"m", r:"Le calme revient. Mais Annecy et Osaka ne travaillent toujours pas ensemble.",
+    a:"Juxtaposer les cultures évite le conflit, mais ne crée ni socle commun ni avantage tiré des différences.", tags:["Juxtaposition"]},
+   {t:"Imposer partout les pratiques d'Arvéo : une seule culture se gère plus simplement, et Arvéo est la plus grande des deux.", q:"b", r:"Le directeur de la R&D de Kazemori démissionne. Ses meilleurs ingénieurs le suivent.",
+    a:"Imposer la culture d'un des partenaires transforme la fusion en absorption, comme chez Daimler-Chrysler.", tags:["Absorption"]}
+  ],
+  lens:{t:"inter", key:"avantage", on:["semantique","connotation","conflit"], mech:"Transformer les différences en avantage stratégique"}},
+
+ {when:"Mois 11 · le recrutement", who:"marc",
+  ctx:"Le groupe recrute un directeur commercial pour l'Asie. Le meilleur candidat sur le papier affiche des résultats exceptionnels. Mais ses anciens collègues décrivent son mépris pour la « lenteur » des partenaires asiatiques et ses blagues humiliantes en réunion.",
+  line:"Ses chiffres sont exceptionnels. Le reste, ça se corrige. On signe ?",
+  opts:[
+   {t:"Ne pas le recruter : le respect des valeurs du groupe se contrôle aussi au moment du recrutement.", q:"g", r:"Marc grimace, puis valide. Le deuxième candidat parle japonais et a vécu six ans à Osaka.",
+    a:"Le manager d'une équipe interculturelle doit incarner les valeurs de l'entreprise et contrôler leur respect : lors du recrutement comme au quotidien. Recruter un directeur Asie qui méprise les partenaires asiatiques contredirait le socle commun de la fusion. C'est aussi un enjeu d'inclusion et de management de la diversité.", tags:["Contrôler le respect des valeurs","Recrutement","Inclusion"]},
+   {t:"Le recruter, avec une période d'essai et une formation interculturelle obligatoire dès son arrivée.", q:"m", r:"Il suit la formation. Trois mois plus tard, un partenaire de Séoul se plaint de son attitude.",
+    a:"La formation et la période d'essai sont des garde-fous, mais on recrute en connaissance de cause un comportement contraire aux valeurs du groupe.", tags:["Corriger après coup"]},
+   {t:"Le recruter : un directeur commercial se juge sur ses chiffres, et son humour relève de sa personnalité.", q:"b", r:"Six mois plus tard, Kazemori demande officiellement son départ.",
+    a:"Ignorer les valeurs au recrutement envoie à tout le groupe le message qu'elles ne comptent pas face aux résultats.", tags:["Les chiffres avant les valeurs"]}
+  ],
+  lens:{t:"inter", key:"controler", on:["incarner"], mech:"Contrôler le respect des valeurs dès le recrutement"}},
+
+ {when:"Année 2 · la charte", who:"kenji",
+  ctx:"La nouvelle charte du groupe place en tête « La qualité avant tout », valeur historique de Kazemori. Mais le plan stratégique préparé à Annecy réduit de 40 % les contrôles qualité pour atteindre un objectif de prix aux États-Unis.",
+  line:"Notre charte dit « la qualité avant tout ». Votre plan dit l'inverse. Mes ingénieurs me demandent lequel des deux il faut croire.",
+  opts:[
+   {t:"Revoir le plan avec Kenji pour tenir le prix visé sans toucher aux contrôles qui fondent la charte.", q:"g", r:"L'économie est trouvée sur la logistique. Les ingénieurs d'Osaka l'ont appris par Kenji lui-même.",
+    a:"Le manager doit vérifier la cohérence entre les valeurs et la stratégie. Une valeur contredite par les décisions perd toute crédibilité, et avec elle, la confiance dans ceux qui l'affichent. Le niveau suivant montre pourquoi cette crédibilité a une valeur économique.", tags:["Cohérence valeurs-stratégie","Crédibilité des valeurs"]},
+   {t:"Garder le plan, mais expliquer aux ingénieurs que la qualité reste une priorité, dans la limite du budget.", q:"m", r:"Les ingénieurs ont entendu « dans la limite du budget ». Ils en ont tiré leurs conclusions.",
+    a:"L'explication reconnaît la valeur en paroles, mais la décision la contredit dans les faits. C'est la décision que l'on retient.", tags:["Paroles contre actes"]},
+   {t:"Garder le plan tel quel : une charte exprime une ambition, elle ne sert pas à arbitrer les questions de coûts.", q:"b", r:"Un an plus tard, un rappel de 3 000 moteurs coûte dix fois l'économie réalisée.",
+    a:"Une charte qui ne guide pas les arbitrages devient un simple affichage, et les salariés le comprennent vite.", tags:["Charte décorative"]}
+  ],
+  lens:{t:"inter", key:"coherence", on:["incarner","controler"], mech:"Vérifier la cohérence entre valeurs et stratégie"}}
+ ]},
+
+{name:"Arvéo Group en Bourse", sector:"Introduction en Bourse", trustLabel:"Confiance des salariés", hint:"none",
+ ctx:"Cinq ans plus tard, Arvéo Group (1 200 salariés) prépare son introduction en Bourse pour financer sa croissance. Vous siégez au comité de direction, en charge des RH et de la culture. Ce niveau s'appuie sur l'article de Guiso, Sapienza et Zingales (2015), « The value of corporate culture ».",
+ cast:{
+  helene:{n:"Hélène Marchal", r:"PDG", c:"#24346B"},
+  olivier:{n:"Olivier Brunet", r:"Directeur financier", c:"#A3520F"},
+  claire:{n:"Claire Vasseur", r:"Banquière conseil de l'introduction", c:"#B5135F"},
+  nadia:{n:"Nadia Kerroum", r:"Technicienne d'atelier, élue du CSE", c:"#0F6E74"},
+  thibault:{n:"Thibault Lemaire", r:"Gérant du fonds Ventaris (8 % du capital)", c:"#5B4BA8"}},
+ v:["Le conseil d'administration fait de l'intégrité un indicateur stratégique.","Arvéo est cotée, mais sa culture s'effrite par endroits.","« Ils ne tiennent plus parole » : l'enquête salariés est sans appel…"],
+ disc:["Greg Smith attribue le déclin de la culture de Goldman Sachs à son passage de partenariat à société cotée. Quels mécanismes de l'article rendent cette thèse plausible ?","Pourquoi une valeur affichée sur un site web est-elle du « cheap talk » ? Qu'est-ce qui rendrait une valeur crédible ?","L'article mesure l'intégrité par la perception des salariés. Quelles limites voyez-vous à cette mesure ?","Les auteurs observent des corrélations, pas une preuve de causalité. Quelle autre explication pourrait relier intégrité et performance ?"],
+ ch:[
+ {when:"J-6 mois · le prospectus", who:"claire",
+  ctx:"Claire prépare le prospectus d'introduction en Bourse. Elle veut y ajouter une page « Nos valeurs » : Innovation, Intégrité, Respect, Excellence, « comme toutes les grandes sociétés cotées ».",
+  line:"Une belle page de valeurs, c'est rassurant pour les investisseurs. Ça soutiendra la valorisation, non ?",
+  opts:[
+   {t:"Pas en soi : les valeurs affichées ne prédisent pas la performance. Ce qui compte, c'est ce que vivent les salariés.", q:"g", r:"Claire garde la page, mais la ramène à trois lignes. « Au moins, on ne promet rien qu'on ne tiendra pas. »",
+    a:"Guiso, Sapienza et Zingales relèvent que 85 % des entreprises du S&P 500 ont une page consacrée à leur culture ; l'innovation y est citée par 80 % d'entre elles, l'intégrité et le respect par 70 %. Ces valeurs affichées ne sont corrélées ni à la rentabilité ni au q de Tobin. Affirmer l'intégrité ne coûte rien, donc tout le monde le fait : c'est du « cheap talk ».", tags:["Valeurs affichées","Cheap talk"]},
+   {t:"Oui, à condition de choisir des valeurs plus originales que la concurrence, pour se distinguer auprès des investisseurs.", q:"m", r:"Claire propose « Audace radicale ». Les investisseurs ne la lisent pas plus que les autres.",
+    a:"L'originalité ne change pas le problème : une valeur déclarée reste une déclaration qui ne coûte rien. Seule l'exception relevée par les auteurs, une satisfaction client plus élevée, suggère que l'affichage parle surtout aux clients.", tags:["Se distinguer"]},
+   {t:"Oui : plus la page est complète et visible, plus les investisseurs font confiance à la culture.", q:"b", r:"Le prospectus contient huit valeurs. Aucun analyste ne pose de question dessus.",
+    a:"Les auteurs ne trouvent aucune corrélation entre l'affichage des valeurs et la performance financière.", tags:["Affichage = performance ?"]}
+  ],
+  lens:{t:"gsz", key:"affiche", mech:"Valeurs affichées : du cheap talk"}},
+
+ {when:"J-5 mois · mesurer", who:"olivier", diag:true,
+  ctx:"Le conseil d'administration veut un indicateur de la « culture d'intégrité » du groupe dans le rapport annuel.",
+  line:"Il nous faut un chiffre. Comment mesure-t-on sérieusement l'intégrité d'une entreprise ?",
+  opts:[
+   {t:"Demander aux salariés, anonymement, si la direction agit conformément à ses paroles et reste honnête.", q:"g", r:"Première enquête : 61 % de réponses positives. Olivier : « Au moins, c'est un vrai chiffre. »",
+    a:"Les auteurs mesurent l'intégrité par l'enquête du Great Place to Work Institute, auprès d'au moins 400 salariés par entreprise. Deux affirmations : « La direction agit conformément à ses paroles » et « La direction est honnête et éthique dans ses pratiques ». Ce qui compte, c'est la façon dont les salariés perçoivent la direction, pas ce qu'elle affiche.", tags:["Intégrité perçue","Enquête salariés"]},
+   {t:"Compter les engagements éthiques publiés par le groupe : charte, code de conduite, rapport RSE, labels obtenus.", q:"m", r:"Arvéo coche toutes les cases. Comme tous ses concurrents.",
+    a:"Ce sont des valeurs affichées : elles disent ce que l'entreprise déclare, pas ce que vivent les salariés.", tags:["Valeurs affichées"]},
+   {t:"Demander aux membres du comité de direction d'évaluer eux-mêmes l'intégrité du management, de 1 à 10.", q:"b", r:"Moyenne : 9,2. Personne n'est surpris.",
+    a:"Une auto-évaluation par les dirigeants mesure l'image qu'ils ont d'eux-mêmes ; les yeux qui comptent sont ceux des salariés.", tags:["Auto-évaluation"]}
+  ],
+  lens:{t:"gsz", key:"percue", on:["affiche"], mech:"Mesurer l'intégrité perçue par les salariés"}},
+
+ {when:"J-4 mois · la promesse", who:"nadia",
+  ctx:"Il y a trois ans, en pleine crise, Hélène a demandé aux salariés de l'atelier d'accepter deux ans de gel des salaires, en promettant par écrit une prime de partage des bénéfices au retour des profits. Les résultats sont aujourd'hui records. Olivier et la banque suggèrent d'abandonner la prime pour afficher de meilleures marges dans le prospectus.",
+  line:"Les gars ont tenu pendant la crise parce qu'Hélène avait donné sa parole. Si elle ne la tient pas, plus personne ne croira la direction. Vous faites quoi ?",
+  opts:[
+   {t:"Verser la prime promise, comme prévu, et la présenter aux investisseurs comme un engagement tenu.", q:"g", r:"Nadia : « Je n'y croyais plus. » L'enquête suivante bat tous les records.",
+    a:"Les auteurs décrivent un aléa moral au sommet : la direction est tentée de renier ses engagements envers les salariés qui ont investi dans l'entreprise. Une direction qui tient parole valide l'intégrité comme norme, que les salariés font ensuite respecter entre eux ; une promesse rompue fait s'effondrer cette norme. C'est exactement ce que mesure « la direction agit conformément à ses paroles ».", tags:["Tenir parole","Aléa moral au sommet"]},
+   {t:"Verser la prime, mais seulement après l'introduction en Bourse, quand la valorisation sera fixée.", q:"m", r:"La prime sera versée. Mais l'atelier a compris que le cours de Bourse passait avant.",
+    a:"La promesse est tenue, mais subordonnée au marché : les salariés observent que la parole donnée passe après la valorisation.", tags:["Promesse différée"]},
+   {t:"Supprimer la prime : la situation a changé, et la priorité absolue est désormais le prix de l'introduction.", q:"b", r:"Le prix de l'introduction gagne 2 %. Dans l'atelier, plus personne ne croit un mot de la direction.",
+    a:"Renier une promesse faite à ceux qui ont consenti un sacrifice détruit le capital d'intégrité, précisément au moment où le groupe change de gouvernance.", tags:["Promesse rompue"]}
+  ],
+  lens:{t:"gsz", key:"alea", on:["percue"], mech:"Aléa moral au sommet : tenir ses promesses"}},
+
+ {when:"J-3 mois · l'après-vente", who:"olivier",
+  ctx:"Les investisseurs s'interrogent sur le coût de l'après-vente. Les techniciens ont jusqu'ici une consigne simple : « faire ce qu'il faut pour le client ». Olivier propose un contrat détaillé : 40 indicateurs, temps standard par intervention, pénalités.",
+  line:"Ce qui n'est pas mesuré n'est pas géré. Avec 40 indicateurs, on contrôle enfin la qualité du service. D'accord ?",
+  opts:[
+   {t:"Faire du service au client une valeur non négociable, portée par l'exemple des dirigeants et quelques règles simples.", q:"g", r:"Les techniciens gardent leur liberté. La satisfaction client reste la meilleure du secteur.",
+    a:"Selon les auteurs, la culture compte parce que les salariés font face à des choix qu'aucun contrat ne peut régler à l'avance : un service à peine moins bon est difficile à détecter. Ériger le service en valeur attire ceux qui la partagent, engage à ne pas faire de calcul économique au cas par cas, et crée une norme sociale que les collègues font respecter, à condition que la direction montre l'exemple.", tags:["Contrats incomplets","Norme sociale","Montrer l'exemple"]},
+   {t:"Adopter les indicateurs, mais n'en garder qu'une dizaine, les plus simples à mesurer pour les techniciens.", q:"m", r:"Les dix indicateurs sont au vert. Les clients, eux, trouvent le service moins attentionné.",
+    a:"Moins d'indicateurs, c'est plus lisible, mais on ne mesure toujours que ce qui est mesurable : le contrat reste incomplet.", tags:["Mesurer le mesurable"]},
+   {t:"Adopter les 40 indicateurs : avec des pénalités suffisantes, chaque technicien fera exactement ce qui est attendu de lui.", q:"b", r:"Les techniciens font exactement ce qui est mesuré. Et plus rien d'autre.",
+    a:"Un contrat détaillé ne couvre jamais toutes les situations ; il pousse à négliger tout ce qu'il ne mesure pas.", tags:["Tout contractualiser"]}
+  ],
+  lens:{t:"gsz", key:"contrats", on:["percue"], mech:"Contrats incomplets : la culture comme norme sociale"}},
+
+ {when:"J+6 mois · la fraude", who:"claire",
+  ctx:"Arvéo est cotée depuis six mois. L'audit interne découvre qu'un directeur commercial régional a enregistré de fausses commandes en fin de trimestre pour toucher son bonus.",
+  line:"Si on communique, le marché croira que c'est la partie émergée de l'iceberg. Proposons-lui un départ discret, à l'amiable, avec une indemnité.",
+  opts:[
+   {t:"Sanctionner clairement, et dire la même chose aux salariés et au marché : un cas isolé, traité fermement.", q:"g", r:"Le cours baisse de 3 % une journée. En interne, le message est reçu : ici, on ne triche pas.",
+    a:"Dans une société cotée, la direction doit envoyer deux signaux : un signal interne, qui dissuade les violations futures, et un signal externe de transparence envers le marché. Le risque, selon les auteurs, est que la peur d'une mauvaise lecture par le marché pousse à diluer la sanction, et avec elle le message interne. C'est l'une des raisons pour lesquelles les normes d'intégrité sont plus fragiles dans les sociétés cotées.", tags:["Double signal","Interne et marché"]},
+   {t:"Le licencier, sans rien en dire ni en interne ni à l'extérieur, pour éviter toute mauvaise interprétation.", q:"m", r:"La rumeur circule quand même dans l'atelier, avec des chiffres trois fois plus gros.",
+    a:"La sanction est juste, mais le silence affaiblit le signal interne : sans message clair, la norme ne se renforce pas.", tags:["Signal interne affaibli"]},
+   {t:"Accepter le départ à l'amiable avec indemnité : le cours est protégé, et l'affaire réglée vite.", q:"b", r:"Les commerciaux font le calcul : tricher, au pire, rapporte une indemnité.",
+    a:"Diluer la sanction pour rassurer le marché, c'est exactement le mécanisme qui fragilise l'intégrité dans les sociétés cotées.", tags:["Sanction diluée"]}
+  ],
+  lens:{t:"gsz", key:"signal", on:["percue","contrats"], mech:"Le double signal : salariés et marché"}},
+
+ {when:"J+1 an · l'actionnaire", who:"thibault",
+  ctx:"Le fonds Ventaris détient désormais 8 % du capital. Au conseil, Thibault Lemaire demande de supprimer pendant deux ans le budget formation, l'enquête annuelle auprès des salariés et la prime de partage, pour améliorer les marges trimestrielles. Hélène vous demande de répondre.",
+  line:"Le marché ne paie pas pour la culture. Il paie pour les marges du trimestre. Qu'est-ce que vous avez à m'opposer ?",
+  opts:[
+   {t:"Les données : l'intégrité perçue va de pair avec la performance, que le marché ne voit qu'avec retard.", q:"g", r:"Le conseil maintient les budgets, et ajoute l'intégrité perçue aux indicateurs suivis chaque année.",
+    a:"Les auteurs trouvent qu'une intégrité perçue plus élevée d'un écart-type va de pair avec un q de Tobin plus élevé (environ +0,19 écart-type), une meilleure rentabilité, moins de syndicalisation et plus de candidats par poste. Mais le marché sous-estime ce capital à court terme, ce qui pousse les sociétés cotées à y sous-investir : leur intégrité est inférieure de 0,21 écart-type à celle de sociétés non cotées comparables, et la présence d'un actionnaire de plus de 5 % y est associée à moins d'intégrité. Ce sont des corrélations, pas une preuve causale.", tags:["Cotation et horizon court","Actionnaire de référence","Intégrité et performance"]},
+   {t:"Accepter les coupes, mais garder la charte et la page de valeurs du site pour préserver l'image du groupe.", q:"m", r:"La page de valeurs reste en ligne. L'enquête suivante, faite par un cabinet externe, s'effondre.",
+    a:"Garder l'affichage en supprimant les actes, c'est revenir au « cheap talk » du premier chapitre.", tags:["Retour au cheap talk"]},
+   {t:"Accepter : un fonds qui détient 8 % du capital parle pour les actionnaires, et leur intérêt doit primer sur le reste.", q:"b", r:"Les marges progressent deux trimestres. Puis les départs de techniciens s'accélèrent.",
+    a:"Céder à un horizon trimestriel détruit un capital d'intégrité que les auteurs associent à la performance de long terme.", tags:["Court-termisme"]}
+  ],
+  lens:{t:"gsz", key:"bourse", on:["percue","contrats","alea","signal"], mech:"Cotation, horizon court et actionnaire de référence"}}
+ ]}
+];
+
+/* typographie française : espace insécable avant ? ! : ; » et après « */
+const nb = x => typeof x==="string" ? x.replace(/ ([?!:;»])/g," $1").replace(/« /g,"« ")
+  : Array.isArray(x) ? x.map(nb) : x && typeof x==="object" ? Object.fromEntries(Object.entries(x).map(([k,v])=>[k,nb(v)])) : x;
+LV.splice(0, LV.length, ...nb(LV));
+
+const PTS = {g:100, m:40, b:0};
+const NCH = LV.reduce((s,l)=>s+l.ch.length,0), MAX = NCH*PTS.g, MAXS = MAX.toLocaleString("fr-FR");
+const HINT = {full:"Aide complète : la grille de lecture est affichée en direct, et ce qui est en jeu apparaît après chaque décision.", after:"Aide réduite : la grille de lecture n'apparaît qu'après chaque décision.", none:"Sans aide : pas de grille de lecture pendant le niveau. Seule l'analyse vous guide."};
+const HSHORT = {full:"aide complète", after:"aide réduite", none:"sans aide"};
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fresh = () => ({lvl:0, i:-1, picks:LV.map(()=>[]), trust:50, motiv:50, well:50, picked:null, order:{}, done:0, saved:[]});
+const S = Object.assign({name:"", screen:"home", debug:false}, fresh());
+const PKEY = "code-progress";
+try{ S.name = localStorage.getItem("code-name") || localStorage.getItem("carnet-name") || localStorage.getItem("nomade-name") || ""; }catch(e){}
+try{ const p = JSON.parse(localStorage.getItem(PKEY)||"null"); if(p && Array.isArray(p.picks) && p.picks.length===LV.length) Object.assign(S, p); }catch(e){}
+const DBG = parseInt(new URLSearchParams(location.search).get("niveau"),10);
+if(DBG>=1 && DBG<=LV.length) Object.assign(S, fresh(), {debug:true, lvl:DBG-1, done:DBG-1});
+function persist(){ if(S.debug) return; try{ localStorage.setItem(PKEY, JSON.stringify({lvl:S.lvl,i:S.i,picks:S.picks,trust:S.trust,motiv:S.motiv,well:S.well,picked:S.picked,order:S.order,done:S.done,saved:S.saved})); }catch(e){} }
+const lv = () => LV[S.lvl];
+const ptsOf = L => S.picks[L].reduce((s,p)=>s+(p?PTS[p.q]:0),0);
+const goodOf = L => S.picks[L].filter(p=>p&&p.q==="g").length;
+const total = () => LV.reduce((s,_,L)=>s+ptsOf(L),0);
+const totalGood = () => LV.reduce((s,_,L)=>s+goodOf(L),0);
+
+/* ---- Classement partagé (même Google Sheet / Apps Script que les séances 3 et 4, jeu distinct) ---- */
+const API_URL = "https://script.google.com/macros/s/AKfycbzKs1oVRlEOOXA8GthkLrVvrR94dL4aPfUMU-eeXzVFQKj60weXfgg7OTStB6xl07BEug/exec";
+const GAME = "culture";
+const LB = {rows:[], state:"loading", me:null};
+try{ LB.me = localStorage.getItem("code-id"); if(!LB.me){ LB.me = "p"+Math.random().toString(36).slice(2,12)+Date.now().toString(36); localStorage.setItem("code-id", LB.me); } }catch(e){ LB.me = "p"+Math.random().toString(36).slice(2,12); }
+const API_OK = /^https:\/\/script\.google\.com\//.test(API_URL);
+
+async function loadBoard(){
+  if(!API_OK){ LB.state="off"; renderBoard(); return; }
+  try{
+    const r = await fetch(API_URL+"?game="+GAME+"&t="+Date.now());
+    const j = await r.json();
+    LB.rows = (j.rows||[]).filter(x=>typeof x.score==="number");
+    LB.state="on";
+  }catch(e){ if(LB.state!=="on") LB.state="err"; }
+  renderBoard();
+}
+loadBoard();
+setInterval(()=>{ if(document.visibilityState==="visible" && S.screen!=="chapter") loadBoard(); }, 15000);
+
+function renderBoard(){
+  const el=document.getElementById("boardBody"); if(!el) return;
+  if(LB.state==="loading"){ el.innerHTML=`<p class="note">Chargement du classement…</p>`; return; }
+  if(LB.state==="off"){ el.innerHTML=`<p class="note">Classement non configuré. Le jeu fonctionne quand même.</p>`; return; }
+  if(LB.state==="err"){ el.innerHTML=`<p class="note">Classement momentanément indisponible. Nouvel essai dans quelques secondes.</p>`; return; }
+  const top = LB.rows.slice(0,25);
+  let html = top.length ? `<ol>${top.map((r,k)=>`<li class="${r.id===LB.me?"me":""}"><span class="rk">${k+1}</span>
+      <span class="nm">${esc(r.name)}${r.id===LB.me?" <small>(vous)</small>":""}<br><small>${r.good??"?"} bonnes décisions</small></span>
+      <span class="sc">${r.score}</span></li>`).join("")}</ol>`
+    : `<p class="note">Personne n'a encore terminé de niveau. Le premier score apparaîtra ici.</p>`;
+  const mine = LB.rows.findIndex(r=>r.id===LB.me);
+  if(mine>=25) html += `<p class="note">Votre rang : ${mine+1} sur ${LB.rows.length}.</p>`;
+  html += `<p class="note">Score sur ${MAXS} : 100 points par bonne décision, 40 par décision partielle, ${NCH} décisions en ${LV.length} niveaux. Le score est enregistré à la fin de chaque niveau ; seul votre meilleur score compte. Mise à jour toutes les 15 secondes.</p>`;
+  el.innerHTML = html;
+}
+
+async function saveScore(score=total(), good=totalGood()){
+  if(!API_OK) return "skip";
+  try{
+    const r = await fetch(API_URL, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body: JSON.stringify({game:GAME, id:LB.me, name:S.name, score, good})});
+    const j = await r.json();
+    if(!j.ok) return "fail";
+    try{ localStorage.setItem(PKEY+"-synced", String(Math.max(score, Number(localStorage.getItem(PKEY+"-synced"))||0))); }catch(e){}
+    await loadBoard();
+    return j.best ? "best" : "kept";
+  }catch(e){ return "fail"; }
+}
+const $s = document.getElementById("story"), $d = document.getElementById("dossier");
+
+/* ---- Grilles de lecture ---- */
+const SCHEIN = [["art","Artefacts","Visibles, mais difficiles à décoder",212,10,50],["val","Valeurs déclarées","Stratégies, buts, philosophies affichés",260,84,50],["hyp","Hypothèses fondamentales","Tacites, tenues pour acquises",300,142,56]];
+/* Scores classiques du modèle 6D de Hofstede (0–100), dans l'ordre des dimensions de DIMS */
+const DIMS = [["pdi","Distance au pouvoir"],["idv","Individualisme"],["mas","Masculinité"],["uai","Évitement de l'incertitude"],["lto","Orientation long terme"],["ivr","Indulgence"]];
+const HOF = {FR:{n:"France",s:[68,71,43,86,63,48]}, SE:{n:"Suède",s:[31,71,5,29,53,78]}, US:{n:"États-Unis",s:[40,91,62,46,26,68]},
+  CN:{n:"Chine",s:[80,20,66,30,87,24]}, MX:{n:"Mexique",s:[81,30,69,82,24,97]}};
+const INTER = [["Obstacles à la communication",[["semantique","Sémantique : un même mot, des sens différents"],["connotation","Connotation des mots"],["conflit","Tolérance et résolution des conflits"]]],
+  ["Missions du manager",[["incarner","Incarner les valeurs de l'entreprise"],["controler","Contrôler leur respect (recrutement, quotidien)"],["coherence","Vérifier la cohérence valeurs-stratégie"]]],
+  ["Objectif",[["avantage","Transformer les différences culturelles en avantages stratégiques"]]]];
+const GSZ = [["Mesurer la culture",[["affiche","Valeurs affichées : sans lien avec la performance"],["percue","Intégrité perçue : « la direction tient parole »"]]],
+  ["Pourquoi elle compte",[["contrats","Contrats incomplets : la culture comme norme sociale"],["alea","Aléa moral au sommet : tenir ses promesses"]]],
+  ["Sociétés cotées",[["signal","Double signal : salariés et marché"],["bourse","Horizon court et actionnaire de référence"]]]];
+
+function lensView(l, reveal){
+  const K = reveal ? [].concat(l.key||[]) : [], ON = reveal ? (l.on||[]) : [];
+  const c = k => (ON.includes(k)?" on":"")+(K.includes(k)?" key":"");
+  if(l.t==="schein") return `<svg viewBox="0 0 320 206" role="img" aria-label="Les trois niveaux de la culture selon Schein${reveal?" : niveau en jeu "+SCHEIN.filter(s=>K.includes(s[0])).map(s=>s[1]).join(", "):""}">
+      ${SCHEIN.map(([k,n,d,w,y,h])=>`<g class="tier${c(k)}"><rect class="s" x="${(320-w)/2}" y="${y}" width="${w}" height="${h}" rx="6"/><text class="t" x="160" y="${y+h/2-2}">${n}</text><text class="t2" x="160" y="${y+h/2+13}">${d}</text></g>`).join("")}
+      <line class="wl" x1="0" x2="320" y1="72" y2="72"/><text class="wt" x="316" y="68" text-anchor="end">visible</text><text class="wt" x="316" y="82" text-anchor="end">caché</text>
+    </svg>`;
+  if(l.t==="hof"){
+    const F=HOF.FR, C=HOF[l.c];
+    return `<div class="hf"><div class="lg"><span><i class="sw fr"></i>France</span><span><i class="sw co"></i>${C.n}</span></div>
+      ${DIMS.map(([k,n],j)=>`<div class="r${K.includes(k)?" key":""}"><span>${n}</span><div class="bb">${[["fr",F.s[j]],["co",C.s[j]]].map(([cl,v])=>`<div class="b2"><div class="bar ${cl}"><i style="width:${v}%"></i></div><b>${v}</b></div>`).join("")}</div></div>`).join("")}
+      <p class="note">Scores indicatifs (0 à 100) du modèle de Hofstede. Ce sont des moyennes nationales : comparez les pays sur hofstede-insights.com.</p></div>`;
+  }
+  if(l.t==="inter" || l.t==="gsz") return `<div class="gl">${(l.t==="inter"?INTER:GSZ).map(([h,items])=>`<div><h4>${h}</h4><ul>${items.map(([k,n])=>`<li class="${c(k)}">${n}</li>`).join("")}</ul></div>`).join("")}</div>`;
+  return "";
+}
+function curChapter(){
+  const L=lv();
+  if(S.screen==="end") return L.ch[L.ch.length-1];
+  if(S.screen==="chapter") return L.ch[S.i];
+  return null;
+}
+function levelList(){
+  return `<ol class="lvls">${LV.map((l,L)=>{
+    const st = L<S.done ? `<span class="st ok">${ptsOf(L)} / ${l.ch.length*PTS.g}</span>`
+      : L===S.done ? `<span class="st">${S.lvl===L&&S.i>=0?"En cours":"À jouer"}</span>` : `<span class="st">Verrouillé</span>`;
+    return `<li class="${L>S.done?"lock":""}"><span class="n">${L+1}</span><span><b>${l.name}</b><small>${l.sector} · ${HSHORT[l.hint]}</small></span>${st}</li>`;
+  }).join("")}</ol>`;
+}
+function dossier(){
+  if(S.screen==="home" || S.screen==="final"){
+    $d.innerHTML = `<div><div class="eyebrow">Votre parcours</div><div class="conf">${total()} / ${MAXS} points</div></div>${levelList()}`;
+    return;
+  }
+  const L=lv(), c=curChapter();
+  const reveal = S.screen==="end" || S.picked!==null;
+  const show = c && (L.hint==="full" || S.screen==="end" || (L.hint==="after" && reveal));
+  const dots = L.ch.map((ch,k)=>{ const p=S.picks[S.lvl][k]; return `<span class="${p?p.q:""} ${k===S.i&&S.screen==="chapter"?"now":""}" title="${ch.diag?"Diagnostic":"Chapitre"} ${k+1}"></span>`; }).join("");
+  $d.innerHTML = `<div><div class="eyebrow">Grille de lecture · niveau ${S.lvl+1}</div><div class="conf">${show?LT[c.lens.t]:L.name}</div>
+      <p class="meta">${show?(reveal?`En jeu (contour rose) : ${c.lens.mech}`:"Quel élément de la grille est en jeu ? Réponse après votre décision."):HINT[L.hint]}</p></div>
+    ${show?lensView(c.lens, reveal):`<div class="masked">${L.hint==="after"?"La grille apparaîtra après votre décision.":L.hint==="none"?"Pas de grille à ce niveau : à vous de choisir la bonne théorie.":"La grille apparaîtra au premier chapitre."}</div>`}
+    <div class="gauge"><div class="row"><span>${L.trustLabel}</span><b>${S.trust}</b></div><div class="bar"><i style="width:${S.trust}%"></i></div></div>
+    <div class="gauge"><div class="row"><span>Cohésion culturelle</span><b>${S.motiv}</b></div><div class="bar h"><i style="width:${S.motiv}%"></i></div></div>
+    <div class="gauge"><div class="row"><span>Intégrité perçue (la direction tient parole)</span><b>${S.well}</b></div><div class="bar w"><i style="width:${S.well}%"></i></div></div>
+    <div class="gauge"><div class="row"><span>Vos décisions</span></div><div class="dots">${dots}</div></div>`;
+}
+const av = k => { const c=lv().cast[k]; return `<span class="av" style="background:${c.c}" aria-hidden="true">${c.i||c.n[0]}</span>`; };
+const toTop = () => { if($s.getBoundingClientRect().top<0) $s.scrollIntoView({block:"start"}); };
+
+function home(){
+  S.screen="home";
+  const started = S.done>0 || S.i>=0;
+  const label = S.done>=LV.length ? "Voir le bilan final" : started ? `Reprendre : niveau ${S.lvl+1}` : "Commencer";
+  $s.innerHTML = `<div class="eyebrow">Votre mission</div><h2>Quatre étapes, ${NCH} décisions</h2>
+    <p class="ctx">Vous suivez Arvéo de la PME à la société cotée. À chaque étape, un membre de l'organisation vous expose une situation : choisissez votre réponse, puis lisez l'analyse fondée sur la séance (Schein, Hofstede, management interculturel) et sur l'article de Guiso, Sapienza et Zingales. Certaines étapes sont des diagnostics : identifiez la cause avant d'agir. Les niveaux se débloquent dans l'ordre, et l'aide diminue de niveau en niveau. Votre progression est sauvegardée sur cet appareil.</p>
+    <form class="field" id="nameform" novalidate>
+      <label for="pname">Votre nom pour le classement</label>
+      <input id="pname" maxlength="30" autocomplete="name" placeholder="Prénom N." value="${esc(S.name)}">
+      <p class="err" id="nerr" hidden>Entrez un nom (2 caractères minimum) pour commencer.</p>
+      <div class="actions">${started?`<button class="btn ghost" type="button" id="reset">Tout recommencer</button>`:""}<button class="btn" type="submit">${label}</button></div>
+      <p class="confirm" id="rconf" hidden>Effacer votre progression sur cet appareil ? Votre meilleur score reste au classement.
+        <button class="link" type="button" id="ryes">Oui, effacer</button> <button class="link" type="button" id="rno" style="color:var(--navy)">Annuler</button></p>
+    </form>`;
+  document.getElementById("nameform").onsubmit=e=>{
+    e.preventDefault();
+    const v=document.getElementById("pname").value.trim().replace(/\s+/g," ");
+    if(v.length<2){ document.getElementById("nerr").hidden=false; return; }
+    S.name=v; try{ localStorage.setItem("code-name",v); }catch(e){}
+    resume();
+  };
+  if(started){
+    document.getElementById("reset").onclick=()=>{ document.getElementById("rconf").hidden=false; };
+    document.getElementById("rno").onclick=()=>{ document.getElementById("rconf").hidden=true; };
+    document.getElementById("ryes").onclick=()=>{ Object.assign(S, fresh()); try{ localStorage.removeItem(PKEY); }catch(e){} home(); };
+  }
+  dossier();
+}
+function resume(){
+  if(S.done>=LV.length) return finale();
+  if(S.i<0) return levelIntro();
+  if(S.picked!==null){ S.i++; S.picked=null; }
+  if(S.i>=lv().ch.length) return levelEnd();
+  chapter();
+}
+function levelIntro(){
+  S.screen="intro"; const L=lv();
+  $s.innerHTML = `<div class="eyebrow">Niveau ${S.lvl+1} / ${LV.length} · ${L.sector}</div><h2>${L.name}</h2>
+    <p class="ctx">${L.ctx}</p>
+    <p class="note"><b>${HINT[L.hint]}</b></p>
+    ${S.debug?`<p class="note">Accès direct au niveau : vous entrerez votre nom à la fin du niveau pour enregistrer votre score.</p>`:""}
+    <h3>Les personnages</h3>
+    <div class="cast">${Object.keys(L.cast).map(k=>`<div>${av(k)}<span><b>${L.cast[k].n}</b><small>${L.cast[k].r}</small></span></div>`).join("")}</div>
+    <div class="actions"><button class="btn" id="start">Commencer le niveau</button></div>`;
+  document.getElementById("start").onclick=()=>{ Object.assign(S,{i:0, picked:null, trust:50, motiv:50, well:50}); S.picks[S.lvl]=[]; persist(); chapter(); };
+  dossier(); toTop();
+}
+function chapter(){
+  S.screen="chapter";
+  const L=lv(), c=L.ch[S.i], who=L.cast[c.who], key=S.lvl+"-"+S.i;
+  if(!S.order[key]){ S.order[key]=shuffle([0,1,2]); persist(); }
+  const order=S.order[key];
+  $s.innerHTML = `<div class="chap"><div class="eyebrow">Niveau ${S.lvl+1} · ${c.diag?"Diagnostic":"Chapitre"} ${S.i+1} / ${L.ch.length}</div><span class="when">${c.when}</span></div>
+    <p class="ctx">${c.ctx}</p>
+    <div class="bubble">${av(c.who)}<div class="say"><b>${who.n} · ${who.r}</b><p>${c.line}</p></div></div>
+    <div class="opts">${order.map((oi,n)=>`<button class="opt" data-o="${oi}"><span class="k">${"ABC"[n]}</span><span>${c.opts[oi].t}</span></button>`).join("")}</div>
+    <div id="out"></div>`;
+  $s.querySelectorAll(".opt").forEach(b=>b.onclick=()=>choose(+b.dataset.o));
+  dossier(); toTop();
+}
+function choose(oi){
+  if(S.picked!==null) return;
+  const L=lv(), c=L.ch[S.i], o=c.opts[oi]; S.picked=oi; S.picks[S.lvl][S.i]={oi,q:o.q};
+  const d={g:[12,12,10],m:[2,0,0],b:[-10,-12,-10]}[o.q];
+  S.trust=clamp(S.trust+d[0]); S.motiv=clamp(S.motiv+d[1]); S.well=clamp(S.well+d[2]);
+  persist();
+  $s.querySelectorAll(".opt").forEach(b=>{ b.disabled=true; const oo=+b.dataset.o;
+    if(oo===oi) b.classList.add(o.q); else if(c.opts[oo].q==="g") b.classList.add("g"); else b.classList.add("dim"); });
+  const best=c.opts.find(x=>x.q==="g");
+  const last=S.i===L.ch.length-1;
+  document.getElementById("out").innerHTML = `
+    <div class="bubble">${av(c.who)}<div class="say"><b>${L.cast[c.who].n}</b><p>${o.r}</p></div></div>
+    <div class="analysis"><h3>Analyse · ${o.q==="g"?(c.diag?"Bon diagnostic":"Bonne décision"):o.q==="m"?(c.diag?"Diagnostic partiel":"Décision partielle"):(c.diag?"Diagnostic erroné":"Décision risquée")}</h3>
+      <p>${o.a}</p>${o.q!=="g"?`<p style="margin-top:8px"><b>${c.diag?"Meilleur diagnostic":"Meilleure option"} :</b> ${best.a}</p>`:""}
+      <div class="tags">${(o.q==="g"?o.tags:best.tags).map(t=>`<span class="tag">${t}</span>`).join("")}</div></div>
+    <div class="actions"><button class="btn" id="next">${last?"Voir le bilan du niveau":"Chapitre suivant"}</button></div>`;
+  const n=document.getElementById("next"); n.focus({preventScroll:true});
+  n.onclick=()=>{ S.i++; S.picked=null; persist(); last?levelEnd():chapter(); };
+  dossier();
+}
+function levelEnd(){
+  S.screen="end"; const L=lv(), n=L.ch.length, lvl=S.lvl;
+  S.i=n; S.picked=null; if(S.done<lvl+1) S.done=lvl+1; persist();
+  const g=goodOf(lvl), pts=ptsOf(lvl), lastLvl=lvl===LV.length-1;
+  const v = g>=5?L.v[0]:g>=3?L.v[1]:L.v[2];
+  const base = `${g}/${n} bonnes décisions · ${pts} / ${n*PTS.g} points sur ce niveau · total : ${total()} / ${MAXS}.`;
+  $s.innerHTML = `<div class="eyebrow">Bilan · niveau ${lvl+1} / ${LV.length} · ${L.name}</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span class="big">${pts}</span><h2>${v}</h2></div>
+    <p class="note" id="saved">${base}${S.debug||S.saved[lvl]?"":" Enregistrement…"}</p>
+    ${S.debug&&!S.saved[lvl]?`<form class="field" id="endname" novalidate>
+      <label for="ename">Votre nom pour le classement</label>
+      <input id="ename" maxlength="30" autocomplete="name" placeholder="Prénom N." value="${esc(S.name)}">
+      <p class="err" id="eerr" hidden>Entrez un nom (2 caractères minimum).</p>
+      <div class="actions"><button class="btn" type="submit">Enregistrer mon score</button></div>
+    </form>`:""}
+    <div class="tbl"><table><thead><tr><th>Étape</th><th>Votre choix</th><th>Notions en jeu</th></tr></thead><tbody>
+    ${L.ch.map((c,k)=>{const p=S.picks[lvl][k]; const best=c.opts.find(x=>x.q==="g"); return `<tr><td>${c.when}${c.diag?" · diagnostic":""}</td>
+      <td><span class="pill ${p?p.q:""}">${!p?"–":p.q==="g"?"Bon":p.q==="m"?"Partiel":"Risqué"}</span></td><td>${best.tags.join(" · ")}</td></tr>`}).join("")}
+    </tbody></table></div>
+    <h3>Pour le débat en classe</h3>
+    <ol class="disc">${L.disc.map(q=>`<li>${q}</li>`).join("")}</ol>
+    <div class="actions"><button class="btn" id="next">${lastLvl?"Voir le bilan final":`Niveau ${lvl+2} : ${LV[lvl+1].name}`}</button></div>`;
+  document.getElementById("next").onclick=()=>{ if(lastLvl) return finale(); S.lvl++; S.i=-1; S.picked=null; persist(); levelIntro(); };
+  dossier(); toTop();
+  const send = () => saveScore().then(r=>{
+    if(r==="best"||r==="kept"){ S.saved[lvl]=true; persist(); }
+    const el=document.getElementById("saved"); if(!el || S.screen!=="end") return;
+    el.textContent = base + " " + ({best:"Nouveau record enregistré dans le classement.", kept:"Score enregistré ; votre meilleur score reste inchangé.", skip:"Classement indisponible : score non enregistré.", fail:"Le score n'a pas pu être enregistré."}[r]);
+  });
+  if(S.saved[lvl]) return;
+  if(!S.debug) return send();
+  // direct level link: no name was asked at the start, so ask for it here
+  document.getElementById("endname").onsubmit=e=>{
+    e.preventDefault();
+    const v=document.getElementById("ename").value.trim().replace(/\s+/g," ");
+    if(v.length<2){ document.getElementById("eerr").hidden=false; return; }
+    S.name=v; try{ localStorage.setItem("code-name",v); }catch(e){}
+    document.getElementById("endname").remove();
+    document.getElementById("saved").textContent = base + " Enregistrement…";
+    send();
+  };
+}
+function finale(){
+  S.screen="final"; const t=total(), g=totalGood();
+  const v = g>=20?"Le conseil vous nomme directeur·rice général·e délégué·e, chargé·e de la culture.":g>=14?"Une culture préservée, avec quelques détours coûteux.":"La culture d'Arvéo s'est diluée en chemin…";
+  $s.innerHTML = `<div class="eyebrow">Bilan final</div>
+    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap"><span class="big">${t}</span><h2>${v}</h2></div>
+    <p class="note">${esc(S.name)} · ${g}/${NCH} bonnes décisions · score sur ${MAXS}.</p>
+    <div class="tbl"><table><thead><tr><th>Niveau</th><th>Organisation</th><th>Bonnes décisions</th><th>Points</th></tr></thead><tbody>
+    ${LV.map((l,L)=>`<tr><td>${L+1}</td><td>${l.name}</td><td>${goodOf(L)} / ${l.ch.length}</td><td>${ptsOf(L)}</td></tr>`).join("")}
+    </tbody></table></div>
+    <h3>Pour conclure</h3>
+    <ol class="disc">
+      <li>Schein, Hofstede, Guiso-Sapienza-Zingales : trois façons de regarder la culture (ses niveaux, les nations, les valeurs perçues). Laquelle vous paraît la plus utile à un manager ?</li>
+      <li>Le droit à l'erreur (niveau 1), la charte « la qualité avant tout » (niveau 3), la page de valeurs du prospectus (niveau 4) : quel est leur point commun ?</li>
+      <li>À Stockholm ou à Monterrey, qu'est-ce qui pèse le plus sur le comportement des salariés : la culture nationale ou la culture d'Arvéo ?</li>
+    </ol>
+    <div class="actions"><button class="btn" id="again">Rejouer toute la mission</button></div>`;
+  document.getElementById("again").onclick=()=>{ Object.assign(S, fresh()); if(!S.debug){ try{ localStorage.removeItem(PKEY); }catch(e){} } home(); };
+  dossier(); toTop();
+}
+const clamp=x=>Math.max(0,Math.min(100,x));
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a;}
+// re-send the completed-level total once if the board never accepted it (e.g. saves refused by an older server limit)
+function resync(){
+  if(S.debug || S.name.length<2 || S.done<1) return;
+  const n=Math.min(S.done, LV.length), sc=LV.slice(0,n).reduce((s,_,L)=>s+ptsOf(L),0), gd=LV.slice(0,n).reduce((s,_,L)=>s+goodOf(L),0);
+  let synced=0; try{ synced=Number(localStorage.getItem(PKEY+"-synced"))||0; }catch(e){}
+  if(sc>synced) saveScore(sc, gd);
+}
+resync();
+S.debug ? levelIntro() : home();
+</script>
+</body>
+</html>
