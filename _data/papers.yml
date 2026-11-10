@@ -331,6 +331,15 @@ publications:
       - {label: "Experiment code (oTree)", url: "https://github.com/andreaguido/InnovationSharingGame", type: code}
       - {label: "Data & analysis", url: "https://github.com/andreaguido/InnovationSharingCodes", type: data}
     topics: [norms]
+    abstract: >-
+      The sharing of valuable information is at the root of both economic growth and societal welfare. However,
+      individuals and organizations face a social dilemma when deciding whether to share information with others:
+      while sharing can create positive externalities, it may also reduce one's competitive advantage. We present
+      an incentivized game to study the effect of two social factors on individuals' willingness to share
+      information: reputational concerns arising in repeated interactions and the number of social connections.
+      Our results point to limits of repeated interactions as a factor to motivate sharing of valuable
+      information — we find that reputation increases information sharing, but only when the number of
+      connections is low. We discuss some behavioral mechanisms that could drive our results.
 
   - key: tverskoi2023disentangling
     title: "Disentangling material, social, and cognitive determinants of human behavior and beliefs"
