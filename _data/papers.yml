@@ -256,6 +256,7 @@ publications:
     number: 188
     pages: "43--67"
     doi: 10.3917/reof.188.0043
+    pdf: /files/papers/guido-2025-mcf-market-ofce.pdf
     topics: [markets]
 
   - key: andrighetto2024changes
@@ -353,6 +354,7 @@ publications:
     number: 5
     pages: "1074--1101"
     doi: 10.1111/jpet.12504
+    pdf: /files/papers/attanasi-2021-monopoly-double-auction.pdf
     topics: [markets]
     abstract: >-
       There is robust evidence in the experimental economics literature showing that monopoly power is affected
