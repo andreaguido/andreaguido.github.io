@@ -2,7 +2,7 @@
 layout: onepage
 permalink: /
 title: "Andrea Guido"
-tagline: "I use laboratory, online, and field experiments to study how people form beliefs and make decisions, with applications to climate change, social norms, cooperation, and behavioral policy."
+tagline: "I use laboratory, online, and field experiments to study how people form beliefs and make decisions, with applications to climate change, financial decisions, and behavioral policy."
 redirect_from:
   - /about/
   - /about.html
